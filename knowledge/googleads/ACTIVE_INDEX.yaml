@@ -1,0 +1,135 @@
+version: 1.0.0
+generated_at: 2026-04-06T11:31:00Z
+total_files: 9
+valid_files: 9
+total_tokens: 17155
+freshness_summary:
+  fresh: 9
+  stale: 0
+  warning: 0
+  unknown: 0
+knowledge_files:
+  - id: field_manual_v3.0
+    path: knowledge/googleads/official/field_manual_v3.0.md
+    layer: official
+    task_types:
+      - general_operations
+      - script_deployment
+      - compliance
+      - keyword_audit
+      - landing_page_audit
+      - finance_verification
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 5850
+    is_valid: true
+    validation_errors: []
+  - id: finance_compliance
+    path: knowledge/googleads/official/finance_compliance.md
+    layer: official
+    task_types:
+      - finance
+      - compliance
+      - verification
+    priority: 2
+    status: active
+    freshness: fresh
+    token_estimate: 125
+    is_valid: true
+    validation_errors: []
+  - id: policies
+    path: knowledge/googleads/official/policies.md
+    layer: official
+    task_types:
+      - compliance
+      - policy
+      - restricted_content
+    priority: 2
+    status: active
+    freshness: fresh
+    token_estimate: 50
+    is_valid: true
+    validation_errors: []
+  - id: appeal_process
+    path: knowledge/googleads/official/appeal_process.md
+    layer: official
+    task_types:
+      - appeal
+      - compliance
+      - finance
+      - policy_violation
+    priority: 2
+    status: active
+    freshness: fresh
+    token_estimate: 200
+    is_valid: true
+    validation_errors: []
+  - id: agents_backup
+    path: knowledge/googleads/hybrid/agents_backup.md
+    layer: hybrid
+    task_types:
+      - agent_reference
+      - routing
+      - system_architecture
+    priority: 3
+    status: active
+    freshness: fresh
+    token_estimate: 750
+    is_valid: true
+    validation_errors: []
+  - id: finance_navigator
+    path: knowledge/googleads/internal/finance_navigator.md
+    layer: internal
+    task_types:
+      - finance
+      - compliance
+      - verification
+      - navigation
+    priority: 3
+    status: active
+    freshness: fresh
+    token_estimate: 200
+    is_valid: true
+    validation_errors: []
+  - id: keyword_expert
+    path: knowledge/googleads/internal/keyword_expert.md
+    layer: internal
+    task_types:
+      - keyword_audit
+      - intent_analysis
+      - negative_keyword_generation
+    priority: 3
+    status: active
+    freshness: fresh
+    token_estimate: 175
+    is_valid: true
+    validation_errors: []
+  - id: lp_auditor
+    path: knowledge/googleads/internal/lp_auditor.md
+    layer: internal
+    task_types:
+      - landing_page_audit
+      - compliance
+      - quality_score
+      - seo
+    priority: 3
+    status: active
+    freshness: fresh
+    token_estimate: 175
+    is_valid: true
+    validation_errors: []
+  - id: script_architect
+    path: knowledge/googleads/internal/script_architect.md
+    layer: internal
+    task_types:
+      - script_generation
+      - automation
+      - monitoring
+      - bid_management
+    priority: 3
+    status: active
+    freshness: fresh
+    token_estimate: 150
+    is_valid: true
+    validation_errors: []

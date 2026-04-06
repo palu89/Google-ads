@@ -1,0 +1,27 @@
+id: googleads-scripts
+entity_type: skill
+name: googleads-scripts
+status: active
+summary: Google Ads script generation and deployment. Creates JavaScript automation scripts for monitoring, bid adjustment, and reporting.
+description: Google Ads script generation and deployment.
+depends_on:
+  - knowledge/script_architect
+used_by:
+  - agent/googleads-scripts
+owner: palu
+last_updated: 2026-02-08T02:25:00Z
+skill_path: skills/googleads-scripts/SKILL.md
+changelog_path: skills/googleads-scripts/CHANGELOG.md
+
+validation:
+  required_fields:
+    - id
+    - entity_type
+    - name
+    - status
+    - summary
+    - description
+    - depends_on
+    - used_by
+    - owner
+    - last_updated

@@ -1,0 +1,108 @@
+# Skills Registry
+# Tracks all skill definitions and their metadata.
+
+version: 1.0.0
+last_updated: 2026-04-06T11:10:00Z
+
+skills:
+  - id: googleads-field-operations
+    name: googleads-field-operations
+    description: Google Ads 优化师总控台。Orchestrator for Google Ads operations.
+    entity_type: skill
+    status: active
+    summary: Orchestrates Google Ads operations, routes to specialized agents, and provides field manual guidance.
+    depends_on:
+      - knowledge/field_manual_v3.0
+    used_by:
+      - agent/googleads-palu
+      - agent/main
+    owner: palu
+    last_updated: 2026-02-08T02:26:00Z
+    manifest_path: skills/googleads-field-operations/skill.yaml
+    skill_path: skills/googleads-field-operations/SKILL.md
+    changelog_path: skills/googleads-field-operations/CHANGELOG.md
+
+  # Additional skills to be extracted from migration documents
+  - id: googleads-scripts
+    name: googleads-scripts
+    description: Google Ads script generation and deployment.
+    entity_type: skill
+    status: active
+    summary: Generates and deploys Google Ads automation scripts.
+    depends_on:
+      - knowledge/script_architect
+    used_by: []
+    owner: palu
+    last_updated: unknown
+    manifest_path: skills/googleads-scripts/skill.yaml
+    skill_path: skills/googleads-scripts/SKILL.md
+    changelog_path: skills/googleads-scripts/CHANGELOG.md
+
+  - id: googleads-keyword-expert
+    name: googleads-keyword-expert
+    description: Keyword auditing and intent analysis.
+    entity_type: skill
+    status: active
+    summary: Analyzes keyword intent and provides classification recommendations.
+    depends_on:
+      - knowledge/keyword_expert
+    used_by: []
+    owner: palu
+    last_updated: unknown
+    manifest_path: skills/googleads-keyword-expert/skill.yaml
+    skill_path: skills/googleads-keyword-expert/SKILL.md
+    changelog_path: skills/googleads-keyword-expert/CHANGELOG.md
+
+  - id: googleads-audit
+    name: googleads-audit
+    description: Landing page audit and optimization.
+    entity_type: skill
+    status: active
+    summary: Audits landing pages for quality score and conversion optimization.
+    depends_on:
+      - knowledge/lp_auditor
+    used_by: []
+    owner: palu
+    last_updated: unknown
+    manifest_path: skills/googleads-audit/skill.yaml
+    skill_path: skills/googleads-audit/SKILL.md
+    changelog_path: skills/googleads-audit/CHANGELOG.md
+
+  - id: googleads-verify
+    name: googleads-verify
+    description: Financial services verification navigation.
+    entity_type: skill
+    status: active
+    summary: Guides through financial services verification and compliance requirements.
+    depends_on:
+      - knowledge/finance_navigator
+      - knowledge/finance_compliance
+    used_by: []
+    owner: palu
+    last_updated: unknown
+    manifest_path: skills/googleads-verify/skill.yaml
+    skill_path: skills/googleads-verify/SKILL.md
+    changelog_path: skills/googleads-verify/CHANGELOG.md
+
+validation:
+  required_fields:
+    - id
+    - name
+    - description
+    - entity_type
+    - status
+    - summary
+    - depends_on
+    - used_by
+    - owner
+    - last_updated
+  status_values: [active, deprecated, experimental, unknown]
+  freshness_threshold_days: 90
+
+notes: |
+  Skills are executable capabilities referenced by agents.
+  Each skill must have a corresponding directory in /skills/<skill-name>/
+  with SKILL.md, skill.yaml, and CHANGELOG.md.
+  
+  Skills may depend on knowledge files or other skills.
+  The 'used_by' field tracks which agents reference this skill.

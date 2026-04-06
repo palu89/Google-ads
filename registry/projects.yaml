@@ -1,0 +1,80 @@
+# Projects Registry
+# Tracks active projects and their metadata.
+
+version: 1.0.0
+last_updated: 2026-04-06T11:45:00Z
+
+projects:
+  - id: openclaw-dashboard
+    entity_type: project
+    name: OpenClaw Dashboard
+    status: active
+    stage: development
+    summary: Dashboard for monitoring OpenClaw agents and skills
+    active_skills: []
+    active_playbooks: []
+    primary_goal: "Provide real-time visibility into OpenClaw agent performance"
+    risks: ["Early development stage", "Limited documentation"]
+    last_updated: 2026-03-31T04:47:00Z
+    path: projects/openclaw-dashboard/
+    
+  - id: manas-mainline
+    entity_type: project
+    name: Manas Mainline
+    status: active
+    stage: planning
+    summary: Mainline project for Manas system
+    active_skills: []
+    active_playbooks: []
+    primary_goal: "Establish core architecture for Manas project"
+    risks: ["Requires further scoping", "Resource allocation needed"]
+    last_updated: 2026-03-24T04:23:00Z
+    path: projects/manas-mainline/
+    
+  - id: therads-platform-operations
+    entity_type: project
+    name: Therads Platform Operations
+    status: active
+    stage: operational
+    summary: Operations and management of Therads platform
+    active_skills: []
+    active_playbooks: []
+    primary_goal: "Maintain and optimize Therads platform operations"
+    risks: ["Platform stability", "Operational dependencies"]
+    last_updated: 2026-03-23T01:11:00Z
+    path: projects/therads-platform-operations/
+
+validation:
+  required_fields:
+    - id
+    - entity_type
+    - name
+    - status
+    - stage
+    - summary
+    - active_skills
+    - active_playbooks
+    - primary_goal
+    - risks
+    - last_updated
+    - path
+  project_stages:
+    - planning
+    - development
+    - testing
+    - staging
+    - operational
+    - maintenance
+    - archived
+  status_values:
+    - active
+    - paused
+    - completed
+    - cancelled
+
+notes: |
+  This registry tracks active projects.
+  Each project must have a corresponding directory in /projects/<project-id>/
+  with project.yaml, CURRENT_STATE.md, DECISIONS.md, and CHANGELOG.md.
+  
+  Project state should be updated in CURRENT_STATE.md whenever project.yaml changes.

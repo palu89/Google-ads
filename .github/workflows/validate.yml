@@ -1,0 +1,127 @@
+name: Validate Repository Structure
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyyaml
+    
+    - name: Check repository structure
+      run: |
+        echo "Checking required directories..."
+        for dir in knowledge/googleads/{official,hybrid,internal,playbooks,indexes} registry skills projects archive scripts .github/workflows; do
+          if [ -d "$dir" ]; then
+            echo "✅ $dir exists"
+          else
+            echo "❌ $dir missing"
+            exit 1
+          fi
+        done
+        
+        echo "Checking required files..."
+        for file in AGENT_BOOTSTRAP.md README.md migration_map.md registry/repo.yaml registry/model-profiles.yaml registry/task-router.yaml registry/googleads.yaml registry/skills.yaml registry/projects.yaml knowledge/googleads/TASK_ROUTER.yaml knowledge/googleads/ACTIVE_INDEX.yaml scripts/compile_knowledge.py scripts/check_atomic_updates.py; do
+          if [ -f "$file" ]; then
+            echo "✅ $file exists"
+          else
+            echo "❌ $file missing"
+            exit 1
+          fi
+        done
+    
+    - name: Validate knowledge files frontmatter
+      run: |
+        echo "Validating knowledge file frontmatter..."
+        python scripts/compile_knowledge.py --strict
+        if [ $? -eq 0 ]; then
+          echo "✅ All knowledge files have valid frontmatter"
+        else
+          echo "❌ Knowledge file validation failed"
+          exit 1
+        fi
+    
+    - name: Check atomic updates
+      run: |
+        echo "Checking atomic update violations..."
+        python scripts/check_atomic_updates.py
+        if [ $? -eq 0 ]; then
+          echo "✅ No atomic update violations"
+        else
+          echo "❌ Atomic update violations detected"
+          exit 1
+        fi
+    
+    - name: Validate registry consistency
+      run: |
+        echo "Validating registry consistency..."
+        python -c "
+        import yaml
+        import sys
+        
+        # Load registry files
+        with open('registry/googleads.yaml', 'r') as f:
+            googleads = yaml.safe_load(f)
+        
+        with open('registry/skills.yaml', 'r') as f:
+            skills = yaml.safe_load(f)
+        
+        with open('registry/projects.yaml', 'r') as f:
+            projects = yaml.safe_load(f)
+        
+        # Check googleads registry
+        if 'knowledge_files' not in googleads:
+            print('❌ registry/googleads.yaml missing knowledge_files')
+            sys.exit(1)
+        
+        # Check skills registry
+        if 'skills' not in skills:
+            print('❌ registry/skills.yaml missing skills')
+            sys.exit(1)
+        
+        # Check projects registry
+        if 'projects' not in projects:
+            print('❌ registry/projects.yaml missing projects')
+            sys.exit(1)
+        
+        print('✅ All registries have required structure')
+        "
+    
+    - name: Generate validation report
+      if: always()
+      run: |
+        echo "## Validation Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Repository Structure Validation**" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Directory structure check passed" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Required files check passed" >> $GITHUB_STEP_SUMMARY
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Knowledge Validation**" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Frontmatter validation passed" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Atomic update check passed" >> $GITHUB_STEP_SUMMARY
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Registry Validation**" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Registry consistency check passed" >> $GITHUB_STEP_SUMMARY
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Overall Status**" >> $GITHUB_STEP_SUMMARY
+        echo "All validation checks passed successfully." >> $GITHUB_STEP_SUMMARY

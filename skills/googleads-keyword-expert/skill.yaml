@@ -1,0 +1,27 @@
+id: googleads-keyword-expert
+entity_type: skill
+name: googleads-keyword-expert
+status: active
+summary: Keyword intent analysis expert for Google Ads. Distinguishes between high-intent conversion keywords and low-intent informational queries.
+description: Keyword auditing and intent analysis.
+depends_on:
+  - knowledge/keyword_expert
+used_by:
+  - agent/googleads-keyword-expert
+owner: palu
+last_updated: 2026-02-08T02:26:00Z
+skill_path: skills/googleads-keyword-expert/SKILL.md
+changelog_path: skills/googleads-keyword-expert/CHANGELOG.md
+
+validation:
+  required_fields:
+    - id
+    - entity_type
+    - name
+    - status
+    - summary
+    - description
+    - depends_on
+    - used_by
+    - owner
+    - last_updated

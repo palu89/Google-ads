@@ -1,0 +1,84 @@
+# Repository Metadata
+# This file defines the canonical state of the repository.
+
+version: 1.0.0
+last_updated: 2026-04-06T11:04:00Z
+repository:
+  name: unified-knowledge-registry
+  description: Unified GitHub repository for Google Ads knowledge, skills, projects, and registry
+  canonical_url: https://github.com/user/repo
+  license: MIT
+  status: active
+  
+structure:
+  knowledge:
+    path: knowledge/
+    domains:
+      - googleads
+    layers:
+      - official
+      - hybrid
+      - internal
+      - playbooks
+      - indexes
+  skills:
+    path: skills/
+    manifest_pattern: "skill.yaml"
+  projects:
+    path: projects/
+    state_file: CURRENT_STATE.md
+  registry:
+    path: registry/
+    files:
+      - repo.yaml
+      - model-profiles.yaml
+      - task-router.yaml
+      - googleads.yaml
+      - skills.yaml
+      - projects.yaml
+  generated:
+    path: generated/
+    purpose: "Auto-generated indexes and compiled outputs"
+  archive:
+    path: archive/
+    categories:
+      - migration
+      - audit
+      - googleads/scripts
+  scripts:
+    path: scripts/
+    executables:
+      - compile_knowledge.py
+      - check_atomic_updates.py
+
+governance:
+  bootstrap_document: AGENT_BOOTSTRAP.md
+  validation_workflow: .github/workflows/validate.yml
+  index_regeneration_frequency: 7d
+  stale_threshold_days: 30
+  
+access_control:
+  read: public
+  write: maintainers
+  admin: repository_owner
+
+maintainers:
+  - name: palu
+    role: primary
+    email: unknown
+    
+dependencies:
+  required_tools:
+    - python >= 3.9
+    - git
+    - yq (optional for YAML processing)
+    
+notes: |
+  This repository serves as the single source of truth for:
+  - Google Ads operational knowledge
+  - Skill definitions and execution protocols
+  - Project states and decisions
+  - Agent routing and model profiles
+  
+  All active state must be reflected in registry files.
+  Historical and migration materials belong in archive/.

@@ -1,0 +1,155 @@
+# Model Profiles and Agent Configuration
+# Derived from openclaw_current.json, transformed to registry format.
+
+version: 1.0.0
+last_updated: 2026-04-06T11:05:00Z
+source: openclaw_current.json (2026-03-22T11:45:27.666Z)
+
+model_providers:
+  openai:
+    base_url: https://api.openai.com/v1
+    api_type: openai-responses
+    models:
+      - id: gpt-5
+        name: GPT-5
+        reasoning: true
+        input_types: [text]
+        context_window: unknown
+        max_tokens: unknown
+        status: known
+      - id: gpt-5-mini
+        name: GPT-5 Mini
+        reasoning: true
+        input_types: [text]
+        context_window: unknown
+        max_tokens: unknown
+        status: known
+
+  anthropic:
+    base_url: https://api.anthropic.com
+    api_type: anthropic-messages
+    api_key_source: env:OPENCLAW_ANTHROPIC_API_KEY
+    models:
+      - id: claude-sonnet-4-5
+        name: Claude Sonnet 4.5
+        reasoning: true
+        input_types: [text, image]
+        context_window: 198000
+        max_tokens: 64000
+        status: active
+      - id: claude-sonnet-4-6
+        name: Claude Sonnet 4.6
+        reasoning: true
+        input_types: [text, image]
+        context_window: 1000000
+        max_tokens: 128000
+        status: active
+
+  deepseek:
+    base_url: https://api.deepseek.com/v1
+    api_type: openai-completions
+    api_key_source: env:OPENCLAW_DEEPSEEK_API_KEY
+    models:
+      - id: deepseek-chat
+        name: DeepSeek Chat
+        reasoning: false
+        input_types: [text]
+        context_window: unknown
+        max_tokens: unknown
+        status: known
+      - id: deepseek-reasoner
+        name: DeepSeek Reasoner
+        reasoning: true
+        input_types: [text]
+        context_window: unknown
+        max_tokens: unknown
+        status: active
+
+agent_profiles:
+  defaults:
+    primary_model: deepseek/deepseek-reasoner
+    fallback_models:
+      - deepseek/deepseek-chat
+    timeout_seconds: 300
+    max_concurrent: 4
+    subagents_max_concurrent: 8
+    compaction_mode: safeguard
+
+  agents:
+    - id: main
+      name: main
+      description: Default agent
+      model: deepseek/deepseek-reasoner
+      status: active
+      workspace: unknown
+      last_active: unknown
+
+    - id: googleads-palu
+      name: googleads-palu
+      description: Google Ads operations agent
+      model: deepseek/deepseek-reasoner
+      status: active
+      workspace: /Users/palu/.openclaw/workspace-googleads-palu
+      agent_dir: /Users/palu/.openclaw/agents/googleads-palu/agent
+      routing:
+        channel: telegram
+        account_id: default
+      last_active: unknown
+
+    - id: platform-operations-palu
+      name: platform-operations-palu
+      description: Platform operations agent
+      model:
+        primary: deepseek/deepseek-reasoner
+        fallbacks:
+          - deepseek/deepseek-chat
+      status: active
+      workspace: /Users/palu/.openclaw/workspace-platform-operations-palu
+      agent_dir: /Users/palu/.openclaw/agents/platform-operations-palu/agent
+      routing:
+        channel: telegram
+        account_id: qiyuesanhao_bot
+      last_active: unknown
+
+    - id: manas-palu
+      name: manas-palu
+      description: Manas project agent
+      model: deepseek/deepseek-reasoner
+      status: active
+      workspace: /Users/palu/.openclaw/workspace-manas-palu
+      agent_dir: /Users/palu/.openclaw/agents/manas-palu/agent
+      routing: unknown
+      last_active: unknown
+
+tool_profiles:
+  web_search:
+    provider: perplexity
+    status: enabled
+  sessions:
+    visibility: all
+  native_tools:
+    enabled: auto
+  native_skills:
+    enabled: auto
+
+channel_bindings:
+  - agent_id: googleads-palu
+    channel: telegram
+    account_id: default
+    enabled: true
+    dm_policy: allowlist
+    streaming: partial
+
+  - agent_id: platform-operations-palu
+    channel: telegram
+    account_id: qiyuesanhao_bot
+    enabled: true
+    dm_policy: allowlist
+    streaming: off
+
+notes: |
+  This registry captures model capabilities and agent configurations for routing purposes.
+  Actual runtime configuration may differ; this represents the intended state.
+  
+  Environment variables for API keys are referenced but not stored here.
+  Workspace paths are local to the original system; may need adjustment for different deployments.

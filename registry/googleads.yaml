@@ -1,0 +1,159 @@
+# Google Ads Domain Registry
+# Maps Google Ads subdomains to knowledge files and skills.
+
+version: 1.0.0
+last_updated: 2026-04-06T11:20:00Z
+
+domain: googleads
+status: active
+description: Google Ads operational knowledge, scripts, compliance, and optimization
+
+knowledge_layers:
+  official:
+    description: Platform facts, official policy, official mechanisms
+    path: knowledge/googleads/official/
+    priority: 1
+    freshness_requirement: strict
+    
+  hybrid:
+    description: Official mechanism + operator interpretation
+    path: knowledge/googleads/hybrid/
+    priority: 2
+    freshness_requirement: moderate
+    
+  internal:
+    description: SOP, workflow, heuristic, checklist
+    path: knowledge/googleads/internal/
+    priority: 3
+    freshness_requirement: flexible
+    
+  playbooks:
+    description: Step-by-step execution guides
+    path: knowledge/googleads/playbooks/
+    priority: 4
+    freshness_requirement: flexible
+    
+  indexes:
+    description: Generated indexes and summaries
+    path: knowledge/googleads/indexes/
+    priority: 5
+    freshness_requirement: auto_generated
+
+knowledge_files:
+  - id: field_manual_v3.0
+    path: knowledge/googleads/official/field_manual_v3.0.md
+    layer: official
+    task_types: [general_operations, script_deployment, compliance, keyword_audit, landing_page_audit, finance_verification]
+    priority: 1
+    status: active
+    estimated_tokens: 12000
+    last_validated: 2026-04-06T11:09:00Z
+    
+  - id: finance_compliance
+    path: knowledge/googleads/official/finance_compliance.md
+    layer: official
+    task_types: [finance, compliance, verification]
+    priority: 2
+    status: active
+    estimated_tokens: 500
+    last_validated: 2026-04-06T11:12:00Z
+    
+  - id: policies
+    path: knowledge/googleads/official/policies.md
+    layer: official
+    task_types: [compliance, policy]
+    priority: 2
+    status: active
+    estimated_tokens: 200
+    last_validated: 2026-04-06T11:16:00Z
+    
+  - id: appeal_process
+    path: knowledge/googleads/official/appeal_process.md
+    layer: official
+    task_types: [appeal, compliance, finance, policy_violation]
+    priority: 2
+    status: active
+    estimated_tokens: 800
+    last_validated: 2026-04-06T11:18:00Z
+    
+  - id: agents_backup
+    path: knowledge/googleads/hybrid/agents_backup.md
+    layer: hybrid
+    task_types: [agent_reference, routing, system_architecture]
+    priority: 3
+    status: active
+    estimated_tokens: 3000
+    last_validated: 2026-04-06T11:13:00Z
+    
+  - id: finance_navigator
+    path: knowledge/googleads/internal/finance_navigator.md
+    layer: internal
+    task_types: [finance, compliance, verification, navigation]
+    priority: 3
+    status: active
+    estimated_tokens: 800
+    last_validated: 2026-04-06T11:11:00Z
+    
+  - id: keyword_expert
+    path: knowledge/googleads/internal/keyword_expert.md
+    layer: internal
+    task_types: [keyword_audit, intent_analysis, negative_keyword_generation]
+    priority: 3
+    status: active
+    estimated_tokens: 700
+    last_validated: 2026-04-06T11:12:00Z
+    
+  - id: lp_auditor
+    path: knowledge/googleads/internal/lp_auditor.md
+    layer: internal
+    task_types: [landing_page_audit, compliance, quality_score, seo]
+    priority: 3
+    status: active
+    estimated_tokens: 700
+    last_validated: 2026-04-06T11:16:00Z
+    
+  - id: script_architect
+    path: knowledge/googleads/internal/script_architect.md
+    layer: internal
+    task_types: [script_generation, automation, monitoring, bid_management]
+    priority: 3
+    status: active
+    estimated_tokens: 600
+    last_validated: 2026-04-06T11:15:00Z
+
+skill_mappings:
+  googleads-field-operations:
+    skill_id: googleads-field-operations
+    knowledge_files:
+      - field_manual_v3.0
+      - finance_compliance
+      - policies
+      - appeal_process
+    agent_mappings: see SKILL.md in skills/googleads-field-operations/
+
+task_router: knowledge/googleads/TASK_ROUTER.yaml
+active_index: knowledge/googleads/ACTIVE_INDEX.yaml
+
+validation:
+  required_frontmatter_fields:
+    - id
+    - entity_type
+    - domain
+    - layer
+    - task_types
+    - priority
+    - status
+    - source
+    - source_checked_at
+    - content_updated_at
+    - depends_on
+    - summary
+  freshness_threshold_days: 30
+  token_estimate_threshold: 20000
+
+notes: |
+  This registry tracks Google Ads knowledge assets.
+  All active knowledge files must have complete frontmatter.
+  
+  The TASK_ROUTER.yaml provides detailed task-to-file mappings.
+  ACTIVE_INDEX.yaml is auto-generated and should not be manually edited.

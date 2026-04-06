@@ -1,0 +1,129 @@
+# Task Router Configuration
+# Maps task patterns to domain-specific routers and skills.
+
+version: 1.0.0
+last_updated: 2026-04-06T11:06:00Z
+
+task_patterns:
+  google_ads_knowledge:
+    patterns:
+      - "google ads"
+      - "Google Ads"
+      - "googleads"
+      - "广告"
+      - "脚本"
+      - "script"
+      - "compliance"
+      - "policy"
+      - "申诉"
+      - "appeal"
+      - "关键词"
+      - "keyword"
+      - "落地页"
+      - "landing page"
+      - "质量得分"
+      - "quality score"
+    router: knowledge/googleads/TASK_ROUTER.yaml
+    domain: googleads
+    priority: 1
+
+  skill_execution:
+    patterns:
+      - "执行技能"
+      - "apply skill"
+      - "使用技能"
+      - "run skill"
+      - "skill:"
+      - "skill "
+    router: registry/skills.yaml
+    action: locate_and_execute
+    priority: 2
+
+  project_update:
+    patterns:
+      - "项目状态"
+      - "project status"
+      - "更新项目"
+      - "update project"
+      - "CURRENT_STATE"
+      - "DECISIONS"
+    router: registry/projects.yaml
+    action: load_project_state
+    priority: 3
+
+  registry_maintenance:
+    patterns:
+      - "更新索引"
+      - "update index"
+      - "重新生成"
+      - "regenerate"
+      - "验证"
+      - "validate"
+      - "编译知识"
+      - "compile knowledge"
+    router: registry/repo.yaml
+    action: run_maintenance_script
+    priority: 4
+
+  archive_reference:
+    patterns:
+      - "历史"
+      - "historical"
+      - "迁移"
+      - "migration"
+      - "备份"
+      - "backup"
+      - "archive"
+    router: archive/
+    action: read_only
+    priority: 5
+
+routing_rules:
+  default_flow:
+    - classify_task
+    - match_pattern
+    - load_router
+    - execute_or_route
+    - update_registry_if_needed
+
+  conflict_resolution:
+    multiple_matches: use_highest_priority
+    ambiguous_patterns: ask_clarification
+    missing_router: fallback_to_domain_default
+
+  fallback_domains:
+    - googleads
+    - skills
+    - projects
+
+domain_defaults:
+  googleads:
+    primary_router: knowledge/googleads/TASK_ROUTER.yaml
+    secondary_router: registry/googleads.yaml
+    index_file: knowledge/googleads/ACTIVE_INDEX.yaml
+
+  skills:
+    manifest_dir: skills/
+    registry: registry/skills.yaml
+    skill_pattern: "skill.yaml"
+
+  projects:
+    manifest_dir: projects/
+    registry: registry/projects.yaml
+    state_file: CURRENT_STATE.md
+
+validation:
+  required_before_routing:
+    - registry/repo.yaml
+    - registry/task-router.yaml
+  optional:
+    - registry/model-profiles.yaml
+  freshness_threshold_hours: 24
+
+notes: |
+  This router is the first point of contact for task classification.
+  If patterns match multiple categories, use priority order (1 = highest).
+  
+  Agents should cache this file and check for updates every 24 hours.
+  
+  Changes to this file may affect all routing; update with caution.

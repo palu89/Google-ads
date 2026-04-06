@@ -1,0 +1,27 @@
+id: googleads-audit
+entity_type: skill
+name: googleads-audit
+status: active
+summary: Landing page audit and optimization for Google Ads.
+description: Audits landing pages for quality score and conversion optimization.
+depends_on:
+  - knowledge/lp_auditor
+used_by:
+  - agent/googleads-audit
+owner: palu
+last_updated: 2026-02-08T01:19:00Z
+skill_path: skills/googleads-audit/SKILL.md
+changelog_path: skills/googleads-audit/CHANGELOG.md
+
+validation:
+  required_fields:
+    - id
+    - entity_type
+    - name
+    - status
+    - summary
+    - description
+    - depends_on
+    - used_by
+    - owner
+    - last_updated
