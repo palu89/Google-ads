@@ -171,6 +171,42 @@ knowledge_files:
     status: active
     estimated_tokens: 680
     last_validated: 2026-04-08T00:00:00Z
+    
+  - id: signal-control-matrix
+    path: knowledge/googleads/hybrid/signal-control-matrix.md
+    layer: hybrid
+    task_types: [strategy_engineering, performance_diagnosis, rca, campaign_build, signal_analysis]
+    priority: 1
+    status: active
+    estimated_tokens: 2200
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: signal-priority-method
+    path: knowledge/googleads/hybrid/signal-priority-method.md
+    layer: hybrid
+    task_types: [strategy_engineering, performance_diagnosis, rca, campaign_build, signal_analysis]
+    priority: 1
+    status: active
+    estimated_tokens: 1100
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: strategy-prioritization
+    path: knowledge/googleads/hybrid/strategy-prioritization.md
+    layer: hybrid
+    task_types: [strategy_engineering, performance_diagnosis, campaign_build]
+    priority: 1
+    status: active
+    estimated_tokens: 960
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: signal-analysis-playbook
+    path: knowledge/googleads/hybrid/signal-analysis-playbook.md
+    layer: hybrid
+    task_types: [signal_analysis, performance_diagnosis, rca]
+    priority: 1
+    status: active
+    estimated_tokens: 840
+    last_validated: 2026-04-08T00:00:00Z
 
 skill_mappings:
   googleads-field-operations:

@@ -140,6 +140,27 @@ task_mappings:
     layer: best-practices
     priority: 1
 
+  signal_analysis:
+    patterns:
+      - "signal control"
+      - "signal matrix"
+      - "signal engineering"
+      - "信号控制"
+      - "信号优先级"
+      - "信号分析"
+      - "信号梳理"
+      - "performance diagnosis"
+      - "why is performance"
+      - "why did lead quality"
+      - "rca"
+    knowledge_files:
+      - signal-control-matrix
+      - signal-priority-method
+      - strategy-prioritization
+      - signal-analysis-playbook
+    layer: hybrid
+    priority: 1
+
 fallback_mapping:
   default_knowledge_file: field_manual_v3.0
   default_skill: googleads-field-operations

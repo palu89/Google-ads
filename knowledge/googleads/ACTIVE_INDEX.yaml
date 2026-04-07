@@ -200,3 +200,59 @@ knowledge_files:
     token_estimate: 340
     is_valid: true
     validation_errors: []
+  - id: signal-control-matrix
+    path: knowledge/googleads/hybrid/signal-control-matrix.md
+    layer: hybrid
+    task_types:
+      - strategy_engineering
+      - performance_diagnosis
+      - rca
+      - campaign_build
+      - signal_analysis
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 1100
+    is_valid: true
+    validation_errors: []
+  - id: signal-priority-method
+    path: knowledge/googleads/hybrid/signal-priority-method.md
+    layer: hybrid
+    task_types:
+      - strategy_engineering
+      - performance_diagnosis
+      - rca
+      - campaign_build
+      - signal_analysis
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 550
+    is_valid: true
+    validation_errors: []
+  - id: strategy-prioritization
+    path: knowledge/googleads/hybrid/strategy-prioritization.md
+    layer: hybrid
+    task_types:
+      - strategy_engineering
+      - performance_diagnosis
+      - campaign_build
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 480
+    is_valid: true
+    validation_errors: []
+  - id: signal-analysis-playbook
+    path: knowledge/googleads/hybrid/signal-analysis-playbook.md
+    layer: hybrid
+    task_types:
+      - signal_analysis
+      - performance_diagnosis
+      - rca
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 420
+    is_valid: true
+    validation_errors: []
