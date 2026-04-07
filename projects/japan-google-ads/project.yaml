@@ -1,0 +1,44 @@
+name: Japan Google Ads Campaign
+id: japan-google-ads
+status: initializing
+tier: tier-2
+description: |
+  日本谷歌广告投放项目
+  Japan Google Ads Campaign Project
+  
+  This project manages Google Ads campaigns targeting Japan market,
+  including account setup, campaign configuration, performance tracking,
+  and optimization strategies for Japanese market conditions.
+
+created_at: 2026-04-08
+last_updated: 2026-04-08
+maintainer: palu
+
+region: JP
+language: ja
+currency: JPY
+
+components:
+  - campaign-setup
+  - audience-targeting
+  - bid-strategy
+  - conversion-tracking
+  - performance-analysis
+
+tags:
+  - japan
+  - google-ads
+  - campaign
+  - internationalization
+  - jp-market
+
+roadmap:
+  - phase: discovery
+    status: active
+    description: Market research and competitor analysis
+  - phase: setup
+    status: planned
+    description: Account and campaign configuration
+  - phase: optimization
+    status: planned
+    description: Performance tuning and scaling

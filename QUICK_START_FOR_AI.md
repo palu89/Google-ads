@@ -77,14 +77,24 @@
 
 ## 📚 核心资源快速索引
 
-### 4个活跃的Skills (Active Skills)
+### 4个活跃的Skills (Active Skills) — 自包含、通用格式
+
+> **核心特性**：每个 Skill 文件都是**完全自包含**的纯 Markdown。  
+> 可以直接复制粘贴到任何 AI 工具（ChatGPT / Claude / Gemini / Copilot / Cursor），AI 将立即获得对应能力。  
+> 无需额外依赖文件。
 
 | Skill ID | 名称 | 用途 | 入口 |
 |----------|------|------|------|
-| `googleads-field-operations` | Google Ads 优化师总控台 | 活动管理、策略指导 | `skills/googleads-field-operations/SKILL.md` |
-| `googleads-audit` | 落地页审核 | 落地页质量评分、转化优化 | `skills/googleads-audit/SKILL.md` |
-| `googleads-keyword-expert` | 关键词专家 | 关键词分析、意图分类 | `skills/googleads-keyword-expert/SKILL.md` |
-| `googleads-scripts` | 脚本生成器 | Google Ads 自动化脚本 | `skills/googleads-scripts/SKILL.md` |
+| `googleads-field-operations` | Google Ads 优化师总控台 | 全域运营调度、策略指导 | `skills/googleads-field-operations/SKILL.md` |
+| `googleads-audit` | 落地页审计专家 | 合规扫描、质量得分诊断、CTA 优化 | `skills/googleads-audit/SKILL.md` |
+| `googleads-keyword-expert` | 关键词意图判官 | 意图分析、红绿灯分类、否定词建议 | `skills/googleads-keyword-expert/SKILL.md` |
+| `googleads-scripts` | 脚本专家 | Google Ads 自动化脚本生成 | `skills/googleads-scripts/SKILL.md` |
+
+**跨工具使用方法**：
+1. 打开 GitHub 上对应的 SKILL.md 文件
+2. 复制全部内容
+3. 粘贴到任何 AI 对话中
+4. AI 立即具备该技能
 
 ### 4层知识库 (Knowledge Layers)
 
