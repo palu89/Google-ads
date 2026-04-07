@@ -133,3 +133,70 @@ knowledge_files:
     token_estimate: 150
     is_valid: true
     validation_errors: []
+  - id: knowledge-retrieval-framework
+    path: knowledge/googleads/internal/knowledge-retrieval-framework.md
+    layer: internal
+    task_types:
+      - routing
+      - retrieval
+      - governance
+      - prompt_engineering
+      - project_state
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 1200
+    is_valid: true
+    validation_errors: []
+  - id: question-framework
+    path: knowledge/googleads/best-practices/question-framework.md
+    layer: best-practices
+    task_types:
+      - prompt_engineering
+      - knowledge_retrieval
+      - question_optimization
+    priority: 2
+    status: active
+    freshness: fresh
+    token_estimate: 350
+    is_valid: true
+    validation_errors: []
+  - id: api-query-best-practices
+    path: knowledge/googleads/best-practices/api-query-best-practices.md
+    layer: best-practices
+    task_types:
+      - api_query
+      - technical_question
+      - script_generation
+    priority: 2
+    status: active
+    freshness: fresh
+    token_estimate: 280
+    is_valid: true
+    validation_errors: []
+  - id: prompt-engineering-guide
+    path: knowledge/googleads/best-practices/prompt-engineering-guide.md
+    layer: best-practices
+    task_types:
+      - prompt_engineering
+      - ai_interaction
+      - knowledge_optimization
+    priority: 2
+    status: active
+    freshness: fresh
+    token_estimate: 420
+    is_valid: true
+    validation_errors: []
+  - id: question-routing
+    path: knowledge/googleads/best-practices/question-routing.md
+    layer: best-practices
+    task_types:
+      - routing
+      - retrieval
+      - question_optimization
+    priority: 1
+    status: active
+    freshness: fresh
+    token_estimate: 340
+    is_valid: true
+    validation_errors: []

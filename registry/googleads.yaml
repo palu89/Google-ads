@@ -33,6 +33,12 @@ knowledge_layers:
     priority: 4
     freshness_requirement: flexible
     
+  best-practices:
+    description: Question frameworks, prompt engineering, query optimization
+    path: knowledge/googleads/best-practices/
+    priority: 2
+    freshness_requirement: moderate
+    
   indexes:
     description: Generated indexes and summaries
     path: knowledge/googleads/indexes/
@@ -120,6 +126,51 @@ knowledge_files:
     status: active
     estimated_tokens: 600
     last_validated: 2026-04-06T11:15:00Z
+    
+  - id: knowledge-retrieval-framework
+    path: knowledge/googleads/internal/knowledge-retrieval-framework.md
+    layer: internal
+    task_types: [routing, retrieval, governance, prompt_engineering, project_state]
+    priority: 1
+    status: active
+    estimated_tokens: 2400
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: question-framework
+    path: knowledge/googleads/best-practices/question-framework.md
+    layer: best-practices
+    task_types: [prompt_engineering, knowledge_retrieval, question_optimization]
+    priority: 2
+    status: active
+    estimated_tokens: 700
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: api-query-best-practices
+    path: knowledge/googleads/best-practices/api-query-best-practices.md
+    layer: best-practices
+    task_types: [api_query, technical_question, script_generation]
+    priority: 2
+    status: active
+    estimated_tokens: 560
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: prompt-engineering-guide
+    path: knowledge/googleads/best-practices/prompt-engineering-guide.md
+    layer: best-practices
+    task_types: [prompt_engineering, ai_interaction, knowledge_optimization]
+    priority: 2
+    status: active
+    estimated_tokens: 840
+    last_validated: 2026-04-08T00:00:00Z
+    
+  - id: question-routing
+    path: knowledge/googleads/best-practices/question-routing.md
+    layer: best-practices
+    task_types: [routing, retrieval, question_optimization]
+    priority: 1
+    status: active
+    estimated_tokens: 680
+    last_validated: 2026-04-08T00:00:00Z
 
 skill_mappings:
   googleads-field-operations:

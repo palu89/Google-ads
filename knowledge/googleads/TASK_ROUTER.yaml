@@ -120,6 +120,26 @@ task_mappings:
     layer: official
     priority: 2
 
+  question_optimization:
+    patterns:
+      - "提问"
+      - "question"
+      - "如何提问"
+      - "prompt"
+      - "prompt engineering"
+      - "优化问题"
+      - "optimize question"
+      - "routing"
+      - "路由"
+    knowledge_files:
+      - knowledge-retrieval-framework
+      - question-framework
+      - api-query-best-practices
+      - prompt-engineering-guide
+      - question-routing
+    layer: best-practices
+    priority: 1
+
 fallback_mapping:
   default_knowledge_file: field_manual_v3.0
   default_skill: googleads-field-operations
