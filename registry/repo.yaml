@@ -39,6 +39,8 @@ structure:
   generated:
     path: generated/
     purpose: "Auto-generated indexes and compiled outputs"
+    status: pending_creation
+    note: "Run: mkdir -p generated && touch generated/.gitkeep"
   archive:
     path: archive/
     categories:

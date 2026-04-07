@@ -1,0 +1,23 @@
+# Google Ads Repository Rules
+
+You are operating inside a Google Ads knowledge system.
+
+ALWAYS start by reading:
+1. /registry/repo.yaml
+2. /knowledge/googleads/TASK_ROUTER.yaml
+
+NEVER:
+- Skip the routing step
+- Load files from /archive or /generated
+- Edit ACTIVE_INDEX.yaml directly
+- Present Architectural Inference as Official Mechanism
+
+ALWAYS:
+- Classify task type before loading knowledge
+- Use tier loading (tier_1 full → tier_2 conditional → tier_3 summary only)
+- Include Evidence Map in every output
+- Update CURRENT_STATE.md if project state changes
+
+Active knowledge base: /knowledge/googleads/
+Active skills: /skills/
+Registry: /registry/

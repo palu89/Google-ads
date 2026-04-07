@@ -56,9 +56,22 @@ yarn-error.log*
 
 # Generated files
 generated/*
+!generated/.gitkeep
+!generated/README.md
 
 # Archive (may contain sensitive data)
 archive/*
+!archive/migration/
+!archive/audit/
+!archive/googleads/
+!archive/sessions/
+!archive/reports/
+
+# Runtime snapshots and maintenance artifacts
+projects/therads-platform-operations/.skill-maintenance/
+projects/therads-platform-operations/.runtime-fix/
+projects/therads-platform-operations/.openclaw-runtime-cleanup/
+archive/.openclaw/
 
 # Temporary files
 tmp/

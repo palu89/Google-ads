@@ -91,8 +91,7 @@ task_mappings:
       - appeal_process
       - agents_backup
     skills:
-      - googleads-appeal
-      - googleads-appealtxt
+      - googleads-field-operations  # fallback — googleads-appeal and googleads-appealtxt not yet created
     layer: official
     priority: 1
 

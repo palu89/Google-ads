@@ -72,7 +72,8 @@ skills:
     name: googleads-verify
     description: Financial services verification navigation.
     entity_type: skill
-    status: active
+    status: planned
+    note: "Directory skills/googleads-verify/ does not exist yet"
     summary: Guides through financial services verification and compliance requirements.
     depends_on:
       - knowledge/finance_navigator
