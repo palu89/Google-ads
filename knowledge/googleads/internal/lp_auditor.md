@@ -8,7 +8,7 @@ priority: 3
 status: active
 source: /Users/palu/Google ADS/pro-tools/lp_auditor.md
 source_checked_at: 2026-04-06T11:16:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Landing page policy auditor for Google Ads. Conducts compliance scans, SEO quality audits, and risk assessment to prevent account suspension and improve quality scores.
 ---

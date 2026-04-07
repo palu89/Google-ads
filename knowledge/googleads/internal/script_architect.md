@@ -8,7 +8,7 @@ priority: 3
 status: active
 source: /Users/palu/Google ADS/pro-tools/script_architect.md
 source_checked_at: 2026-04-06T11:15:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Google Ads Script architect for generating automation scripts. Creates JavaScript code for monitoring, bid adjustment, health checks, and reporting automation.
 ---

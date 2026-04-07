@@ -8,7 +8,7 @@ priority: 2
 status: active
 source: /Users/palu/Google ADS/references/google-ads-policies.md
 source_checked_at: 2026-04-06T11:16:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Google Ads Policy Center reference covering prohibited content, prohibited practices, and restricted content categories.
 ---

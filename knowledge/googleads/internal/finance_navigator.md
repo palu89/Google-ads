@@ -8,7 +8,7 @@ priority: 3
 status: active
 source: /Users/palu/Google ADS/pro-tools/finance_navigator.md
 source_checked_at: 2026-04-06T11:11:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Global finance navigator for Google Ads financial services verification. Provides region-specific regulatory guidance, verification steps, and compliance requirements for financial product advertising.
 ---

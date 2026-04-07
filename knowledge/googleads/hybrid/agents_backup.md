@@ -8,7 +8,7 @@ priority: 3
 status: active
 source: /Users/palu/Google ADS/references/agents_backup.md
 source_checked_at: 2026-04-06T11:13:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Backup documentation for Google Ads auxiliary agents. Contains agent names, English identifiers, prompts, and invocation guidelines for integration into agent systems like Trae.
 ---

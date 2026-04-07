@@ -8,7 +8,7 @@ priority: 3
 status: active
 source: /Users/palu/Google ADS/pro-tools/keyword_expert.md
 source_checked_at: 2026-04-06T11:12:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Keyword intent analysis expert for Google Ads. Distinguishes between high-intent conversion keywords and low-intent informational queries. Provides classification and negative keyword recommendations.
 ---

@@ -8,7 +8,7 @@ priority: 2
 status: active
 source: /Users/palu/Google ADS/references/google-ads-appealtxt.md
 source_checked_at: 2026-04-06T11:18:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Appeal template for financial/stock policy violations. Provides bilingual appeal text for account suspension due to financial services policy, unverified credentials, or misleading statements.
 ---

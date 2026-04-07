@@ -8,7 +8,7 @@ priority: 2
 status: active
 source: /Users/palu/Google ADS/references/google-ads-finance-stock.md
 source_checked_at: 2026-04-06T11:12:00Z
-content_updated_at: unknown
+content_updated_at: 2026-04-07T18:49:33.400906Z
 depends_on: []
 summary: Official Google Ads policy references for financial/stock lead ads, including verification requirements, regulatory compliance, and region-specific guidelines.
 ---
