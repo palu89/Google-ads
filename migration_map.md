@@ -14,35 +14,35 @@ Current state shows multiple directories containing Google Ads knowledge, skill 
 
 ## Migration Map
 
-| Old Path | New Path | Entity Type | Action | Rationale |
-|----------|----------|-------------|--------|-----------|
-| `/Users/palu/Google ADS/GOOGLE_ADS_FIELD_MANUAL.md` | `/knowledge/googleads/official/field_manual_v3.0.md` | knowledge | migrate | Core Google Ads operational manual |
-| `/Users/palu/Google ADS/SKILL.md` | `/skills/googleads-field-operations/SKILL.md` | skill | migrate | Skill definition for Google Ads operations |
-| `/Users/palu/Google ADS/account_deep_scanner.js` | `/archive/googleads/scripts/account_deep_scanner.js` | script | archive | Historical script, not active knowledge |
-| `/Users/palu/Google ADS/pro-tools/finance_navigator.md` | `/knowledge/googleads/internal/finance_navigator.md` | knowledge | migrate | Internal tool documentation |
-| `/Users/palu/Google ADS/pro-tools/keyword_expert.md` | `/knowledge/googleads/internal/keyword_expert.md` | knowledge | migrate | Internal tool documentation |
-| `/Users/palu/Google ADS/pro-tools/lp_auditor.md` | `/knowledge/googleads/internal/lp_auditor.md` | knowledge | migrate | Internal tool documentation |
-| `/Users/palu/Google ADS/pro-tools/script_architect.md` | `/knowledge/googleads/internal/script_architect.md` | knowledge | migrate | Internal tool documentation |
-| `/Users/palu/Google ADS/references/agents_backup.md` | `/knowledge/googleads/hybrid/agents_backup.md` | knowledge | migrate | Reference material with interpretation |
-| `/Users/palu/Google ADS/references/google-ads-appealtxt.md` | `/knowledge/googleads/official/appeal_process.md` | knowledge | migrate | Official appeal process |
-| `/Users/palu/Google ADS/references/google-ads-finance-stock.md` | `/knowledge/googleads/official/finance_compliance.md` | knowledge | migrate | Official financial compliance |
-| `/Users/palu/Google ADS/references/google-ads-policies.md` | `/knowledge/googleads/official/policies.md` | knowledge | migrate | Official policies |
-| `/Users/palu/codex交互中心/GOOGLEADS_ROOT_DOC_FINAL_MIGRATION_20260319.md` | `/archive/migration/GOOGLEADS_ROOT_DOC_FINAL_MIGRATION_20260319.md` | migration | archive | Historical migration document |
-| `/Users/palu/codex交互中心/GOOGLEADS_SKILL_TIERING_20260320.md` | `/archive/migration/GOOGLEADS_SKILL_TIERING_20260320.md` | migration | archive | Historical migration document |
-| `/Users/palu/codex交互中心/collaboration/GOOGLEADS_GITHUB_FIRST_GOVERNANCE.md` | `/archive/migration/GOOGLEADS_GITHUB_FIRST_GOVERNANCE.md` | migration | archive | Historical governance planning |
-| `/Users/palu/codex交互中心/collaboration/GOOGLEADS_HANDOVER_MAP.md` | `/archive/migration/GOOGLEADS_HANDOVER_MAP.md` | migration | archive | Historical handoff |
-| `/Users/palu/codex交互中心/collaboration/GOOGLEADS_SYNC_WORKFLOW.md` | `/archive/migration/GOOGLEADS_SYNC_WORKFLOW.md` | migration | archive | Historical workflow |
-| `/Users/palu/codex交互中心/SYSTEM_SKILLS_MIGRATION_COMMAND_CHECKLIST_20260319.md` | `/archive/migration/SYSTEM_SKILLS_MIGRATION_COMMAND_CHECKLIST_20260319.md` | migration | archive | Historical checklist |
-| `/Users/palu/openclaw-audit/openclaw_current.json` | `/registry/model-profiles.yaml` (transformed) | registry | migrate | Model profiles and agent configuration |
-| `/Users/palu/openclaw-audit/openclaw_legacy.json` | `/archive/audit/openclaw_legacy.json` | audit | archive | Legacy audit data |
-| `/Users/palu/openclaw-audit/doctor.json` | `/archive/audit/doctor.json` | audit | archive | Diagnostic data |
-| `/Users/palu/openclaw-audit/agents_list.json` | `/archive/audit/agents_list.json` | audit | archive | Historical agents list |
-| `/Users/palu/.openclaw/` (config dir) | `/archive/.openclaw/` (partial) | configuration | archive | Runtime configuration, not source of truth |
-| `/Users/palu/openclaw-dashboard/` | `/projects/openclaw-dashboard/` | project | migrate | Active project |
-| `/Users/palu/manas 项目主线/` | `/projects/manas-mainline/` | project | migrate | Active project |
-| `/Users/palu/Therads平台运营/` | `/projects/therads-platform-operations/` | project | migrate | Active project |
-| `/Users/palu/skills/` (empty) | `/skills/` | skill | keep | Target directory already exists |
-| `/Users/palu/Desktop/FunASR/` | (outside scope) | external | ignore | Unrelated speech recognition project |
+| Old Path | New Path | Entity Type | Action | Rationale | Status |
+|----------|----------|-------------|--------|-----------|--------|
+| `/Users/palu/Google ADS/GOOGLE_ADS_FIELD_MANUAL.md` | `/knowledge/googleads/official/field_manual_v3.0.md` | knowledge | migrate | Core Google Ads operational manual | migrated |
+| `/Users/palu/Google ADS/SKILL.md` | `/skills/googleads-field-operations/SKILL.md` | skill | migrate | Skill definition for Google Ads operations | migrated |
+| `/Users/palu/Google ADS/account_deep_scanner.js` | `/archive/googleads/scripts/account_deep_scanner.js` | script | archive | Historical script, not active knowledge | archived |
+| `/Users/palu/Google ADS/pro-tools/finance_navigator.md` | `/knowledge/googleads/internal/finance_navigator.md` | knowledge | migrate | Internal tool documentation | migrated |
+| `/Users/palu/Google ADS/pro-tools/keyword_expert.md` | `/knowledge/googleads/internal/keyword_expert.md` | knowledge | migrate | Internal tool documentation | migrated |
+| `/Users/palu/Google ADS/pro-tools/lp_auditor.md` | `/knowledge/googleads/internal/lp_auditor.md` | knowledge | migrate | Internal tool documentation | migrated |
+| `/Users/palu/Google ADS/pro-tools/script_architect.md` | `/knowledge/googleads/internal/script_architect.md` | knowledge | migrate | Internal tool documentation | migrated |
+| `/Users/palu/Google ADS/references/agents_backup.md` | `/knowledge/googleads/hybrid/agents_backup.md` | knowledge | migrate | Reference material with interpretation | migrated |
+| `/Users/palu/Google ADS/references/google-ads-appealtxt.md` | `/knowledge/googleads/official/appeal_process.md` | knowledge | migrate | Official appeal process | migrated |
+| `/Users/palu/Google ADS/references/google-ads-finance-stock.md` | `/knowledge/googleads/official/finance_compliance.md` | knowledge | migrate | Official financial compliance | migrated |
+| `/Users/palu/Google ADS/references/google-ads-policies.md` | `/knowledge/googleads/official/policies.md` | knowledge | migrate | Official policies | migrated |
+| `/Users/palu/codex交互中心/GOOGLEADS_ROOT_DOC_FINAL_MIGRATION_20260319.md` | `/archive/migration/GOOGLEADS_ROOT_DOC_FINAL_MIGRATION_20260319.md` | migration | archive | Historical migration document | archived |
+| `/Users/palu/codex交互中心/GOOGLEADS_SKILL_TIERING_20260320.md` | `/archive/migration/GOOGLEADS_SKILL_TIERING_20260320.md` | migration | archive | Historical migration document | archived |
+| `/Users/palu/codex交互中心/collaboration/GOOGLEADS_GITHUB_FIRST_GOVERNANCE.md` | `/archive/migration/GOOGLEADS_GITHUB_FIRST_GOVERNANCE.md` | migration | archive | Historical governance planning | archived |
+| `/Users/palu/codex交互中心/collaboration/GOOGLEADS_HANDOVER_MAP.md` | `/archive/migration/GOOGLEADS_HANDOVER_MAP.md` | migration | archive | Historical handoff | archived |
+| `/Users/palu/codex交互中心/collaboration/GOOGLEADS_SYNC_WORKFLOW.md` | `/archive/migration/GOOGLEADS_SYNC_WORKFLOW.md` | migration | archive | Historical workflow | archived |
+| `/Users/palu/codex交互中心/SYSTEM_SKILLS_MIGRATION_COMMAND_CHECKLIST_20260319.md` | `/archive/migration/SYSTEM_SKILLS_MIGRATION_COMMAND_CHECKLIST_20260319.md` | migration | archive | Historical checklist | archived |
+| `/Users/palu/openclaw-audit/openclaw_current.json` | `/registry/model-profiles.yaml` (transformed) | registry | migrate | Model profiles and agent configuration | migrated |
+| `/Users/palu/openclaw-audit/openclaw_legacy.json` | `/archive/audit/openclaw_legacy.json` | audit | archive | Legacy audit data | archived |
+| `/Users/palu/openclaw-audit/doctor.json` | `/archive/audit/doctor.json` | audit | archive | Diagnostic data | archived |
+| `/Users/palu/openclaw-audit/agents_list.json` | `/archive/audit/agents_list.json` | audit | archive | Historical agents list | archived |
+| `/Users/palu/.openclaw/` (config dir) | `/archive/.openclaw/` (partial) | configuration | archive | Runtime configuration, not source of truth | pending |
+| `/Users/palu/openclaw-dashboard/` | `/projects/openclaw-dashboard/` | project | migrate | Active project | pending |
+| `/Users/palu/manas 项目主线/` | `/projects/manas-mainline/` | project | migrate | Active project | pending |
+| `/Users/palu/Therads平台运营/` | `/projects/therads-platform-operations/` | project | migrate | Active project | pending |
+| `/Users/palu/skills/` (empty) | `/skills/` | skill | keep | Target directory already exists | migrated |
+| `/Users/palu/Desktop/FunASR/` | (outside scope) | external | ignore | Unrelated speech recognition project | verified |
 
 ## Notes
 1. **Active vs Archive**: Migration documents, batch records, historical backups belong in `/archive/`.

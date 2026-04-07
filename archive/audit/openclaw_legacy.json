@@ -1,0 +1,24 @@
+{
+  "bot_token": "8621787838:AAGvT97X8NcLyfc2S0f2dsfRCHTp9-Htpz8",
+  "log_path": "./logs/tg_bot.log",
+  "bot_name": "柒月二号",
+  "admin_users": [
+    5744908700
+  ],
+  "proxy_url": "",
+  "google_ads": {
+    "developer_token": "INSERT_DEVELOPER_TOKEN_HERE",
+    "client_id": "INSERT_CLIENT_ID_HERE",
+    "client_secret": "INSERT_CLIENT_SECRET_HERE",
+    "refresh_token": "INSERT_REFRESH_TOKEN_HERE",
+    "login_customer_id": "INSERT_LOGIN_CUSTOMER_ID_HERE",
+    "use_proto_plus": true
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "8621787838:AAGvT97X8NcLyfc2S0f2dsfRCHTp9-Htpz8",
+      "dmPolicy": "pairing"
+    }
+  }
+}

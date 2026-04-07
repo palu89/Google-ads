@@ -1,0 +1,44 @@
+[
+  {
+    "id": "main",
+    "workspace": "/Users/palu/.openclaw/workspace",
+    "agentDir": "/Users/palu/.openclaw/agents/main/agent",
+    "model": "deepseek/deepseek-reasoner",
+    "bindings": 0,
+    "isDefault": true,
+    "routes": [
+      "default (no explicit rules)"
+    ]
+  },
+  {
+    "id": "googleads-palu",
+    "name": "googleads-palu",
+    "identityName": "柒月一号",
+    "identitySource": "identity",
+    "workspace": "/Users/palu/.openclaw/workspace-googleads-palu",
+    "agentDir": "/Users/palu/.openclaw/agents/googleads-palu/agent",
+    "model": "deepseek/deepseek-reasoner",
+    "bindings": 1,
+    "isDefault": false
+  },
+  {
+    "id": "platform-operations-palu",
+    "name": "platform-operations-palu",
+    "workspace": "/Users/palu/.openclaw/workspace-platform-operations-palu",
+    "agentDir": "/Users/palu/.openclaw/agents/platform-operations-palu/agent",
+    "model": "deepseek/deepseek-reasoner",
+    "bindings": 1,
+    "isDefault": false
+  },
+  {
+    "id": "manas-palu",
+    "name": "manas-palu",
+    "workspace": "/Users/palu/.openclaw/workspace-manas-palu",
+    "agentDir": "/Users/palu/.openclaw/agents/manas-palu/agent",
+    "model": "deepseek/deepseek-reasoner",
+    "bindings": 0,
+    "isDefault": false
+  }
+]
+[35m[plugins][39m [36m[lcm] Plugin loaded (enabled=true, db=/Users/palu/.openclaw/lcm.db, threshold=0.75)[39m
+[35m[plugins][39m [31mfeishu failed during register from /opt/homebrew/lib/node_modules/openclaw/extensions/feishu/index.ts: Error: channels.feishu.appSecret: unresolved SecretRef "env:default:OPENCLAW_FEISHU_APP_SECRET". Resolve this command against an active gateway runtime snapshot before reading it.[39m
