@@ -1,0 +1,180 @@
+# 人设注册表
+
+用于管理 10 个以上的人设，并支持自动区分、添加、停用和删除。
+
+字段治理、占位符治理、启停机制请先读 `persona-governance.md`。本文件重点维护“当前有哪些人设”和“它们现在是什么状态”。
+
+## 一、自动区分规则
+
+### 匹配顺序
+1. 用户明确指定 `persona_id`、人设名称或明确标签
+2. 内容中的身份关键词
+3. 目标受众关键词
+4. 语气和场景关键词
+5. 若仍不明确，返回“当前无可用 `active` 人设”，不自动兜底
+
+### 高优先级识别信号
+- 当前预置 `active` 人设：无
+- 待新增并激活新 persona 后，再补充关键词到 persona id 的映射
+
+### 决策约束
+- 每次只选一个主人设
+- 最多允许一个辅助标签，但前提是两个标签都已被正式建档并处于可用状态
+- 自动匹配只在 `status: active` 的人设范围内进行
+- 若当前没有 `active` 人设，不自动匹配，也不从历史预设兜底
+- 如果同分，优先选受众更窄、辨识度更高的人设
+
+## 人设差异化强制检查
+
+每次使用人设前，都先确认这六个问题：
+1. 这个人设的市场视角来自哪里？
+2. 这个人设的权威是靠什么建立的？
+3. 这个人设最能打中的用户痛点是什么？
+4. 这个人设说话会是什么节奏和温度？
+5. 这个人设更适合先讲故事、先讲数据，还是先讲方法？
+6. 这个人设最自然的互动提问会是什么？
+
+如果以上六点答不出来，就不要开始写。
+
+## 禁止的偷懒写法
+- 只换人设姓名和头衔，其余段落完全不变
+- 所有人设都用同一种“老师口吻”
+- 所有人设都用同一种结尾提问
+- 所有人设都讲同一种痛点，没有受众差异
+- 所有人设都只强调专业，却没有解释“为什么这个人会这样理解市场”
+
+## 二、字段模板
+
+每个人设都用同一套字段管理：
+
+```text
+persona_id:
+status: draft | active | inactive | archived
+profile_type:
+verification_state:
+status_reason:
+placeholder_fields:
+source_note:
+display_name:
+role_label:
+life_stage:
+education:
+current_positions:
+notable_achievements:
+authority_signals:
+target_audience:
+core_topics:
+tone:
+hook_pain_points:
+default_cta:
+avoid:
+keywords:
+```
+
+## 占位符字段规范
+
+当真实人设资料还没定稿时，允许先用占位符维护。推荐统一采用双大括号格式：
+
+```text
+{{persona_name}}
+{{display_name}}
+{{role_label}}
+{{life_stage}}
+{{authority_signal_1}}
+{{authority_signal_2}}
+{{years_experience}}
+{{market_focus}}
+{{target_audience}}
+{{core_topic_1}}
+{{core_topic_2}}
+{{tone_style}}
+{{hook_pain_point}}
+{{default_cta}}
+```
+
+### 使用规则
+- 占位符只用于“暂时未知但后续一定会补”的字段
+- 不要同时混用多种占位符写法
+- 真正发布前，如果占位符还没补齐，优先改写成不依赖具体信息的版本
+- 头衔、年限、机构背景属于高风险字段，未确认前一律保留占位符或改写弱化
+- `active` 人设不得保留未解决的高风险事实型占位符
+
+## 占位符人设模板
+
+适用于新账号还没定主人设时的过渡配置：
+
+```text
+persona_id: placeholder-persona
+status: draft
+display_name: {{display_name}}
+role_label: {{role_label}}
+life_stage: {{life_stage}}
+education: {{education_1}}；{{education_2}}
+current_positions: {{position_1}}；{{position_2}}
+notable_achievements: {{achievement_1}}
+authority_signals: {{authority_signal_1}}；{{authority_signal_2}}
+target_audience: {{target_audience}}
+core_topics: {{core_topic_1}}、{{core_topic_2}}
+tone: {{tone_style}}
+hook_pain_points: {{hook_pain_point}}
+default_cta: {{default_cta}}
+avoid: 编造履历、乱填头衔、为了权威感硬补数字
+keywords: {{market_focus}}
+```
+
+## 三、新增人设
+
+### 新增步骤
+1. 复制字段模板
+2. 创建唯一的 `persona_id`
+3. 填完身份、受众、语气、痛点、关键词
+4. 先设 `status: draft`
+5. 如果和现有人设重叠度太高，优先合并，不要泛滥新增
+6. 如果真实资料还没齐，可以先按“占位符人设模板”建档，后续逐项替换
+7. 完成校验后，再改为 `status: active`
+
+### 新增判断标准
+- 是否面向不同受众
+- 是否有不同的身份权威
+- 是否有不同的表达风格
+- 是否值得单独持续运营
+
+## 四、删除与停用
+
+### 推荐做法
+- 先改 `status: inactive`
+- 停用后不再自动匹配，但保留历史配置
+- 确认历史内容不再依赖后，再考虑 `archived`
+
+### 不建议直接删的情况
+- 已经有一批内容按这个人设产出
+- 只是暂时不用，未来可能恢复
+- 还没完成和其他人设的合并
+
+## 五、人设清单
+
+当前 `active` 人设：无
+
+当前仅保留以下 `draft` 人设，供后续补全与激活：
+
+### 0. persona-01-zhang-shyi-chang
+- status: draft
+- profile_type: real-person
+- verification_state: partially-verified
+- status_reason: 公开履历基础已录入，但目标受众、语气、痛点、CTA 与关键词仍含占位符，暂不参与自动匹配
+- placeholder_fields: life_stage,target_audience,core_topics,tone,hook_pain_points,default_cta,keywords.market_focus
+- source_note: 依据已提供的公开教育与现职资料建档；在运营字段补齐并复核前，不作为可发布实名人设使用
+- display_name: 張錫 Shyi-Chang
+- role_label: 跨金融治理、创投审议与公共事务的专业人士
+- life_stage: {{life_stage}}
+- education: 成功大學 工業管理研究所；東海大學 工業工程學系
+- current_positions: 行政院國家發展基金創業投資審議會審議委員；財團法人金融法制暨犯罪防制中心董事；社團法人台灣公共關係協會理事；台灣數位治理協會理事
+- notable_achievements: 曾带领私募股权投资部门结合国泰集团资源与加拿大退休基金，共同投资沃旭能源。团队以深度尽职调查、合约权责厘清与严谨风险控管架构，获得「年度最具代表性并购奖」与「最佳创意并购奖」，并入选 2020 年全球十大并购案之一。
+- authority_signals: 具国家级基金创投审议与金融法制治理经验；曾主导团队完成具国际影响力的私募股权与并购交易，并获重量级并购奖项肯定
+- target_audience: {{target_audience}}
+- core_topics: {{core_topic_1}}、{{core_topic_2}}
+- tone: {{tone_style}}
+- hook_pain_points: {{hook_pain_point}}
+- default_cta: {{default_cta}}
+- avoid: 编造履历、乱填头衔、为了权威感硬补数字
+- keywords: 張錫,Shyi-Chang,{{market_focus}}

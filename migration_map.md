@@ -37,10 +37,10 @@ Current state shows multiple directories containing Google Ads knowledge, skill 
 | `/Users/palu/openclaw-audit/openclaw_legacy.json` | `/archive/audit/openclaw_legacy.json` | audit | archive | Legacy audit data | archived |
 | `/Users/palu/openclaw-audit/doctor.json` | `/archive/audit/doctor.json` | audit | archive | Diagnostic data | archived |
 | `/Users/palu/openclaw-audit/agents_list.json` | `/archive/audit/agents_list.json` | audit | archive | Historical agents list | archived |
-| `/Users/palu/.openclaw/` (config dir) | `/archive/.openclaw/` (partial) | configuration | archive | Runtime configuration, not source of truth | pending |
-| `/Users/palu/openclaw-dashboard/` | `/projects/openclaw-dashboard/` | project | migrate | Active project | pending |
-| `/Users/palu/manas 项目主线/` | `/projects/manas-mainline/` | project | migrate | Active project | pending |
-| `/Users/palu/Therads平台运营/` | `/projects/therads-platform-operations/` | project | migrate | Active project | pending |
+| `/Users/palu/.openclaw/` (config dir) | `/archive/.openclaw/` | configuration | archive | Runtime configuration archived | completed |
+| `/Users/palu/openclaw-dashboard/` | `/projects/openclaw-dashboard/` | project | migrate | Active project migrated | completed |
+| `/Users/palu/manas 项目主线/` | `/projects/manas-mainline/` | project | migrate | Active project migrated | completed |
+| `/Users/palu/Therads平台运营/` | `/projects/therads-platform-operations/` | project | migrate | Active project migrated | completed |
 | `/Users/palu/skills/` (empty) | `/skills/` | skill | keep | Target directory already exists | migrated |
 | `/Users/palu/Desktop/FunASR/` | (outside scope) | external | ignore | Unrelated speech recognition project | verified |
 

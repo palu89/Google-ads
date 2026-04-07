@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-21T04:51:23.074Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-15T07:02:02.269Z",
+    "lastRunVersion": "2026.3.8",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "sk-536a1e54f1024e0da2fffe05dec58d94",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek Chat"
+          },
+          {
+            "id": "deepseek-reasoner",
+            "name": "DeepSeek Reasoner"
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-reasoner"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "timeoutSeconds": 300,
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "googleads-palu",
+        "name": "googleads-palu",
+        "workspace": "/Users/palu/.openclaw/workspace-googleads-palu",
+        "agentDir": "/Users/palu/.openclaw/agents/googleads-palu/agent",
+        "model": "deepseek/deepseek-reasoner"
+      },
+      {
+        "id": "platform-operations-palu",
+        "name": "platform-operations-palu",
+        "workspace": "/Users/palu/.openclaw/workspace-platform-operations-palu",
+        "agentDir": "/Users/palu/.openclaw/agents/platform-operations-palu/agent",
+        "model": "deepseek/deepseek-chat"
+      },
+      {
+        "id": "manas-palu",
+        "name": "manas-palu",
+        "workspace": "/Users/palu/.openclaw/workspace-manas-palu",
+        "agentDir": "/Users/palu/.openclaw/agents/manas-palu/agent",
+        "model": "deepseek/deepseek-reasoner"
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "provider": "perplexity"
+      }
+    },
+    "sessions": {
+      "visibility": "all"
+    }
+  },
+  "bindings": [
+    {
+      "type": "route",
+      "agentId": "googleads-palu",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "platform-operations-palu",
+      "match": {
+        "channel": "telegram",
+        "accountId": "qiyuesanhao_bot"
+      }
+    }
+  ],
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "self-improvement": {
+          "enabled": true
+        }
+      },
+      "installs": {
+        "self-improvement": {
+          "source": "path",
+          "sourcePath": "/Users/palu/.openclaw/skills/self-improving-agent/hooks/openclaw",
+          "installPath": "/Users/palu/.openclaw/hooks/self-improvement",
+          "installedAt": "2026-03-19T15:38:20.833Z",
+          "hooks": [
+            "self-improvement"
+          ]
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupAllowFrom": [
+        "*"
+      ],
+      "groupPolicy": "open",
+      "streaming": "partial",
+      "accounts": {
+        "qiyuesanhao_bot": {
+          "name": "柒月三号",
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8600118607:AAGmSMcVnV4Ctzy6vVzSz3R7dwDBqPZK1Po",
+          "allowFrom": [
+            "5744908700"
+          ],
+          "groupAllowFrom": [
+            "*"
+          ],
+          "groupPolicy": "open",
+          "streaming": "off",
+          "proxy": "socks5://127.0.0.1:10020"
+        },
+        "default": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8621787838:AAGvT97X8NcLyfc2S0f2dsfRCHTp9-Htpz8",
+          "allowFrom": [
+            "5744908700"
+          ],
+          "groupAllowFrom": [
+            "*"
+          ],
+          "groupPolicy": "open",
+          "streaming": "partial",
+          "proxy": "socks5://127.0.0.1:10020"
+        }
+      },
+      "defaultAccount": "default"
+    },
+    "feishu": {
+      "appId": "cli_a93bcea76f78807d",
+      "appSecret": "kjhmvO7ogBUbncBtB6LuEhqPiDu8iGMH",
+      "verificationToken": "9sWnX5rPIbhraJRhFDz8PerkN4GjVCK3"
+    }
+  },
+  "gateway": {
+    "port": 18790,
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18790",
+        "http://127.0.0.1:18790"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "myclaw123"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "telegram",
+      "memos-cloud-openclaw-plugin",
+      "lossless-claw",
+      "discord",
+      "feishu"
+    ],
+    "load": {
+      "paths": [
+        "/Users/palu/.openclaw/plugins/lossless-claw"
+      ]
+    },
+    "entries": {
+      "memos-cloud-openclaw-plugin": {
+        "enabled": true,
+        "config": {
+          "baseUrl": "https://memos.memtensor.cn/api/openmem/v1",
+          "apiKey": "mpg-k0QmLSeq6Fn2Av4GhVeAexKhxt8sOuXv3xk6jAUg",
+          "userId": "palu89122ads",
+          "recallEnabled": true,
+          "addEnabled": true,
+          "timeoutMs": 10000,
+          "retries": 3,
+          "memoryLimitNumber": 12,
+          "preferenceLimitNumber": 12,
+          "captureStrategy": "full_session",
+          "recallGlobal": true,
+          "includePreference": true,
+          "includeAssistant": true,
+          "asyncMode": true,
+          "throttleMs": 0
+        }
+      },
+      "lossless-claw": {
+        "enabled": true
+      },
+      "feishu": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "memos-cloud-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@memtensor/memos-cloud-openclaw-plugin",
+        "installPath": "/Users/palu/.openclaw/extensions/memos-cloud-openclaw-plugin",
+        "version": "0.1.3",
+        "resolvedName": "@memtensor/memos-cloud-openclaw-plugin",
+        "resolvedVersion": "0.1.3",
+        "resolvedSpec": "@memtensor/memos-cloud-openclaw-plugin@0.1.3",
+        "integrity": "sha512-VaKV655ovm+QQNsZfb5BbVWUdhWZkhOc9GoqJBSqBtJ9xeW7evd+xxXMPsfOD8QPu7ER4m3Q15c90proPi0Iqg==",
+        "shasum": "b46fdac6bb68ae691de60b1b0570e515f3d7ef54",
+        "resolvedAt": "2026-03-09T07:03:00.871Z",
+        "installedAt": "2026-03-09T07:03:00.902Z"
+      }
+    }
+  }
+}

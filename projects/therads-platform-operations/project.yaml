@@ -1,0 +1,19 @@
+name: Therads Platform Operations
+id: therads-platform-operations
+status: active
+tier: tier-1
+description: |
+  Therads Platform Operations manages operational workflows, account management,
+  templates, and reporting for the Therads platform ecosystem.
+created_at: 2023-09-01
+last_updated: 2026-04-07
+maintainer: palu
+components:
+  - operations
+  - accounts
+  - templates
+  - reporting
+tags:
+  - therads
+  - operations
+  - platform

@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-22T11:45:27.666Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-15T07:02:02.269Z",
+    "lastRunVersion": "2026.3.8",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "providers": {
+      "openai": {
+        "baseUrl": "https://api.openai.com/v1",
+        "api": "openai-responses",
+        "models": [
+          {
+            "id": "gpt-5",
+            "name": "GPT-5",
+            "api": "openai-responses",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            }
+          },
+          {
+            "id": "gpt-5-mini",
+            "name": "GPT-5 Mini",
+            "api": "openai-responses",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            }
+          }
+        ]
+      },
+      "anthropic": {
+        "baseUrl": "https://api.anthropic.com",
+        "apiKey": "${OPENCLAW_ANTHROPIC_API_KEY}",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "claude-sonnet-4-5",
+            "name": "Claude Sonnet 4.5",
+            "api": "anthropic-messages",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 198000,
+            "maxTokens": 64000
+          },
+          {
+            "id": "claude-sonnet-4-6",
+            "name": "Claude Sonnet 4.6",
+            "api": "anthropic-messages",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 128000
+          }
+        ]
+      },
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "${OPENCLAW_DEEPSEEK_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek Chat"
+          },
+          {
+            "id": "deepseek-reasoner",
+            "name": "DeepSeek Reasoner"
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-reasoner"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "timeoutSeconds": 300,
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "googleads-palu",
+        "name": "googleads-palu",
+        "workspace": "/Users/palu/.openclaw/workspace-googleads-palu",
+        "agentDir": "/Users/palu/.openclaw/agents/googleads-palu/agent",
+        "model": "deepseek/deepseek-reasoner"
+      },
+      {
+        "id": "platform-operations-palu",
+        "name": "platform-operations-palu",
+        "workspace": "/Users/palu/.openclaw/workspace-platform-operations-palu",
+        "agentDir": "/Users/palu/.openclaw/agents/platform-operations-palu/agent",
+        "model": {
+          "primary": "deepseek/deepseek-reasoner",
+          "fallbacks": [
+            "deepseek/deepseek-chat"
+          ]
+        }
+      },
+      {
+        "id": "manas-palu",
+        "name": "manas-palu",
+        "workspace": "/Users/palu/.openclaw/workspace-manas-palu",
+        "agentDir": "/Users/palu/.openclaw/agents/manas-palu/agent",
+        "model": "deepseek/deepseek-reasoner"
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "provider": "perplexity"
+      }
+    },
+    "sessions": {
+      "visibility": "all"
+    }
+  },
+  "bindings": [
+    {
+      "type": "route",
+      "agentId": "googleads-palu",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "platform-operations-palu",
+      "match": {
+        "channel": "telegram",
+        "accountId": "qiyuesanhao_bot"
+      }
+    }
+  ],
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "self-improvement": {
+          "enabled": true
+        }
+      },
+      "installs": {
+        "self-improvement": {
+          "source": "path",
+          "sourcePath": "/Users/palu/.openclaw/skills/self-improving-agent/hooks/openclaw",
+          "installPath": "/Users/palu/.openclaw/hooks/self-improvement",
+          "installedAt": "2026-03-19T15:38:20.833Z",
+          "hooks": [
+            "self-improvement"
+          ]
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "accounts": {
+        "qiyuesanhao_bot": {
+          "name": "柒月三号",
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "${OPENCLAW_TELEGRAM_QIYUESANHAO_BOT_TOKEN}",
+          "allowFrom": [
+            "5744908700"
+          ],
+          "streaming": "off",
+          "proxy": "socks5://127.0.0.1:10020",
+          "groupAllowFrom": [
+            "5744908700"
+          ]
+        },
+        "default": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "${OPENCLAW_TELEGRAM_DEFAULT_BOT_TOKEN}",
+          "allowFrom": [
+            "5744908700"
+          ],
+          "streaming": "partial",
+          "proxy": "socks5://127.0.0.1:10020",
+          "groupAllowFrom": [
+            "5744908700"
+          ]
+        }
+      },
+      "defaultAccount": "default",
+      "groups": {
+        "*": {
+          "requireMention": true,
+          "allowFrom": [
+            "5744908700"
+          ]
+        }
+      },
+      "groupAllowFrom": [
+        "5744908700"
+      ]
+    },
+    "feishu": {
+      "appId": "cli_a93bcea76f78807d",
+      "appSecret": "${OPENCLAW_FEISHU_APP_SECRET}",
+      "verificationToken": "${OPENCLAW_FEISHU_VERIFICATION_TOKEN}"
+    }
+  },
+  "gateway": {
+    "port": 18790,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18790",
+        "http://127.0.0.1:18790"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "telegram",
+      "memos-cloud-openclaw-plugin",
+      "lossless-claw",
+      "discord",
+      "feishu"
+    ],
+    "load": {
+      "paths": [
+        "/Users/palu/.openclaw/plugins/lossless-claw"
+      ]
+    },
+    "entries": {
+      "memos-cloud-openclaw-plugin": {
+        "enabled": true,
+        "config": {
+          "baseUrl": "https://memos.memtensor.cn/api/openmem/v1",
+          "apiKey": "${OPENCLAW_MEMOS_API_KEY}",
+          "userId": "palu89122ads",
+          "recallEnabled": false,
+          "addEnabled": true,
+          "timeoutMs": 10000,
+          "retries": 3,
+          "memoryLimitNumber": 0,
+          "preferenceLimitNumber": 0,
+          "captureStrategy": "last_turn",
+          "recallGlobal": false,
+          "includePreference": false
+        }
+      },
+      "feishu": {
+        "enabled": true
+      }
+    }
+  }
+}

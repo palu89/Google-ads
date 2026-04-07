@@ -1,0 +1,7 @@
+interface:
+  display_name: "台股爆款写帖"
+  short_description: "核心指令只有模版1的赚钱爆帖模板"
+  default_prompt: "Use $platform-operations as a Codex-ready Threads content creation skill. When the user asks for content creation, read the execution gate, viral template, engine map, and Codex content creation prompt. The current default template is `模版1`. Use the engine map only as a functional structure and anti-copy boundary, never as a wording, scene, character, or pacing source. Do slot replacement only; do not freely rewrite the engine, payoff progression, or callback ending. Replace at least 8 key slots as a set. If the current conversation already contains the original post or any prior successful sample, actively avoid similar人物入口, 场景链, 钉子词, and回问句型. If the user gives `事件` and `方向`, follow them. Otherwise rotate the replaceable slots logically and as a set. Output only the final post body."
+
+policy:
+  allow_implicit_invocation: true

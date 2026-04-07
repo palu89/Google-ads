@@ -1,0 +1,7 @@
+interface:
+  display_name: "台股平台运营"
+  short_description: "台股财经账号从起号到日更的一体化运营 skill"
+  default_prompt: "Use $platform-operations to plan, draft, and analyze a Taiwan stock market content workflow from persona setup to daily market coverage."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,80 +1,62 @@
-# Projects Registry
-# Tracks active projects and their metadata.
-
-version: 1.0.0
-last_updated: 2026-04-06T11:45:00Z
+version: "1.0"
+description: "Projects Registry — Unified GitHub Repository"
+generated: 2026-04-07
 
 projects:
-  - id: openclaw-dashboard
-    entity_type: project
-    name: OpenClaw Dashboard
-    status: active
-    stage: development
-    summary: Dashboard for monitoring OpenClaw agents and skills
-    active_skills: []
-    active_playbooks: []
-    primary_goal: "Provide real-time visibility into OpenClaw agent performance"
-    risks: ["Early development stage", "Limited documentation"]
-    last_updated: 2026-03-31T04:47:00Z
-    path: projects/openclaw-dashboard/
-    
-  - id: manas-mainline
-    entity_type: project
-    name: Manas Mainline
-    status: active
-    stage: planning
-    summary: Mainline project for Manas system
-    active_skills: []
-    active_playbooks: []
-    primary_goal: "Establish core architecture for Manas project"
-    risks: ["Requires further scoping", "Resource allocation needed"]
-    last_updated: 2026-03-24T04:23:00Z
-    path: projects/manas-mainline/
-    
-  - id: therads-platform-operations
-    entity_type: project
-    name: Therads Platform Operations
-    status: active
-    stage: operational
-    summary: Operations and management of Therads platform
-    active_skills: []
-    active_playbooks: []
-    primary_goal: "Maintain and optimize Therads platform operations"
-    risks: ["Platform stability", "Operational dependencies"]
-    last_updated: 2026-03-23T01:11:00Z
-    path: projects/therads-platform-operations/
+  openclaw-dashboard:
+    name: "OpenClaw Dashboard"
+    id: "openclaw-dashboard"
+    status: "active"
+    tier: "tier-1"
+    path: "projects/openclaw-dashboard"
+    description: "Web-based monitoring and management platform for OpenClaw system"
+    created_at: 2024-01-01
+    last_updated: 2026-04-07
+    maintainer: "palu"
+    metadata:
+      - web-ui
+      - backend-api
+      - monitoring
 
-validation:
-  required_fields:
-    - id
-    - entity_type
-    - name
-    - status
-    - stage
-    - summary
-    - active_skills
-    - active_playbooks
-    - primary_goal
-    - risks
-    - last_updated
-    - path
-  project_stages:
-    - planning
-    - development
-    - testing
-    - staging
-    - operational
-    - maintenance
-    - archived
-  status_values:
-    - active
-    - paused
-    - completed
-    - cancelled
+  manas-mainline:
+    name: "Manas Project Mainline"
+    id: "manas-mainline"
+    status: "active"
+    tier: "tier-1"
+    path: "projects/manas-mainline"
+    description: "Strategic planning and cross-team collaboration systems"
+    created_at: 2023-06-01
+    last_updated: 2026-04-07
+    maintainer: "palu"
+    metadata:
+      - planning
+      - collaboration
+      - strategy
 
-notes: |
-  This registry tracks active projects.
-  Each project must have a corresponding directory in /projects/<project-id>/
-  with project.yaml, CURRENT_STATE.md, DECISIONS.md, and CHANGELOG.md.
-  
-  Project state should be updated in CURRENT_STATE.md whenever project.yaml changes.
+  therads-platform-operations:
+    name: "Therads Platform Operations"
+    id: "therads-platform-operations"
+    status: "active"
+    tier: "tier-1"
+    path: "projects/therads-platform-operations"
+    description: "Platform operations, account management, templates, and reporting"
+    created_at: 2023-09-01
+    last_updated: 2026-04-07
+    maintainer: "palu"
+    metadata:
+      - operations
+      - accounts
+      - templates
+      - reporting
+
+# Project Lifecycle States
+# - active: Currently maintained and in use
+# - archived: Historical, no longer maintained
+# - experimental: Proof of concept or trial
+# - inactive: Paused but may resume
+
+# Tier System
+# - tier-1: Critical operational systems
+# - tier-2: Important but not critical
+# - tier-3: Supporting systems
+# - tier-4: Experimental or deprecated
