@@ -1,95 +1,205 @@
-# AGENT_BOOTSTRAP.md
-**Version**: 1.0.0
-**Last Updated**: 2026-04-06
-**Purpose**: Defines bootstrapping sequence, task classification, and routing rules for AI agents interacting with this repository.
+# AGENT BOOTSTRAP v2
 
-## 1. Bootstrap Read Order
-Agents MUST load resources in this exact order:
+You are operating inside a governed repository.
+Your job is not to scan the repository.
+Your job is to enter through the correct gate.
 
-1. **Registry First**: `registry/repo.yaml` → `registry/task-router.yaml` → `registry/model-profiles.yaml`
-2. **Domain Routing**: `registry/googleads.yaml` → `registry/skills.yaml` → `registry/projects.yaml`
-3. **Knowledge Index**: `knowledge/googleads/TASK_ROUTER.yaml` → `knowledge/googleads/ACTIVE_INDEX.yaml`
-4. **Skill Manifests**: `/skills/<skill-name>/skill.yaml` (on-demand)
-5. **Project State**: `/projects/<project-name>/CURRENT_STATE.md` (on-demand)
+## Hard Prohibitions
 
-## 2. Task Classification
-All incoming tasks MUST be classified into one of these categories before any processing:
+You must NOT:
 
-- **Google Ads Knowledge Query**: Requests about Google Ads policies, scripts, compliance, optimization.
-- **Skill Execution**: Requests to apply a specific skill (e.g., keyword audit, script generation).
-- **Project State Update**: Requests that affect project status, decisions, or assets.
-- **Registry Maintenance**: Updates to registry files, index regeneration, validation.
-- **Archive Reference**: Historical lookups only; must not affect active state.
+* scan the whole repository
+* open files randomly
+* read `knowledge/`, `skills/`, or `projects/` before routing
+* guess the task type
+* load more than the minimum required files
+* treat archived files as active sources of truth
 
-## 3. Tier Loading (Cold Start Protection)
-To prevent unnecessary token consumption, apply tiered loading:
+If any of the above happens, stop and report protocol violation.
 
-### Gate 0: Classification Confidence
-- **Rule**: If classification confidence < 80%, ask clarifying questions.
-- **Stop Condition**: Cannot proceed without clear classification.
+---
 
-### Gate 1: Tier 1 Sufficiency Stop
-- **Resources**: `registry/task-router.yaml` + `knowledge/googleads/TASK_ROUTER.yaml`
-- **Goal**: Answer using router mappings only.
-- **Stop Condition**: If answer can be provided with router mappings alone, stop loading further resources.
+## Mandatory Entry Order
 
-### Gate 2: Tier 2 Contradiction Resolution Stop
-- **Resources**: Add relevant `knowledge/googleads/{layer}/` files based on router.
-- **Goal**: Resolve contradictions between router mapping and actual content.
-- **Stop Condition**: If contradiction resolved, stop loading further resources.
+You must follow this exact order.
 
-### Gate 3: Tier 3 Summary-Only Rule
-- **Resources**: Load full domain knowledge only if explicit request for deep analysis.
-- **Constraint**: Summarize findings from loaded resources; do not load entire knowledge base.
+### Gate 0 — Bootstrap
 
-## 4. Hard Stop Gates
-- **No Full Repo Scan**: Never scan the entire repository. Use indexes and routers.
-- **Evidence Map Requirement**: Every answer must cite specific file paths and line ranges.
-- **Id-Based Routing**: Prefer referencing entities by ID over path-based routing.
-- **Freshness Check**: If `content_updated_at` > 30 days, mark as "stale" in response.
+Read:
 
-## 5. Task-Specific Protocols
+* `AGENT_BOOTSTRAP.md`
 
-### Google Ads Tasks
-1. Match against `knowledge/googleads/TASK_ROUTER.yaml`
-2. Load corresponding knowledge file from `official`, `hybrid`, or `internal`
-3. Apply skill if referenced (check `skills.yaml`)
-4. Update `ACTIVE_INDEX.yaml` if content modified
+If not read, stop immediately.
 
-### Skill Execution
-1. Locate skill in `registry/skills.yaml`
-2. Load `/skills/<skill-name>/skill.yaml`
-3. Execute according to `SKILL.md`
-4. Log execution in skill's `CHANGELOG.md`
+### Gate 1 — Repository Truth
 
-### Project Updates
-1. Load `project.yaml` from `/projects/<project-name>/`
-2. Verify `CURRENT_STATE.md` reflects actual state
-3. Make changes, update `CURRENT_STATE.md` and `CHANGELOG.md`
-4. Update `registry/projects.yaml`
+Read:
 
-## 6. Evidence Map Requirement
-Every response must include an evidence map:
+* `registry/repo.yaml`
 
-```
-**Evidence Map**:
-- `registry/task-router.yaml`#L12-15: Task classification mapping
-- `knowledge/googleads/official/field_manual_v3.0.md`#L45-52: Script deployment SOP
-```
+Goal:
 
-## 7. Change Propagation Rules
-- Any change to active knowledge must trigger `ACTIVE_INDEX.yaml` regeneration.
-- Any change to project state must update `CURRENT_STATE.md`.
-- Any change to skill definition must update `registry/skills.yaml`.
-- Use `scripts/check_atomic_updates.py` to validate atomic updates.
+* identify active modules
+* identify archive modules
+* identify canonical repository purpose
 
-## 8. Emergency Procedures
-- **Router Missing**: If router file not found, fall back to `registry/task-router.yaml` only.
-- **Index Stale**: If `ACTIVE_INDEX.yaml` > 7 days old, regenerate using `scripts/compile_knowledge.py`.
-- **Contradiction**: If registry and actual content contradict, flag for manual review.
+If repository structure is unclear, stop.
 
-## 9. Initialization Command
-Agents should run this validation on first load:
-```bash
-python scripts/compile_knowledge.py --validate
-python scripts/check_atomic_updates.py --strict
+### Gate 2 — Task Declaration
+
+Before reading any domain knowledge, you must declare:
+
+* current task
+* task_type
+* target domain
+* expected output type
+
+If task_type is unknown, stop and ask for clarification.
+
+### Gate 3 — Routing
+
+Read:
+
+* `registry/task-router.yaml`
+* domain router if applicable, for example:
+
+  * `knowledge/googleads/TASK_ROUTER.yaml`
+
+Goal:
+
+* map task_type to knowledge files
+* map task_type to skills
+* determine whether project context is required
+
+If no route exists, stop.
+
+### Gate 4 — Controlled Knowledge Selection
+
+Read:
+
+* `knowledge/googleads/ACTIVE_INDEX.yaml` if task domain is Google Ads
+
+Only load files that are:
+
+* routed
+* active
+* relevant
+* within token budget
+* not stale unless explicitly needed
+
+You must prefer:
+
+1. official
+2. hybrid
+3. internal
+
+Do not load all knowledge files.
+
+### Gate 5 — Execution Context
+
+Only after routing is complete may you read:
+
+* required `skills/*`
+* required `projects/*`
+
+You may only read:
+
+* the exact skill needed
+* the exact project needed
+
+Do not browse all skills or all projects.
+
+---
+
+## Max Read Budget
+
+Before execution begins:
+
+* maximum total files opened: 10
+* maximum knowledge files opened without explicit approval: 4
+* maximum project files opened without explicit approval: 4
+* maximum skill files opened without explicit approval: 2
+
+If you exceed these limits, stop and report:
+`READ_BUDGET_EXCEEDED`
+
+---
+
+## Stop Conditions
+
+You must stop immediately if:
+
+* task_type is not declared
+* router not consulted
+* ACTIVE_INDEX not consulted before loading knowledge
+* archive content is being used as active content
+* more than 10 files are opened before task execution begins
+* multiple competing sources of truth are detected
+
+When stopping, output:
+
+* violation detected
+* files already read
+* why execution was halted
+
+---
+
+## Required Pre-Execution Output
+
+Before doing any real work, you must output this block:
+
+### Entry Report
+
+* current task:
+* task_type:
+* domain:
+* files read so far:
+* router used:
+* knowledge files selected:
+* skills selected:
+* projects selected:
+* files intentionally not read:
+* reason not read:
+
+If this block is missing, execution is invalid.
+
+---
+
+## Active Source Priority
+
+When facts conflict, use this priority:
+
+1. `registry/*`
+2. routed active knowledge
+3. selected skill
+4. selected project state
+5. archive only for historical reference
+
+Archive is never primary truth.
+
+---
+
+## Output Rule
+
+All outputs must distinguish:
+
+* fact
+* inference
+* operational heuristic
+
+Do not merge them into one undifferentiated answer.
+
+---
+
+## Final Rule
+
+If you do not know where to start, the answer is always:
+
+1. `AGENT_BOOTSTRAP.md`
+2. `registry/repo.yaml`
+3. task declaration
+4. router
+5. active index
+6. minimal execution context
+
+Never start anywhere else.
