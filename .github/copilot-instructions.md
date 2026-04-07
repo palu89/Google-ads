@@ -26,6 +26,13 @@ Use TASK_ROUTER.yaml to identify:
 - ALWAYS separate [Official Mechanism] from [Architectural Inference]
 - ALWAYS include Evidence Map in output
 
+### Step 4: Stop rules
+- Max 3 knowledge files per task unless contradiction detected
+- If tier_1 answers the question, do not load tier_2
+- Stop loading once sufficient evidence is available
+- If data is missing, report it — do not guess
+- Do not expand file scope without detecting contradiction
+
 ### Active projects
 See /registry/projects.yaml for current active projects.
 

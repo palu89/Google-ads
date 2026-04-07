@@ -22,6 +22,25 @@ If no route matches, ask the user:
 
 ---
 
+## Stop Rules
+
+### File Loading
+- Do not load more than 3 knowledge files per task unless contradiction is detected.
+- If tier_1 (official) files answer the question, do not load tier_2 (hybrid/internal).
+- Never load tier_3 full text unless explicitly requested by the user.
+
+### Output
+- If the answer can be produced with sufficient confidence, stop loading immediately.
+- If required data is missing, stop and report what is missing — do not guess.
+- Do not expand file scope without detecting a contradiction in existing sources.
+
+### Scope
+- Do not read files outside the routed set.
+- Do not browse directories looking for "might be useful" files.
+- Do not reference archive files unless the user explicitly asks for historical data.
+
+---
+
 ## Hard Rules
 
 - NEVER scan the whole repository

@@ -21,6 +21,12 @@ ALWAYS:
 - Include Evidence Map in every output
 - Update CURRENT_STATE.md if project state changes
 
+STOP RULES:
+- Max 3 knowledge files per task unless contradiction detected
+- If tier_1 answers the question, do not load tier_2
+- Stop loading once sufficient evidence is available
+- If data is missing, report it — do not guess
+
 Active knowledge base: /knowledge/googleads/
 Active skills: /skills/
 Registry: /registry/
