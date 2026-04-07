@@ -38,7 +38,7 @@ def check_knowledge_index_freshness():
         # Parse timestamp
         try:
             if isinstance(generated_at, str):
-                index_time = datetime.fromisoformat(generated_at.replace('Z', '+00:00'))
+                index_time = datetime.fromisoformat(generated_at.replace('Z', '+00:00')).replace(tzinfo=None)
             else:
                 return False, "Invalid timestamp format in ACTIVE_INDEX.yaml"
         except ValueError:
