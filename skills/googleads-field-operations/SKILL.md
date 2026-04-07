@@ -1,6 +1,31 @@
 ---
 name: googleads-orchestrator
 description: Google Ads 优化师总控台。
+entry_protocol_required: true
+entry_protocol_files:
+  - AGENT_BOOTSTRAP.md
+  - NEW_AI_INITIALIZATION.md
+  - registry/repo.yaml
+  - registry/task-router.yaml
+  - knowledge/googleads/TASK_ROUTER.yaml
+  - knowledge/googleads/ACTIVE_INDEX.yaml
+---
+
+## ⚠️ SKILL ENTRY CHECKLIST
+
+**Before invoking this skill, verify:**
+
+- [x] Executed AGENT_BOOTSTRAP.md (Gate 0)
+- [x] Executed registry/repo.yaml read (Gate 1)
+- [x] Declared task, task_type, domain (Gate 2)
+- [x] Consulted registry/task-router.yaml (Gate 3)
+- [x] Consulted knowledge/googleads/TASK_ROUTER.yaml (Gate 3)
+- [x] Consulted knowledge/googleads/ACTIVE_INDEX.yaml (Gate 4)
+- [x] Generated Entry Report with all fields filled
+- [x] Total files opened ≤ 10 (Gate 5)
+
+**If ANY of these are unchecked, STOP. Do not invoke this skill.**
+
 ---
 
 ## 自动调用协议 (Auto-Invocation Protocol)

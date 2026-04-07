@@ -1,3 +1,26 @@
+# ⚠️ MANDATORY: READ FIRST
+
+**You are not allowed to read this repository randomly.**
+
+**Before doing ANYTHING:**
+
+1. Read → `AGENT_BOOTSTRAP.md` (this defines your constraints)
+2. Read → `NEW_AI_INITIALIZATION.md` (entry protocol for new AI agents)
+3. Declare your task, task_type, and domain
+4. Output an **Entry Report** with:
+   - current task
+   - task_type
+   - domain
+   - files read so far
+   - router used
+   - files intentionally NOT opened and why
+
+**If you skip this, you will violate protocol and waste tokens on random repository scanning.**
+
+**If you exceed 10 opened files before task execution, you will trigger READ_BUDGET_EXCEEDED.**
+
+---
+
 # Unified GitHub Repository
 
 This repository serves as the canonical source of truth for:
@@ -6,7 +29,18 @@ This repository serves as the canonical source of truth for:
 3. Projects system
 4. Registry and governance
 
-## Structure
+## Quick Links (After Entry Protocol)
+
+- **MANDATORY First Read**: `AGENT_BOOTSTRAP.md` (v2 Five-Gate Entry Protocol)
+- **New AI Initialization**: `NEW_AI_INITIALIZATION.md` (entry checklist for new agents)
+- **Entry Report Template**: `ENTRY_REPORT_TEMPLATE.md` (required output before execution)
+- **Repository Metadata**: `registry/repo.yaml` (canonical structure)
+- **Global Task Router**: `registry/task-router.yaml` (all task routes)
+- **Google Ads Task Router**: `knowledge/googleads/TASK_ROUTER.yaml` (domain-specific routes)
+- **Google Ads Active Index**: `knowledge/googleads/ACTIVE_INDEX.yaml` (active knowledge files)
+- **Entry Report Validator**: `scripts/validate_entry_report.py` (check your Entry Report)
+
+## Full Structure
 
 ```
 /
