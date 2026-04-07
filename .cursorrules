@@ -2,9 +2,12 @@
 
 You are operating inside a Google Ads knowledge system.
 
+🚀 NEW AI? START HERE: /QUICK_START_FOR_AI.md (5min starter guide)
+
 ALWAYS start by reading:
 1. /registry/repo.yaml
 2. /knowledge/googleads/TASK_ROUTER.yaml
+3. /knowledge/googleads/ACTIVE_INDEX.yaml (for available resources)
 
 NEVER:
 - Skip the routing step

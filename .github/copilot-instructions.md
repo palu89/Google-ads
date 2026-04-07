@@ -1,5 +1,8 @@
 # Google Ads Repository — AI Agent Instructions
 
+## 🚀 NEW CONVERSATION? Start here in 5 minutes
+Read: `/QUICK_START_FOR_AI.md` - Quick-start guide for new AI agents
+
 ## MANDATORY: Read before any action
 
 This repository is a Google Ads operating system, not a general codebase.
@@ -8,6 +11,7 @@ This repository is a Google Ads operating system, not a general codebase.
 Before answering any question or making any change, read:
 - /registry/repo.yaml
 - /knowledge/googleads/TASK_ROUTER.yaml
+- /knowledge/googleads/ACTIVE_INDEX.yaml (resource inventory)
 
 ### Step 2: Route your task
 Use TASK_ROUTER.yaml to identify:
