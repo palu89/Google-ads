@@ -4,8 +4,7 @@ name: googleads-audit
 status: active
 summary: Landing page audit and optimization for Google Ads.
 description: Audits landing pages for quality score and conversion optimization.
-depends_on:
-  - knowledge/lp_auditor
+depends_on: []  # self-contained since 2026-04-08
 used_by:
   - agent/googleads-audit
 owner: palu

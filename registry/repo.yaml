@@ -19,8 +19,7 @@ structure:
       - official
       - hybrid
       - internal
-      - playbooks
-      - indexes
+      - best-practices
   skills:
     path: skills/
     manifest_pattern: "skill.yaml"

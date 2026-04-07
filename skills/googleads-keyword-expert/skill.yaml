@@ -4,8 +4,7 @@ name: googleads-keyword-expert
 status: active
 summary: Keyword intent analysis expert for Google Ads. Distinguishes between high-intent conversion keywords and low-intent informational queries.
 description: Keyword auditing and intent analysis.
-depends_on:
-  - knowledge/keyword_expert
+depends_on: []  # self-contained since 2026-04-08
 used_by:
   - agent/googleads-keyword-expert
 owner: palu

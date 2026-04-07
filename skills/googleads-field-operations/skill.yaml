@@ -4,8 +4,7 @@ name: googleads-field-operations
 status: active
 summary: Google Ads 优化师总控台。Orchestrates Google Ads operations, routes to specialized agents, and provides field manual guidance.
 description: Google Ads 优化师总控台。Orchestrator for Google Ads operations.
-depends_on:
-  - knowledge/field_manual_v3.0
+depends_on: []  # self-contained since 2026-04-08
 used_by:
   - agent/googleads-palu
   - agent/main

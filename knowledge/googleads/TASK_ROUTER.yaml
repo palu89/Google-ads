@@ -57,7 +57,7 @@ task_mappings:
       - policies
       - finance_navigator
     skills:
-      - googleads-verify
+      - googleads-field-operations  # googleads-verify not yet created, orchestrator handles compliance
     layer: official
     priority: 1
 

@@ -27,23 +27,11 @@ knowledge_layers:
     priority: 3
     freshness_requirement: flexible
     
-  playbooks:
-    description: Step-by-step execution guides
-    path: knowledge/googleads/playbooks/
-    priority: 4
-    freshness_requirement: flexible
-    
   best-practices:
     description: Question frameworks, prompt engineering, query optimization
     path: knowledge/googleads/best-practices/
     priority: 2
     freshness_requirement: moderate
-    
-  indexes:
-    description: Generated indexes and summaries
-    path: knowledge/googleads/indexes/
-    priority: 5
-    freshness_requirement: auto_generated
 
 knowledge_files:
   - id: field_manual_v3.0

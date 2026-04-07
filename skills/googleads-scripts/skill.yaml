@@ -4,8 +4,7 @@ name: googleads-scripts
 status: active
 summary: Google Ads script generation and deployment. Creates JavaScript automation scripts for monitoring, bid adjustment, and reporting.
 description: Google Ads script generation and deployment.
-depends_on:
-  - knowledge/script_architect
+depends_on: []  # self-contained since 2026-04-08
 used_by:
   - agent/googleads-scripts
 owner: palu
