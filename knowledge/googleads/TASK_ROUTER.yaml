@@ -80,6 +80,24 @@ task_mappings:
     layer: official
     priority: 1
 
+  india_financial_verification:
+    patterns:
+      - "India financial verification"
+      - "India verification"
+      - "Indian financial services"
+      - "India financial services"
+      - "SEBI"
+      - "G2RS"
+      - "India financial-services verification"
+    knowledge_files:
+      - field_manual_v3.0
+      - finance_compliance
+      - india_financial_verification_scope
+    skills:
+      - googleads-verify
+    layer: official
+    priority: 1
+
   appeal_process:
     patterns:
       - "申诉"
