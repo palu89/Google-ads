@@ -1,14 +1,18 @@
 ---
 id: question-framework
+entity_type: knowledge
 domain: googleads
 layer: best-practices
 task_types: [prompt_engineering, knowledge_retrieval, question_optimization]
-priority: tier_2
+priority: 2
 source: internal-governance
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /knowledge/googleads/internal/knowledge-retrieval-framework.md
 status: active
+summary: Defines a standard question structure to improve retrieval accuracy and reduce token waste.
 ---
 
 # Question Framework: How to Ask for Best Results

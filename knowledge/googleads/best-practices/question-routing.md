@@ -1,16 +1,20 @@
 ---
 id: question-routing
+entity_type: knowledge
 domain: googleads
 layer: best-practices
 task_types: [routing, retrieval, question_optimization]
-priority: tier_1
+priority: 1
 source: internal-governance
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /registry/task-router.yaml
   - /knowledge/googleads/TASK_ROUTER.yaml
   - /knowledge/googleads/internal/knowledge-retrieval-framework.md
 status: active
+summary: Teaches how to route Google Ads questions to the right knowledge layer before asking.
 ---
 
 # Question Routing: How to Route Your Question Before Asking

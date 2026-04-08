@@ -1,274 +1,284 @@
-version: 1.0.0
-generated_at: 2026-04-08T00:00:00Z
-total_files: 19
-valid_files: 19
-total_tokens: 17455
 freshness_summary:
-  fresh: 19
-  stale: 0
-  warning: 0
-  unknown: 0
+  fresh: 20
+generated_at: '2026-04-08T19:54:20.534262+00:00'
 knowledge_files:
-  - id: client-defaults
-    path: knowledge/googleads/internal/client-defaults.md
-    layer: internal
-    task_types:
-      - default_rules
-      - campaign_strategy
-      - landing_page_audit
-      - audience_targeting
-      - conversion_strategy
-    priority: 0
-    status: active
-    freshness: fresh
-    token_estimate: 300
-    is_valid: true
-    validation_errors: []
-    note: "跨市场强制默认规则。优先级最高(0)，所有任务均应先加载本文件。"
-  - id: field_manual_v3.0
-    path: knowledge/googleads/official/field_manual_v3.0.md
-    layer: official
-    task_types:
-      - general_operations
-      - script_deployment
-      - compliance
-      - keyword_audit
-      - landing_page_audit
-      - finance_verification
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 5850
-    is_valid: true
-    validation_errors: []
-  - id: finance_compliance
-    path: knowledge/googleads/official/finance_compliance.md
-    layer: official
-    task_types:
-      - finance
-      - compliance
-      - verification
-    priority: 2
-    status: active
-    freshness: fresh
-    token_estimate: 125
-    is_valid: true
-    validation_errors: []
-  - id: policies
-    path: knowledge/googleads/official/policies.md
-    layer: official
-    task_types:
-      - compliance
-      - policy
-      - restricted_content
-    priority: 2
-    status: active
-    freshness: fresh
-    token_estimate: 50
-    is_valid: true
-    validation_errors: []
-  - id: appeal_process
-    path: knowledge/googleads/official/appeal_process.md
-    layer: official
-    task_types:
-      - appeal
-      - compliance
-      - finance
-      - policy_violation
-    priority: 2
-    status: active
-    freshness: fresh
-    token_estimate: 200
-    is_valid: true
-    validation_errors: []
-  - id: agents_backup
-    path: knowledge/googleads/hybrid/agents_backup.md
-    layer: hybrid
-    task_types:
-      - agent_reference
-      - routing
-      - system_architecture
-    priority: 3
-    status: active
-    freshness: fresh
-    token_estimate: 750
-    is_valid: true
-    validation_errors: []
-  - id: finance_navigator
-    path: knowledge/googleads/internal/finance_navigator.md
-    layer: internal
-    task_types:
-      - finance
-      - compliance
-      - verification
-      - navigation
-    priority: 3
-    status: active
-    freshness: fresh
-    token_estimate: 200
-    is_valid: true
-    validation_errors: []
-  - id: keyword_expert
-    path: knowledge/googleads/internal/keyword_expert.md
-    layer: internal
-    task_types:
-      - keyword_audit
-      - intent_analysis
-      - negative_keyword_generation
-    priority: 3
-    status: active
-    freshness: fresh
-    token_estimate: 175
-    is_valid: true
-    validation_errors: []
-  - id: lp_auditor
-    path: knowledge/googleads/internal/lp_auditor.md
-    layer: internal
-    task_types:
-      - landing_page_audit
-      - compliance
-      - quality_score
-      - seo
-    priority: 3
-    status: active
-    freshness: fresh
-    token_estimate: 175
-    is_valid: true
-    validation_errors: []
-  - id: script_architect
-    path: knowledge/googleads/internal/script_architect.md
-    layer: internal
-    task_types:
-      - script_generation
-      - automation
-      - monitoring
-      - bid_management
-    priority: 3
-    status: active
-    freshness: fresh
-    token_estimate: 150
-    is_valid: true
-    validation_errors: []
-  - id: knowledge-retrieval-framework
-    path: knowledge/googleads/internal/knowledge-retrieval-framework.md
-    layer: internal
-    task_types:
-      - routing
-      - retrieval
-      - governance
-      - prompt_engineering
-      - project_state
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 1200
-    is_valid: true
-    validation_errors: []
-  - id: question-framework
-    path: knowledge/googleads/best-practices/question-framework.md
-    layer: best-practices
-    task_types:
-      - prompt_engineering
-      - knowledge_retrieval
-      - question_optimization
-    priority: 2
-    status: active
-    freshness: fresh
-    token_estimate: 350
-    is_valid: true
-    validation_errors: []
-  - id: api-query-best-practices
-    path: knowledge/googleads/best-practices/api-query-best-practices.md
-    layer: best-practices
-    task_types:
-      - api_query
-      - technical_question
-      - script_generation
-    priority: 2
-    status: active
-    freshness: fresh
-    token_estimate: 280
-    is_valid: true
-    validation_errors: []
-  - id: prompt-engineering-guide
-    path: knowledge/googleads/best-practices/prompt-engineering-guide.md
-    layer: best-practices
-    task_types:
-      - prompt_engineering
-      - ai_interaction
-      - knowledge_optimization
-    priority: 2
-    status: active
-    freshness: fresh
-    token_estimate: 420
-    is_valid: true
-    validation_errors: []
-  - id: question-routing
-    path: knowledge/googleads/best-practices/question-routing.md
-    layer: best-practices
-    task_types:
-      - routing
-      - retrieval
-      - question_optimization
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 340
-    is_valid: true
-    validation_errors: []
-  - id: signal-control-matrix
-    path: knowledge/googleads/hybrid/signal-control-matrix.md
-    layer: hybrid
-    task_types:
-      - strategy_engineering
-      - performance_diagnosis
-      - rca
-      - campaign_build
-      - signal_analysis
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 1100
-    is_valid: true
-    validation_errors: []
-  - id: signal-priority-method
-    path: knowledge/googleads/hybrid/signal-priority-method.md
-    layer: hybrid
-    task_types:
-      - strategy_engineering
-      - performance_diagnosis
-      - rca
-      - campaign_build
-      - signal_analysis
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 550
-    is_valid: true
-    validation_errors: []
-  - id: strategy-prioritization
-    path: knowledge/googleads/hybrid/strategy-prioritization.md
-    layer: hybrid
-    task_types:
-      - strategy_engineering
-      - performance_diagnosis
-      - campaign_build
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 480
-    is_valid: true
-    validation_errors: []
-  - id: signal-analysis-playbook
-    path: knowledge/googleads/hybrid/signal-analysis-playbook.md
-    layer: hybrid
-    task_types:
-      - signal_analysis
-      - performance_diagnosis
-      - rca
-    priority: 1
-    status: active
-    freshness: fresh
-    token_estimate: 420
-    is_valid: true
-    validation_errors: []
+- freshness: fresh
+  id: client-defaults
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/client-defaults.md
+  priority: 0
+  status: active
+  task_types:
+  - default_rules
+  - campaign_strategy
+  - landing_page_audit
+  - audience_targeting
+  - conversion_strategy
+  token_estimate: 592
+  validation_errors: []
+- freshness: fresh
+  id: question-routing
+  is_valid: true
+  layer: best-practices
+  path: knowledge/googleads/best-practices/question-routing.md
+  priority: 1
+  status: active
+  task_types:
+  - routing
+  - retrieval
+  - question_optimization
+  token_estimate: 1905
+  validation_errors: []
+- freshness: fresh
+  id: strategy-prioritization
+  is_valid: true
+  layer: hybrid
+  path: knowledge/googleads/hybrid/strategy-prioritization.md
+  priority: 1
+  status: active
+  task_types:
+  - strategy_engineering
+  - performance_diagnosis
+  - campaign_build
+  token_estimate: 738
+  validation_errors: []
+- freshness: fresh
+  id: signal-analysis-playbook
+  is_valid: true
+  layer: hybrid
+  path: knowledge/googleads/hybrid/signal-analysis-playbook.md
+  priority: 1
+  status: active
+  task_types:
+  - signal_analysis
+  - performance_diagnosis
+  - rca
+  token_estimate: 732
+  validation_errors: []
+- freshness: fresh
+  id: signal-control-matrix
+  is_valid: true
+  layer: hybrid
+  path: knowledge/googleads/hybrid/signal-control-matrix.md
+  priority: 1
+  status: active
+  task_types:
+  - strategy_engineering
+  - performance_diagnosis
+  - rca
+  - campaign_build
+  - signal_analysis
+  token_estimate: 1305
+  validation_errors: []
+- freshness: fresh
+  id: signal-priority-method
+  is_valid: true
+  layer: hybrid
+  path: knowledge/googleads/hybrid/signal-priority-method.md
+  priority: 1
+  status: active
+  task_types:
+  - strategy_engineering
+  - performance_diagnosis
+  - rca
+  - campaign_build
+  - signal_analysis
+  token_estimate: 817
+  validation_errors: []
+- freshness: fresh
+  id: knowledge-retrieval-framework
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/knowledge-retrieval-framework.md
+  priority: 1
+  status: active
+  task_types:
+  - routing
+  - retrieval
+  - governance
+  - prompt_engineering
+  - project_state
+  token_estimate: 1937
+  validation_errors: []
+- freshness: fresh
+  id: field_manual_v3.0
+  is_valid: true
+  layer: official
+  path: knowledge/googleads/official/field_manual_v3.0.md
+  priority: 1
+  status: active
+  task_types:
+  - general_operations
+  - script_deployment
+  - compliance
+  - keyword_audit
+  - landing_page_audit
+  - finance_verification
+  token_estimate: 1457
+  validation_errors: []
+- freshness: fresh
+  id: question-framework
+  is_valid: true
+  layer: best-practices
+  path: knowledge/googleads/best-practices/question-framework.md
+  priority: 2
+  status: active
+  task_types:
+  - prompt_engineering
+  - knowledge_retrieval
+  - question_optimization
+  token_estimate: 1320
+  validation_errors: []
+- freshness: fresh
+  id: prompt-engineering-guide
+  is_valid: true
+  layer: best-practices
+  path: knowledge/googleads/best-practices/prompt-engineering-guide.md
+  priority: 2
+  status: active
+  task_types:
+  - prompt_engineering
+  - ai_interaction
+  - knowledge_optimization
+  token_estimate: 2012
+  validation_errors: []
+- freshness: fresh
+  id: api-query-best-practices
+  is_valid: true
+  layer: best-practices
+  path: knowledge/googleads/best-practices/api-query-best-practices.md
+  priority: 2
+  status: active
+  task_types:
+  - api_query
+  - technical_question
+  - script_generation
+  token_estimate: 1235
+  validation_errors: []
+- freshness: fresh
+  id: account_ops_battle_tested
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/account_ops_battle_tested.md
+  priority: 2
+  status: active
+  task_types:
+  - account_nurturing
+  - high_risk_operations
+  - budget_pacing
+  - roi_modeling
+  token_estimate: 423
+  validation_errors: []
+- freshness: fresh
+  id: policies
+  is_valid: true
+  layer: official
+  path: knowledge/googleads/official/policies.md
+  priority: 2
+  status: active
+  task_types:
+  - compliance
+  - policy
+  - restricted_content
+  token_estimate: 213
+  validation_errors: []
+- freshness: fresh
+  id: appeal_process
+  is_valid: true
+  layer: official
+  path: knowledge/googleads/official/appeal_process.md
+  priority: 2
+  status: active
+  task_types:
+  - appeal
+  - compliance
+  - finance
+  - policy_violation
+  token_estimate: 451
+  validation_errors: []
+- freshness: fresh
+  id: finance_compliance
+  is_valid: true
+  layer: official
+  path: knowledge/googleads/official/finance_compliance.md
+  priority: 2
+  status: active
+  task_types:
+  - finance
+  - compliance
+  - verification
+  token_estimate: 520
+  validation_errors: []
+- freshness: fresh
+  id: agents_backup
+  is_valid: true
+  layer: hybrid
+  path: knowledge/googleads/hybrid/agents_backup.md
+  priority: 3
+  status: active
+  task_types:
+  - agent_reference
+  - routing
+  - system_architecture
+  token_estimate: 1602
+  validation_errors: []
+- freshness: fresh
+  id: keyword_expert
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/keyword_expert.md
+  priority: 3
+  status: active
+  task_types:
+  - keyword_audit
+  - intent_analysis
+  - negative_keyword_generation
+  token_estimate: 348
+  validation_errors: []
+- freshness: fresh
+  id: script_architect
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/script_architect.md
+  priority: 3
+  status: active
+  task_types:
+  - script_generation
+  - automation
+  - monitoring
+  - bid_management
+  token_estimate: 334
+  validation_errors: []
+- freshness: fresh
+  id: finance_navigator
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/finance_navigator.md
+  priority: 3
+  status: active
+  task_types:
+  - finance
+  - compliance
+  - verification
+  - navigation
+  token_estimate: 329
+  validation_errors: []
+- freshness: fresh
+  id: lp_auditor
+  is_valid: true
+  layer: internal
+  path: knowledge/googleads/internal/lp_auditor.md
+  priority: 3
+  status: active
+  task_types:
+  - landing_page_audit
+  - compliance
+  - quality_score
+  - seo
+  token_estimate: 404
+  validation_errors: []
+total_files: 20
+total_tokens: 18674
+valid_files: 20
+version: 1.0.0
