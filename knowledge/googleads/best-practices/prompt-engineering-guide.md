@@ -1,15 +1,19 @@
 ---
 id: prompt-engineering-guide
+entity_type: knowledge
 domain: googleads
 layer: best-practices
 task_types: [prompt_engineering, ai_interaction, knowledge_optimization]
-priority: tier_2
+priority: 2
 source: internal-governance
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /knowledge/googleads/internal/knowledge-retrieval-framework.md
   - /knowledge/googleads/best-practices/question-framework.md
 status: active
+summary: Shows how to structure Google Ads prompts so AI can answer with higher accuracy and lower hallucination risk.
 ---
 
 # Prompt Engineering Guide for Google Ads Questions

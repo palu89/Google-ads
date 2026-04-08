@@ -96,6 +96,15 @@ knowledge_files:
     status: active
     estimated_tokens: 800
     last_validated: 2026-04-06T11:11:00Z
+
+  - id: account_ops_battle_tested
+    path: knowledge/googleads/internal/account_ops_battle_tested.md
+    layer: internal
+    task_types: [account_nurturing, high_risk_operations, budget_pacing, roi_modeling]
+    priority: 2
+    status: active
+    estimated_tokens: 1400
+    last_validated: 2026-04-09T00:00:00Z
     
   - id: keyword_expert
     path: knowledge/googleads/internal/keyword_expert.md

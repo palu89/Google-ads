@@ -1,15 +1,19 @@
 ---
 id: api-query-best-practices
+entity_type: knowledge
 domain: googleads
 layer: best-practices
 task_types: [api_query, technical_question, script_generation]
-priority: tier_2
+priority: 2
 source: internal-governance
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /knowledge/googleads/official/field_manual_v3.0.md
   - /knowledge/googleads/internal/knowledge-retrieval-framework.md
 status: active
+summary: Documents the minimum question structure needed for accurate Google Ads API troubleshooting and script work.
 ---
 
 # API Query Best Practices

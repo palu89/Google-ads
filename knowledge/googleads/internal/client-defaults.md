@@ -6,6 +6,9 @@ layer: internal
 task_types: [default_rules, campaign_strategy, landing_page_audit, audience_targeting, conversion_strategy]
 priority: 0
 status: active
+source: internal-defaults
+source_checked_at: 2026-04-09T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 freshness: fresh
 token_estimate: 300
 depends_on: []

@@ -1,15 +1,19 @@
 ---
 id: signal-control-matrix
+entity_type: knowledge
 domain: googleads
 layer: hybrid
 task_types: [strategy_engineering, performance_diagnosis, rca, campaign_build, signal_analysis]
-priority: tier_1
+priority: 1
 source: internal-framework
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /knowledge/googleads/internal/knowledge-retrieval-framework.md
   - /knowledge/googleads/official/field_manual_v3.0.md
 status: active
+summary: Defines the core signal categories advertisers can control, shape, or inherit inside Google Ads optimization.
 ---
 
 # Google Ads Signal Control Matrix

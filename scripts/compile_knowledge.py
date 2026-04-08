@@ -46,10 +46,15 @@ def check_freshness(frontmatter):
         return "unknown"
     
     try:
-        if isinstance(checked_at, str):
+        if isinstance(checked_at, datetime):
+            checked_date = checked_at
+        elif isinstance(checked_at, str):
             checked_date = datetime.fromisoformat(checked_at.replace('Z', '+00:00'))
         else:
             return "unknown"
+
+        if checked_date.tzinfo is None:
+            checked_date = checked_date.replace(tzinfo=timezone.utc)
         
         days_old = (datetime.now(timezone.utc) - checked_date).days
         if days_old > 30:
@@ -60,6 +65,27 @@ def check_freshness(frontmatter):
             return "fresh"
     except Exception:
         return "unknown"
+
+def normalize_priority(priority):
+    """Normalize priority values to sortable integers."""
+    if isinstance(priority, int):
+        return priority
+
+    if isinstance(priority, str):
+        priority_map = {
+            "tier_0": 0,
+            "tier_1": 1,
+            "tier_2": 2,
+            "tier_3": 3,
+            "tier_4": 4,
+            "tier_5": 5,
+        }
+        if priority in priority_map:
+            return priority_map[priority]
+        if priority.isdigit():
+            return int(priority)
+
+    return 99
 
 def validate_frontmatter(frontmatter, filepath):
     """Validate required fields in frontmatter."""
@@ -145,7 +171,7 @@ def generate_index(knowledge_files):
             "path": f["path"],
             "layer": f["frontmatter"].get("layer", "unknown"),
             "task_types": f["frontmatter"].get("task_types", []),
-            "priority": f["frontmatter"].get("priority", 99),
+            "priority": normalize_priority(f["frontmatter"].get("priority", 99)),
             "status": f["frontmatter"].get("status", "unknown"),
             "freshness": f["freshness"],
             "token_estimate": f["token_estimate"],

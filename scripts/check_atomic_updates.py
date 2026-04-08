@@ -10,7 +10,7 @@ import os
 import sys
 import re
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 
 # Configuration
 REPO_ROOT = Path(__file__).parent.parent
@@ -38,7 +38,7 @@ def check_knowledge_index_freshness():
         # Parse timestamp
         try:
             if isinstance(generated_at, str):
-                index_time = datetime.fromisoformat(generated_at.replace('Z', '+00:00')).replace(tzinfo=None)
+                index_time = datetime.fromisoformat(generated_at.replace('Z', '+00:00'))
             else:
                 return False, "Invalid timestamp format in ACTIVE_INDEX.yaml"
         except ValueError:
@@ -58,7 +58,7 @@ def check_knowledge_index_freshness():
                         latest_file = filepath
         
         if latest_file:
-            file_time = datetime.fromtimestamp(latest_mtime)
+            file_time = datetime.fromtimestamp(latest_mtime, tz=timezone.utc)
             if file_time > index_time:
                 return False, f"Knowledge file {latest_file.name} modified after index generation"
         
