@@ -1,4 +1,4 @@
-# Quick Start For AI
+# AI启动模块
 
 Updated: 2026-04-09
 
@@ -59,7 +59,7 @@ Pass criteria:
 
 Running only:
 - `git pull origin main`
-- `cat QUICK_START_FOR_AI.md`
+- `cat AI启动模块.md`
 
 proves repository access and sync only. It does not prove protocol initialization, route selection, or skill execution.
 

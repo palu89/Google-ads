@@ -15,7 +15,7 @@
 /
 ├── AGENT_BOOTSTRAP.md              # Agent entry protocol (single authority)
 ├── README.md                       # This file
-├── QUICK_START_FOR_AI.md           # Fast orientation for new AI tools
+├── AI启动模块.md                     # Fast orientation for new AI tools
 │
 ├── registry/                       # Central registries (read first)
 │   ├── repo.yaml
