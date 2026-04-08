@@ -43,6 +43,7 @@ Interpretation:
 5. `Notion Merged`: Notion is updated only after merge and runtime validation
 
 Never treat Notion or local-only edits as the final execution truth.
+If the current lifecycle stage cannot be proven from task state or repository state, output `Unknown` and list the missing evidence.
 
 ---
 

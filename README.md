@@ -9,6 +9,9 @@
 2. Follow the files and routing order defined there.
 3. Do not scan the repository or preload knowledge outside routed scope.
 
+This README is only a repository summary.
+Canonical execution rules live in `AGENT_BOOTSTRAP.md` and `OPERATING_SOP.md`.
+
 ## System Boundary
 
 - `Notion` is the front door for intake, queueing, and merged-state reporting.
