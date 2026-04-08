@@ -2,13 +2,74 @@
 
 Updated: 2026-04-09
 
-## Start Here
+## Zero-Ambiguity Onboarding (Required)
+
+Do not start from README summaries or generic repo scans.
+Do this exact order:
 
 1. Read `AGENT_BOOTSTRAP.md`
 2. Read `registry/repo.yaml`
 3. Read `knowledge/googleads/TASK_ROUTER.yaml`
 4. Match the task to one route
 5. Load only the listed knowledge files and skills
+
+If any required file is missing or cannot be parsed, stop and report the missing file.
+
+## Copy-Paste Prompt For New AI Tools
+
+Use this exact prompt when onboarding any new AI tool:
+
+```text
+You are onboarding to the Google Ads OS repository.
+
+Mandatory sequence (no skipping):
+1) Read AGENT_BOOTSTRAP.md
+2) Read registry/repo.yaml
+3) Read knowledge/googleads/TASK_ROUTER.yaml
+
+Then execute this task: "我需要做金融牌照验证与G2准备".
+
+Output requirements:
+A. Initialization Proof:
+- List 6 key protocol rules you extracted.
+
+B. Routing Proof:
+- Route name selected
+- Pattern hits
+- Exact knowledge_files to load
+- Exact skills to load
+
+C. Execution Proof:
+- Respond in this format:
+	Mechanism -> Judgment -> Action -> Risks -> Missing Data -> Evidence Map
+
+D. Compliance Proof:
+- State you did not scan the whole repository
+- State you only loaded routed files
+- If missing files exist, stop and report instead of guessing
+
+Pass criteria:
+- Must select a concrete route from TASK_ROUTER.yaml
+- Must name concrete skills and knowledge files
+- Must include Evidence Map with real file paths
+- Must not answer with only quick-start summary
+```
+
+## Why Previous Onboarding Failed
+
+Running only:
+- `git pull origin main`
+- `cat QUICK_START_FOR_AI.md`
+
+proves repository access and sync only. It does not prove protocol initialization, route selection, or skill execution.
+
+## One-Minute Acceptance Checklist
+
+- Read all 3 required files in sequence
+- Selected one concrete route in `knowledge/googleads/TASK_ROUTER.yaml`
+- Loaded only route-listed knowledge and skills
+- Produced `Evidence Map` with real file paths
+- Explicitly confirmed no full-repo scan
 
 ## Project Skills
 
