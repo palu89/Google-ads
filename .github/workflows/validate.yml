@@ -28,7 +28,7 @@ jobs:
     - name: Check repository structure
       run: |
         echo "Checking required directories..."
-        for dir in knowledge/googleads/{official,hybrid,internal,playbooks,indexes} registry skills projects archive scripts .github/workflows; do
+        for dir in knowledge/googleads/{official,hybrid,internal} registry skills projects archive scripts .github/workflows; do
           if [ -d "$dir" ]; then
             echo "✅ $dir exists"
           else

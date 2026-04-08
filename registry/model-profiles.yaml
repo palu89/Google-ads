@@ -1,5 +1,8 @@
 # Model Profiles and Agent Configuration
-# Derived from openclaw_current.json, transformed to registry format.
+# ⚠️  HISTORICAL REFERENCE ONLY. This data was extracted from a local OpenClaw
+#     runtime instance (2026-03-22). Local paths (workspace_*, agent_dir) are
+#     machine-specific and are NOT current. Do NOT treat this as live system state.
+#     For current AI interactions use the GitHub-connected tool directly.
 
 version: 1.0.0
 last_updated: 2026-04-06T11:05:00Z

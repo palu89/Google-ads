@@ -1,40 +1,17 @@
 # Google Ads Repository — AI Agent Instructions
 
-## 🚀 NEW CONVERSATION? Start here in 5 minutes
-Read: `/QUICK_START_FOR_AI.md` - Quick-start guide for new AI agents
+## MANDATORY FIRST STEP
 
-## MANDATORY: Read before any action
+Read `/AGENT_BOOTSTRAP.md` before anything else. It defines the complete entry protocol.
 
-This repository is a Google Ads operating system, not a general codebase.
+Do NOT read ACTIVE_INDEX, TASK_ROUTER, or any knowledge files until AGENT_BOOTSTRAP instructs you to.
 
-### Step 1: Bootstrap (always first)
-Before answering any question or making any change, read:
-- /registry/repo.yaml
-- /knowledge/googleads/TASK_ROUTER.yaml
-- /knowledge/googleads/ACTIVE_INDEX.yaml (resource inventory)
+## Quick reference (do not use as substitute for AGENT_BOOTSTRAP)
 
-### Step 2: Route your task
-Use TASK_ROUTER.yaml to identify:
-- Which knowledge files to load
-- Which skill to activate
-- Which output format to use
+- Entry protocol: `AGENT_BOOTSTRAP.md`
+- Registry: `registry/repo.yaml`
+- Routing: `knowledge/googleads/TASK_ROUTER.yaml`
+- Skills: `skills/`
+- Projects: `registry/projects.yaml`
+- Output format: Mechanism → Judgment → Action → Risks → Missing Data → Evidence Map
 
-### Step 3: Hard rules
-- NEVER load from /archive or /generated
-- NEVER edit ACTIVE_INDEX.yaml directly
-- NEVER modify /registry without updating CURRENT_STATE.md
-- ALWAYS separate [Official Mechanism] from [Architectural Inference]
-- ALWAYS include Evidence Map in output
-
-### Step 4: Stop rules
-- Max 3 knowledge files per task unless contradiction detected
-- If tier_1 answers the question, do not load tier_2
-- Stop loading once sufficient evidence is available
-- If data is missing, report it — do not guess
-- Do not expand file scope without detecting contradiction
-
-### Active projects
-See /registry/projects.yaml for current active projects.
-
-### Output format
-Mechanism → Judgment → Action → Risks → Missing Data → Evidence Map

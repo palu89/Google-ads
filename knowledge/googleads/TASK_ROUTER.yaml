@@ -4,13 +4,6 @@
 version: 1.0.0
 last_updated: 2026-04-08T00:00:00Z
 
-# ══════════════════════════════════════════════════════
-# 强制规则：所有任务执行前必须加载 client-defaults
-# 优先级 0 — 跨市场默认业务规则，不可跳过
-# ══════════════════════════════════════════════════════
-global_preload:
-  - client-defaults
-
 task_mappings:
   script_generation:
     patterns:

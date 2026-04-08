@@ -29,8 +29,7 @@
 │   ├── ACTIVE_INDEX.yaml           # Auto-generated knowledge index
 │   ├── official/                   # Platform facts, official policy
 │   ├── hybrid/                     # Official + operator interpretation
-│   ├── internal/                   # SOP, workflow, heuristic
-│   └── playbooks/                  # Step-by-step execution guides
+│   └── internal/                   # SOP, workflow, heuristic
 │
 ├── skills/                         # Executable skill definitions
 │   ├── googleads-field-operations/ # Orchestrator — main entry skill

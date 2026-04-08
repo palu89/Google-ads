@@ -1,10 +1,10 @@
 version: 1.0.0
 generated_at: 2026-04-08T00:00:00Z
-total_files: 10
-valid_files: 10
+total_files: 19
+valid_files: 19
 total_tokens: 17455
 freshness_summary:
-  fresh: 10
+  fresh: 19
   stale: 0
   warning: 0
   unknown: 0

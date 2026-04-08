@@ -2,31 +2,18 @@
 
 You are operating inside a Google Ads knowledge system.
 
-🚀 NEW AI? START HERE: /QUICK_START_FOR_AI.md (5min starter guide)
+## MANDATORY FIRST STEP
 
-ALWAYS start by reading:
-1. /registry/repo.yaml
-2. /knowledge/googleads/TASK_ROUTER.yaml
-3. /knowledge/googleads/ACTIVE_INDEX.yaml (for available resources)
+Read /AGENT_BOOTSTRAP.md before anything else.
+It is the single authoritative entry protocol.
+Do NOT read other files until AGENT_BOOTSTRAP tells you to.
 
-NEVER:
-- Skip the routing step
-- Load files from /archive or /generated
-- Edit ACTIVE_INDEX.yaml directly
-- Present Architectural Inference as Official Mechanism
+## Quick reference (AGENT_BOOTSTRAP is the authority)
 
-ALWAYS:
-- Classify task type before loading knowledge
-- Use tier loading (tier_1 full → tier_2 conditional → tier_3 summary only)
-- Include Evidence Map in every output
-- Update CURRENT_STATE.md if project state changes
+- Entry: AGENT_BOOTSTRAP.md
+- Registry: registry/repo.yaml
+- Routing: knowledge/googleads/TASK_ROUTER.yaml
+- Skills: skills/
+- Projects: registry/projects.yaml
+- Active knowledge: knowledge/googleads/
 
-STOP RULES:
-- Max 3 knowledge files per task unless contradiction detected
-- If tier_1 answers the question, do not load tier_2
-- Stop loading once sufficient evidence is available
-- If data is missing, report it — do not guess
-
-Active knowledge base: /knowledge/googleads/
-Active skills: /skills/
-Registry: /registry/

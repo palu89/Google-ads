@@ -10,6 +10,9 @@ Thumbs.db
 # FunASR external repository
 FunASR/
 
+# Local-only projects (separate repos, not tracked here)
+projects/openclaw-dashboard/
+
 # Python
 __pycache__/
 *.py[cod]
