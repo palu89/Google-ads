@@ -1,0 +1,13 @@
+name: self-improving-agent
+id: self-improving-agent
+status: active
+version: 1.2.13
+description: Self-reflection, self-criticism, and automated memory management for persistent learning.
+author: Clawic (Ported)
+metadata:
+  category: core-system
+  domain: meta-ai
+  tags: [learning, memory, reflection, evolution]
+manifest_path: skills/self-improving-agent/skill.yaml
+skill_path: skills/self-improving-agent/SKILL.md
+changelog_path: skills/self-improving-agent/CHANGELOG.md

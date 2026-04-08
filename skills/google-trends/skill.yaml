@@ -1,0 +1,13 @@
+name: google-trends
+id: google-trends
+status: active
+version: 1.0.0
+description: Monitor Google Trends - get trending searches, compare keywords, and track interest over time.
+author: Buba Draugelis (Ported)
+metadata:
+  category: market-research
+  domain: marketing
+  tags: [trends, research, seo, googleads]
+manifest_path: skills/google-trends/skill.yaml
+skill_path: skills/google-trends/SKILL.md
+changelog_path: skills/google-trends/CHANGELOG.md

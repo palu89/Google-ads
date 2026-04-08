@@ -61,6 +61,36 @@ task_mappings:
       - googleads-audit
     layer: internal
     priority: 1
+
+  market_research:
+    patterns:
+      - "热度"
+      - "trends"
+      - "趋势"
+      - "调研"
+      - "search interest"
+      - "新兴"
+    knowledge_files: []
+    skills:
+      - google-trends
+    layer: internal
+    priority: 1
+
+  self_evolution:
+    patterns:
+      - "进化"
+      - "学习"
+      - "总结"
+      - "反思"
+      - "纠错"
+      - "reflection"
+      - "improving"
+    knowledge_files:
+      - knowledge-retrieval-framework
+    skills:
+      - self-improving-agent
+    layer: internal
+    priority: 0
       - "验证"
       - "verification"
       - "G2"
