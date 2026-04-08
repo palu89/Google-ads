@@ -1,6 +1,6 @@
 freshness_summary:
-  fresh: 20
-generated_at: '2026-04-08T19:54:20.534262+00:00'
+  fresh: 21
+generated_at: '2026-04-08T20:45:17.838205+00:00'
 knowledge_files:
 - freshness: fresh
   id: client-defaults
@@ -184,6 +184,20 @@ knowledge_files:
   token_estimate: 213
   validation_errors: []
 - freshness: fresh
+  id: india_financial_verification_scope
+  is_valid: true
+  layer: official
+  path: knowledge/googleads/official/india_financial_verification_scope.md
+  priority: 2
+  status: active
+  task_types:
+  - finance
+  - compliance
+  - verification
+  - region_specific
+  token_estimate: 438
+  validation_errors: []
+- freshness: fresh
   id: appeal_process
   is_valid: true
   layer: official
@@ -278,7 +292,7 @@ knowledge_files:
   - seo
   token_estimate: 404
   validation_errors: []
-total_files: 20
-total_tokens: 18674
-valid_files: 20
+total_files: 21
+total_tokens: 19112
+valid_files: 21
 version: 1.0.0
