@@ -91,13 +91,42 @@ task_mappings:
       - self-improving-agent
     layer: internal
     priority: 0
-      - "验证"
-      - "verification"
-      - "G2"
-    knowledge_files:
-      - field_manual_v3.0
-      - finance_compliance
-      - policies
+
+  system_governance:
+    patterns:
+      - "system"
+      - "governance"
+      - "skill-vetting"
+      - "vetting"
+      - "security"
+      - "install skill"
+      - "安全性"
+      - "审核"
+      - "插件"
+    knowledge_files: []
+    skills:
+      - system/skill-vetter
+    layer: internal
+    priority: 0
+
+  web_intelligence:
+    patterns:
+      - "web search"
+      - "find online"
+      - "news"
+      - "competitor site"
+      - "url"
+      - "外网"
+      - "搜索"
+      - "实时"
+      - "新闻"
+    knowledge_files: []
+    skills:
+      - system/web-search
+    layer: internal
+    priority: 0
+
+  compliance_verification:
       - finance_navigator
     skills:
       - googleads-field-operations  # googleads-verify not yet created, orchestrator handles compliance
