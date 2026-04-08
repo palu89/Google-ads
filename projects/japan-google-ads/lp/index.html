@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>AI株式診断 | LINE案内ページ</title>
+  <meta name="version" content="v2.0" />
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --line: rgba(0, 40, 100, 0.08);
+      --text: #1a2b3d;
+      --muted: #6b7d8e;
+      --accent: #1a6dff;
+      --accent-light: #e8f0ff;
+      --green: #06c755;
+      --green-light: #e6f9ef;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Avenir Next", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 520px);
+      margin: 0 auto;
+      padding: 0 16px 110px;
+    }
+
+    /* === Hero === */
+
+    .hero {
+      width: 100%;
+      padding: 24px 20px 28px;
+      border-radius: 0 0 28px 28px;
+      background: var(--panel);
+      box-shadow: 0 4px 24px rgba(0, 40, 100, 0.06);
+      text-align: center;
+    }
+
+    .logo-card {
+      width: min(100%, 120px);
+      margin: 0 auto 14px;
+      padding: 0;
+    }
+
+    .logo-card svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      font-size: clamp(32px, 10vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+      margin: 0 auto 20px;
+      max-width: 24em;
+    }
+
+    .line-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 56px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #11dd67, var(--green));
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(6, 199, 85, 0.25);
+      margin-bottom: 10px;
+      animation: ctaPulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 8px 24px rgba(6, 199, 85, 0.25); }
+      50% { box-shadow: 0 8px 36px rgba(6, 199, 85, 0.4), 0 0 0 5px rgba(6, 199, 85, 0.06); }
+    }
+
+    .cta-sub {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin: 0 0 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .note {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .info-box {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .info-box strong {
+      color: var(--text);
+    }
+
+    .info-box a,
+    .inline-link-btn {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .inline-link-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .legal-links button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font: inherit;
+      font-size: 12px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+
+    /* === Modals === */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      align-items: flex-end;
+      background: rgba(26, 43, 61, 0.4);
+      backdrop-filter: blur(6px);
+      padding: 0;
+    }
+
+    .modal.is-open {
+      display: flex;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-height: 86vh;
+      overflow-y: auto;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 -12px 40px rgba(0, 40, 100, 0.12);
+      padding: 18px 16px 30px;
+    }
+
+    .modal-handle {
+      width: 48px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.1);
+      margin: 0 auto 14px;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .modal-head h2 {
+      font-size: 20px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .modal-close {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      flex: none;
+    }
+
+    .modal-copy {
+      display: grid;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .modal-copy section {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+    }
+
+    .modal-copy h3 {
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .modal-copy ul {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .modal-copy li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        width: min(100% - 32px, 640px);
+      }
+
+      .hero {
+        padding: 36px 40px 34px;
+      }
+
+      .lead {
+        max-width: 30em;
+      }
+
+      .modal {
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .modal-sheet {
+        width: min(720px, 100%);
+        max-height: 86vh;
+        border-radius: 24px;
+        padding: 20px 20px 28px;
+      }
+    }
+
+    /* === Trust + Conversion === */
+
+    .trust-line {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      letter-spacing: 0.01em;
+    }
+
+    .diagnosis-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0 auto 22px;
+      max-width: 300px;
+    }
+
+    .diagnosis-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--accent-light);
+      font-size: 13px;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .step-num {
+      flex: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-proof {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      border: 1px solid rgba(26, 109, 255, 0.1);
+    }
+
+    .social-proof strong {
+      color: var(--accent);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* === FAQ === */
+
+    .faq-section {
+      margin-top: 16px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 2px 12px rgba(0, 40, 100, 0.05);
+    }
+
+    .faq-section h2 {
+      font-size: 17px;
+      text-align: center;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+    }
+
+    .faq-section details:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-section summary {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-section summary::before {
+      content: "Q";
+      flex: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faq-section details[open] summary {
+      margin-bottom: 8px;
+    }
+
+    .faq-section details p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+      padding-left: 32px;
+    }
+
+    /* === Compliance Footer === */
+
+    .compliance-footer {
+      margin-top: 16px;
+      padding: 20px 18px;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 2px 12px rgba(0, 40, 100, 0.05);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .compliance-footer strong {
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .compliance-footer .risk-warning {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .legal-links-footer {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .legal-links-footer button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font: inherit;
+      font-size: 11px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+      padding: 2px 0;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 10px;
+      color: #9aadbc;
+    }
+
+    /* === Why Free Section === */
+
+    .why-free-section {
+      margin-top: 16px;
+      padding: 28px 20px;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 2px 12px rgba(0, 40, 100, 0.05);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 6px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .benefit-cards {
+      display: grid;
+      gap: 12px;
+    }
+
+    .benefit-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+    }
+
+    .benefit-icon {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .benefit-icon.blue { background: var(--accent-light); }
+    .benefit-icon.green { background: var(--green-light); }
+    .benefit-icon.gold { background: #fff8e8; }
+
+    .benefit-text h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .benefit-text p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .free-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: var(--green-light);
+      border: 1px solid rgba(6, 199, 85, 0.2);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      margin: 16px auto 0;
+      width: 100%;
+    }
+
+    /* === How It Works Section === */
+
+    .how-section {
+      margin-top: 16px;
+      padding: 28px 20px;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 2px 12px rgba(0, 40, 100, 0.05);
+    }
+
+    .flow-steps {
+      display: grid;
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      position: relative;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 52px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), rgba(26, 109, 255, 0.15));
+    }
+
+    .flow-num {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-content h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .flow-content p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .flow-time {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
+
+    /* === User Voices Section === */
+
+    .voices-section {
+      margin-top: 16px;
+      padding: 28px 20px;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 2px 12px rgba(0, 40, 100, 0.05);
+    }
+
+    .voice-cards {
+      display: grid;
+      gap: 12px;
+    }
+
+    .voice-card {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+    }
+
+    .voice-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .voice-avatar {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .voice-meta {
+      flex: 1;
+    }
+
+    .voice-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .voice-tag {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .voice-stars {
+      font-size: 12px;
+      color: #f5a623;
+      letter-spacing: 1px;
+    }
+
+    .voice-body {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .voice-body strong {
+      color: var(--text);
+    }
+
+    .voice-note {
+      font-size: 10px;
+      color: #9aadbc;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* === Risk Disclaimer Section === */
+
+    .risk-section {
+      margin-top: 16px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: #fff5f5;
+      border: 1px solid rgba(220, 53, 69, 0.15);
+      box-shadow: 0 2px 12px rgba(220, 53, 69, 0.06);
+    }
+
+    .risk-section h2 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #c0392b;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .risk-section .risk-text {
+      font-size: 13px;
+      color: #5a3e3e;
+      line-height: 2;
+    }
+
+    .risk-section .risk-text strong {
+      color: #c0392b;
+    }
+
+    .risk-highlight {
+      display: block;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid rgba(220, 53, 69, 0.12);
+      font-size: 12px;
+      color: #5a3e3e;
+      line-height: 1.9;
+    }
+
+    /* === Bottom CTA Section === */
+
+    .bottom-cta-section {
+      margin-top: 16px;
+      padding: 28px 20px;
+      border-radius: 20px;
+      background: var(--accent-light);
+      border: 1px solid rgba(26, 109, 255, 0.1);
+      text-align: center;
+    }
+
+    .bottom-cta-section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .bottom-cta-section .bottom-lead {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .bottom-cta-section .line-button {
+      margin-bottom: 8px;
+    }
+
+    .bottom-cta-section .cta-sub {
+      margin-bottom: 0;
+    }
+
+    /* === Sticky CTA === */
+
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(0deg, rgba(245, 247, 250, 0.98) 60%, rgba(245, 247, 250, 0) 100%);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .sticky-cta.is-visible {
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .sticky-cta .sticky-line-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 50px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #11dd67, var(--green));
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(6, 199, 85, 0.3);
+    }
+
+    /* === Report Mockup === */
+
+    .report-sample {
+      margin-top: 16px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: 0 2px 12px rgba(0, 40, 100, 0.05);
+      text-align: center;
+    }
+
+    .report-sample h2 {
+      font-size: 17px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .report-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .mock-report {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fafbfc;
+      padding: 18px 16px;
+      text-align: left;
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .mock-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      border: 1px solid rgba(26, 109, 255, 0.15);
+    }
+
+    .mock-date {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .mock-ticker {
+      margin-bottom: 14px;
+    }
+
+    .mock-code {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      margin-right: 8px;
+    }
+
+    .mock-name {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .mock-score-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .mock-score-circle {
+      position: relative;
+      flex: none;
+      width: 80px;
+      height: 80px;
+    }
+
+    .mock-ring {
+      width: 100%;
+      height: 100%;
+    }
+
+    .mock-score-num {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .mock-score-detail {
+      flex: 1;
+      display: grid;
+      gap: 8px;
+    }
+
+    .mock-meter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mock-meter-label {
+      flex: none;
+      width: 72px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .mock-meter-bar {
+      display: block;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), #4d8eff);
+    }
+
+    .mock-spark {
+      margin-bottom: 14px;
+      padding: 10px 0 6px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mock-spark-label {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .mock-spark svg {
+      display: block;
+      width: 100%;
+      height: 40px;
+    }
+
+    .mock-comment {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 8px 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+    }
+
+    .mock-summary {
+      font-size: 12px;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      border: 1px solid rgba(26, 109, 255, 0.1);
+    }
+
+    .mock-summary strong {
+      color: var(--accent);
+    }
+
+    .report-note {
+      font-size: 11px;
+      color: #9aadbc;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="trust-line">
+        株式会社グッド不動産 ｜ 福岡財務支局長（金商）第69号 ｜ 日本証券業協会加入
+      </div>
+      <div class="logo-card" aria-label="Good FUDOUSAN inc ロゴ">
+        <svg viewBox="0 0 144 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoStroke" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4d8eff"/>
+              <stop offset="100%" stop-color="#1a5ccc"/>
+            </linearGradient>
+            <linearGradient id="logoBars" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#6fa3ff"/>
+              <stop offset="100%" stop-color="#1a6dff"/>
+            </linearGradient>
+            <radialGradient id="logoGlow" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="rgba(26,109,255,0.12)"/>
+              <stop offset="100%" stop-color="rgba(26,109,255,0)"/>
+            </radialGradient>
+          </defs>
+          <g fill="none" fill-rule="evenodd">
+            <ellipse cx="72" cy="60" rx="48" ry="42" fill="url(#logoGlow)"/>
+            <path d="M30 92H114" stroke="rgba(26,109,255,0.15)" stroke-width="4" stroke-linecap="round"/>
+            <rect x="34" y="66" width="12" height="26" rx="6" fill="url(#logoBars)"/>
+            <rect x="54" y="56" width="12" height="36" rx="6" fill="url(#logoBars)"/>
+            <rect x="74" y="46" width="12" height="46" rx="6" fill="url(#logoBars)"/>
+            <rect x="94" y="32" width="12" height="60" rx="6" fill="url(#logoBars)"/>
+            <path d="M28 76C40 74 47 66 58 62C67 59 76 62 86 56C96 50 104 38 116 30" stroke="url(#logoStroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="58" cy="62" r="5" fill="#4d8eff"/>
+            <circle cx="86" cy="56" r="5" fill="#4d8eff"/>
+            <circle cx="116" cy="30" r="6" fill="#4d8eff"/>
+            <path d="M110 22L122 30L110 38" stroke="#4d8eff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="34" r="4" fill="rgba(26,109,255,0.3)"/>
+            <circle cx="50" cy="28" r="2.5" fill="rgba(26,109,255,0.5)"/>
+            <circle cx="58" cy="22" r="1.8" fill="rgba(26,109,255,0.7)"/>
+          </g>
+        </svg>
+      </div>
+      <h1>30秒であなたの株を<br /><span>AIが無料診断</span></h1>
+      <p class="lead">
+        金融庁登録の専門家が運営。<br />
+        AIが財務・チャート・ニュースを自動分析し、<br />
+        LINEで無料レポートをお届けします。
+      </p>
+      <div class="diagnosis-visual">
+        <div class="diagnosis-step"><span class="step-num">1</span><span>銘柄コードを入力</span></div>
+        <div class="diagnosis-step"><span class="step-num">2</span><span>AIが財務・チャートを自動分析</span></div>
+        <div class="diagnosis-step"><span class="step-num">3</span><span>診断レポートをLINEでお届け</span></div>
+      </div>
+      <a class="line-button" id="line-cta" href="https://line.me/R/ti/p/@yourlineid" target="_blank" rel="noopener noreferrer">
+        今すぐLINEで無料診断を受ける
+      </a>
+      <p class="cta-sub">🔒 登録30秒・<strong>完全無料（追加費用なし）</strong>・いつでもブロック可</p>
+      <div class="social-proof">累計利用者数 <strong>163,962</strong> 名突破</div>
+      <div class="note">
+        本サービスは情報整理を目的とし、個別の投資助言を行うものではありません。利益保証や将来成果の確約も行いません。投資には元本割れリスクがあります。<br />
+        LINE追加後に強制的なグループ入会は一切ございません。安心してご利用ください。
+      </div>
+      <div class="legal-links">
+        <button type="button" data-modal-open="about-modal">会社概要</button>
+        <button type="button" data-modal-open="privacy-modal">プライバシーポリシー</button>
+        <button type="button" data-modal-open="terms-modal">利用規約</button>
+      </div>
+    </section>
+
+    <!-- === 3 Benefits: Why Free === -->
+    <section class="why-free-section">
+      <h2 class="section-title">選ばれる3つの理由</h2>
+      <p class="section-subtitle">なぜ完全無料で提供できるのか</p>
+      <div class="benefit-cards">
+        <div class="benefit-card">
+          <div class="benefit-icon green">💰</div>
+          <div class="benefit-text">
+            <h3>利用料0円 — 完全無料</h3>
+            <p>登録料・診断料・月額料金は一切かかりません。追加費用の請求も一切ございません。安心してご利用ください。</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon blue">🏛️</div>
+          <div class="benefit-text">
+            <h3>金融庁登録の信頼性</h3>
+            <p>運営元は福岡財務支局長（金商）第69号の登録業者。法令遵守のもと、安全な情報提供体制を整えています。</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon gold">🤖</div>
+          <div class="benefit-text">
+            <h3>AIによる客観的分析</h3>
+            <p>財務データ・テクニカル指標・市場ニュースをAIが自動で多角的に分析。人的バイアスのない客観情報をお届けします。</p>
+          </div>
+        </div>
+      </div>
+      <div class="free-badge">🔒 すべてのサービスは完全無料です（費用は一切発生しません）</div>
+    </section>
+
+    <!-- === How It Works (Detailed) === -->
+    <section class="how-section">
+      <h2 class="section-title">ご利用の流れ</h2>
+      <p class="section-subtitle">最短30秒で診断スタート</p>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <h3>LINEで友だち追加</h3>
+            <p>下の緑のボタンからLINE友だち追加するだけ。面倒な会員登録やフォーム入力は一切ありません。</p>
+            <span class="flow-time">⏱ 約10秒</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <h3>気になる銘柄コードを送信</h3>
+            <p>LINEのチャット画面で銘柄コード（例：7203）を送るだけ。特別な操作は必要ありません。</p>
+            <span class="flow-time">⏱ 約5秒</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <h3>AIが財務・チャート・ニュースを自動分析</h3>
+            <p>公開されている財務諸表、株価チャート、最新ニュースをAIエンジンが統合分析。総合スコアと各指標を算出します。</p>
+            <span class="flow-time">⏱ 約15秒（自動）</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <h3>診断レポートをLINEで受け取る</h3>
+            <p>総合スコア・財務健全性・成長性・テクニカル分析を含む詳細レポートがLINEに届きます。何銘柄でも無料で診断可能です。</p>
+            <span class="flow-time">✅ 完了・何度でも無料</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2>よくあるご質問</h2>
+      <details>
+        <summary>AI株式診断とは何ですか？</summary>
+        <p>公開されている財務データ・株価チャート・市場ニュースをAIが自動で整理し、銘柄ごとの診断レポートを作成するサービスです。</p>
+      </details>
+      <details>
+        <summary>本当に無料ですか？</summary>
+        <p>はい。当サービスは<strong>完全無料（利用料0円）</strong>でご利用いただけます。後から費用を請求するようなことや、高額な有料サービスへの誘導は一切ございませんので、安心してご利用ください。</p>
+      </details>
+      <details>
+        <summary>LINEを追加すると何が届きますか？</summary>
+        <p>ご指定の銘柄に対するAI診断結果と、市場動向の要点をまとめたレポートをお届けします。</p>
+      </details>
+      <details>
+        <summary>個人情報は安全ですか？</summary>
+        <p>お預かりした情報は厳格に管理し、第三者への提供は法令に基づく場合を除き一切行いません。</p>
+      </details>
+      <details>
+        <summary>後から費用が発生することはありますか？</summary>
+        <p>一切ございません。当サービスは登録料・診断料・月額料金すべて無料です。後から請求が届くこともありません。完全無料でご利用いただけます。</p>
+      </details>
+      <details>
+        <summary>AIの診断は信頼できますか？</summary>
+        <p>公開されている財務諸表・株価データ・市場ニュースをもとに分析しています。ただし、診断結果は情報整理を目的としたものであり、投資判断はご自身の責任で行ってください。</p>
+      </details>
+      <details>
+        <summary>何銘柄でも診断できますか？</summary>
+        <p>はい。日本の上場銘柄であれば何銘柄でも無料で診断可能です。回数制限もございません。</p>
+      </details>
+      <details>
+        <summary>退会・ブロックはいつでもできますか？</summary>
+        <p>はい。LINEのブロック機能でいつでも配信停止できます。解約手数料やペナルティは一切ありません。</p>
+      </details>
+    </section>
+
+    <section class="report-sample">
+      <h2>診断レポート サンプル</h2>
+      <p class="report-desc">実際にお届けするレポートのイメージです</p>
+      <div class="mock-report">
+        <div class="mock-header">
+          <span class="mock-label">AI診断レポート</span>
+          <span class="mock-date">2026.04.08</span>
+        </div>
+        <div class="mock-ticker">
+          <span class="mock-code">7203</span>
+          <span class="mock-name">トヨタ自動車</span>
+        </div>
+        <div class="mock-spark">
+          <div class="mock-spark-label">直近5日間の値動き</div>
+          <svg viewBox="0 0 200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="0,32 40,28 80,18 120,22 160,12 200,8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,32 40,28 80,18 120,22 160,12 200,8 200,40 0,40" fill="rgba(26,109,255,0.06)" stroke="none"/>
+          </svg>
+        </div>
+        <div class="mock-score-row">
+          <div class="mock-score-circle">
+            <svg viewBox="0 0 80 80" class="mock-ring">
+              <circle cx="40" cy="40" r="34" stroke="rgba(26,109,255,0.12)" stroke-width="6" fill="none"/>
+              <circle cx="40" cy="40" r="34" stroke="var(--accent)" stroke-width="6" fill="none"
+                stroke-dasharray="171" stroke-dashoffset="40" stroke-linecap="round"
+                transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="mock-score-num">76</span>
+          </div>
+          <div class="mock-score-detail">
+            <div class="mock-meter"><span class="mock-meter-label">財務健全性</span><span class="mock-meter-bar" style="width:82%"></span></div>
+            <div class="mock-meter"><span class="mock-meter-label">成長性</span><span class="mock-meter-bar" style="width:68%"></span></div>
+            <div class="mock-meter"><span class="mock-meter-label">割安度</span><span class="mock-meter-bar" style="width:55%"></span></div>
+            <div class="mock-meter"><span class="mock-meter-label">テクニカル</span><span class="mock-meter-bar" style="width:74%"></span></div>
+          </div>
+        </div>
+        <div class="mock-summary">
+          AI総合判定: <strong>やや買い</strong>　｜　PER 12.3倍（業界平均比 -18%）
+        </div>
+        <div class="mock-comment">
+          💡 財務健全性が高く、有利子負債率が低い点が評価されました。テクニカル指標では25日移動平均線を上抜けており、短期的な上昇トレンドの兆候が見られます。
+        </div>
+      </div>
+      <p class="report-note">※ 上記はサンプルです。実際のレポートは最新データに基づき生成されます。</p>
+    </section>
+
+    <!-- === User Voices === -->
+    <section class="voices-section">
+      <h2 class="section-title">ご利用者の声</h2>
+      <p class="section-subtitle">実際にご利用いただいた方の感想をご紹介</p>
+      <div class="voice-cards">
+        <div class="voice-card">
+          <div class="voice-header">
+            <div class="voice-avatar">👨</div>
+            <div class="voice-meta">
+              <div class="voice-name">T.S.さん（58歳・男性）</div>
+              <div class="voice-tag">投資歴15年・個別株中心</div>
+            </div>
+            <div class="voice-stars">★★★★★</div>
+          </div>
+          <div class="voice-body">
+            <strong>自分では気づけなかった銘柄の弱点が見えました。</strong>長年の経験で感覚的に判断していましたが、AIが財務データを客観的に整理してくれるので、冷静な判断材料として非常に助かっています。完全無料なのが信じられないほどです。
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-header">
+            <div class="voice-avatar">👩</div>
+            <div class="voice-meta">
+              <div class="voice-name">M.K.さん（42歳・女性）</div>
+              <div class="voice-tag">投資歴3年・NISA活用中</div>
+            </div>
+            <div class="voice-stars">★★★★★</div>
+          </div>
+          <div class="voice-body">
+            <strong>LINEで銘柄コードを送るだけなので本当に手軽。</strong>仕事の合間にサッと確認できるのがありがたいです。レポートもグラフ付きで分かりやすく、投資初心者の私でも内容が理解できました。
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-header">
+            <div class="voice-avatar">👨</div>
+            <div class="voice-meta">
+              <div class="voice-name">Y.H.さん（51歳・男性）</div>
+              <div class="voice-tag">投資歴8年・高配当株投資</div>
+            </div>
+            <div class="voice-stars">★★★★☆</div>
+          </div>
+          <div class="voice-body">
+            <strong>保有銘柄の定期チェックに使っています。</strong>決算シーズンに全銘柄を手動で確認するのは大変でしたが、AI診断のおかげで効率的に財務状況を把握できるようになりました。
+          </div>
+        </div>
+      </div>
+      <p class="voice-note">※ 個人の感想であり、効果を保証するものではありません。診断結果による投資判断はご自身の責任で行ってください。</p>
+    </section>
+
+    <!-- === Risk Disclaimer (Prominent) === -->
+    <section class="risk-section">
+      <h2>⚠ 投資に関する重要事項</h2>
+      <div class="risk-text">
+        <strong>【ご注意事項】</strong><br />
+        当サービスは、公開情報の整理・提供を目的としたものであり、<strong>個別の投資助言・勧誘・利益保証を行うものではありません。</strong><br /><br />
+        株式投資には <strong>価格変動リスク</strong> があり、<strong>投資元本を割り込む</strong>おそれがあります。投資判断は必ずご自身の責任で行ってください。<br /><br />
+        <strong>過去の実績は将来の成果を約束するものではありません。</strong>
+        <span class="risk-highlight">
+          ・ 本サービスの診断結果は情報整理を目的としており、特定銘柄の売買を推奨するものではありません。<br />
+          ・ レポートに記載される数値・スコアは公開データに基づく参考情報であり、正確性・完全性・最新性を保証しません。<br />
+          ・ 当サービスの利用により生じた損失について、運営者は一切の責任を負いません。<br />
+          ・ ご投資にあたっては、契約締結前交付書面や目論見書をよくお読みください。<br />
+          ・ <strong>当サービスは完全無料であり、手数料・登録料・利用料等の費用は一切発生しません。</strong>
+        </span>
+      </div>
+    </section>
+
+    <!-- === Bottom CTA === -->
+    <section class="bottom-cta-section">
+      <h2>まずは1銘柄、<br />無料でAI診断してみませんか？</h2>
+      <p class="bottom-lead">登録30秒・利用料0円・いつでもブロック可能</p>
+      <a class="line-button" id="bottom-line-cta" href="https://line.me/R/ti/p/@yourlineid" target="_blank" rel="noopener noreferrer">
+        今すぐLINEで無料診断を受ける
+      </a>
+      <p class="cta-sub">🔒 <strong>完全無料（追加費用なし）</strong>・個人情報は厳格に管理</p>
+    </section>
+
+    <section class="compliance-footer">
+      <div class="company-info">
+        <strong>運営会社</strong><br />
+        商号: 株式会社グッド不動産（Good FUDOUSAN inc.）<br />
+        登録: 福岡財務支局長（金商）第69号<br />
+        加入協会: 日本証券業協会<br />
+        法人番号: 6290001034302<br />
+        所在地: 福岡県福岡市中央区大名1-14-45<br />
+        電話: 092-737-1101<br />
+        利用料金: 無料（手数料・登録料・利用料等は一切かかりません）
+      </div>
+      <div class="risk-warning">
+        <strong>リスクについて</strong><br />
+        当サービスは情報整理を目的としており、個別の投資助言・勧誘・利益保証を行うものではありません。株式投資には価格変動リスクがあり、元本割れとなる可能性があります。過去の実績は将来の成果を約束するものではありません。投資判断はご自身の責任で行ってください。
+      </div>
+      <div class="legal-links-footer">
+        <button type="button" data-modal-open="about-modal">会社概要</button>
+        <button type="button" data-modal-open="privacy-modal">プライバシーポリシー</button>
+        <button type="button" data-modal-open="terms-modal">利用規約</button>
+      </div>
+      <p class="copyright">© 2026 株式会社グッド不動産</p>
+    </section>
+  </div>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="sticky-line-button" id="sticky-line-cta" href="https://line.me/R/ti/p/@yourlineid" target="_blank" rel="noopener noreferrer">
+      今すぐLINEで無料診断を受ける
+    </a>
+  </div>
+
+  <div class="modal" id="about-modal" aria-hidden="true">
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="about-title">
+      <div class="modal-handle" aria-hidden="true"></div>
+      <div class="modal-head">
+        <h2 id="about-title">会社概要</h2>
+        <button class="modal-close" type="button" data-modal-close="about-modal" aria-label="閉じる">×</button>
+      </div>
+      <div class="modal-copy">
+        <section>
+          <h3>運営情報</h3>
+          会社名: 株式会社グッド不動産<br />
+          英文名: Good FUDOUSAN inc.<br />
+          登録番号: 福岡財務支局長（金商）第69号<br />
+          加入協会: 日本証券業協会<br />
+          法人番号: 6290001034302<br />
+          所在地: 福岡県福岡市中央区大名1-14-45（1-14-45, Daimyo, Chuo-ku, Fukuoka-shi, Fukuoka）<br />
+          電話番号: 092-737-1101<br />
+          利用料金: 無料（手数料・登録料・利用料等は一切かかりません）
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="privacy-modal" aria-hidden="true">
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+      <div class="modal-handle" aria-hidden="true"></div>
+      <div class="modal-head">
+        <h2 id="privacy-title">プライバシーポリシー</h2>
+        <button class="modal-close" type="button" data-modal-close="privacy-modal" aria-label="閉じる">×</button>
+      </div>
+      <div class="modal-copy">
+        <section>
+          <h3>1. 取得する情報</h3>
+          当サービスは、お問い合わせや LINE でのご相談時に、氏名、連絡先、相談内容などの情報を取得する場合があります。
+        </section>
+        <section>
+          <h3>2. 利用目的</h3>
+          取得した情報は、サービス案内、問い合わせ対応、本人確認、品質改善、重要なお知らせの配信のために利用します。
+        </section>
+        <section>
+          <h3>3. 第三者提供</h3>
+          法令に基づく場合を除き、本人の同意なく第三者に個人情報を提供しません。
+        </section>
+        <section>
+          <h3>4. 外部サービス</h3>
+          LINE など外部サービスへ移動する場合、移動先での情報取り扱いは各サービスの規約・方針に従います。
+        </section>
+        <section>
+          <h3>5. 開示・訂正・削除</h3>
+          本人からの請求があった場合、合理的な範囲で保有情報の開示、訂正、削除に対応します。
+        </section>
+        <section>
+          <h3>6. お問い合わせ窓口</h3>
+          会社名: 株式会社グッド不動産<br />
+          英文名: Good FUDOUSAN inc.<br />
+          登録番号: 福岡財務支局長（金商）第69号<br />
+          法人番号: 6290001034302<br />
+          所在地: 福岡県福岡市中央区大名1-14-45（1-14-45, Daimyo, Chuo-ku, Fukuoka-shi, Fukuoka）<br />
+          電話番号: 092-737-1101
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="terms-modal" aria-hidden="true">
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+      <div class="modal-handle" aria-hidden="true"></div>
+      <div class="modal-head">
+        <h2 id="terms-title">利用規約</h2>
+        <button class="modal-close" type="button" data-modal-close="terms-modal" aria-label="閉じる">×</button>
+      </div>
+      <div class="modal-copy">
+        <section>
+          <h3>1. サービスの性質</h3>
+          本サービスは、日本株に関する公開情報や市場情報の整理を支援するものであり、個別の投資助言、勧誘、利益保証を目的とするものではありません。
+        </section>
+        <section>
+          <h3>2. 自己判断の原則</h3>
+          利用者は、自らの判断と責任で情報を利用するものとし、最終的な投資判断は必ず本人が行うものとします。
+        </section>
+        <section>
+          <h3>3. 免責</h3>
+          当サービスは情報の正確性、完全性、最新性、有用性を保証しません。市場変動等により損失が発生した場合でも、当サービスは責任を負いません。
+        </section>
+        <section>
+          <h3>4. 禁止事項</h3>
+          以下の行為を禁止します。
+          <ul>
+            <li>法令、公序良俗に反する行為</li>
+            <li>虚偽情報の送信</li>
+            <li>サービスの運営妨害</li>
+            <li>第三者の権利侵害</li>
+          </ul>
+        </section>
+        <section>
+          <h3>5. 利用料金について</h3>
+          当ページで提供される「AI株式診断」およびLINEによる情報配信・相談サービスは、すべて完全に無料で提供されます。<br />
+          後からの追加費用、登録料、会費等の請求は一切発生いたしません。安心してご利用ください。
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="./citemet-config.js"></script>
+  <script>
+    const STORAGE_KEY = "citemet_config_override_v1";
+    const LINE_ROTATION_KEY = "citemet_line_rotation_index_v1";
+    const deepMergeConfig = (base, override) => ({
+      ...base,
+      ...override,
+      event_map: {
+        ...(base.event_map || {}),
+        ...((override && override.event_map) || {})
+      }
+    });
+
+    const loadPublishedConfig = () => {
+      const base = window.CITEMET_CONFIG || {};
+
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) return base;
+        return deepMergeConfig(base, JSON.parse(raw));
+      } catch (error) {
+        return base;
+      }
+    };
+
+    const runtimeConfig = loadPublishedConfig();
+    const lineCta = document.getElementById("line-cta");
+    const assignLineFromServer = async () => {
+      const endpoint = runtimeConfig.line_allocator_endpoint || "./line-assign.php";
+      const response = await fetch(endpoint, {
+        method: "GET",
+        cache: "no-store",
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("assign_failed");
+      }
+
+      const result = await response.json();
+      if (!result.ok || !result.url) {
+        throw new Error(result.error || "assign_failed");
+      }
+
+      return result.url;
+    };
+
+    const getLinePool = () => {
+      const pool = Array.isArray(runtimeConfig.line_redirect_pool)
+        ? runtimeConfig.line_redirect_pool.map((item) => String(item || "").trim()).filter(Boolean)
+        : [];
+
+      if (pool.length > 0) return pool;
+      if (runtimeConfig.line_redirect_url) return [runtimeConfig.line_redirect_url];
+      return [];
+    };
+
+    const pickNextLineUrl = () => {
+      const pool = getLinePool();
+      if (pool.length === 0) return "";
+      if (pool.length === 1) return pool[0];
+
+      let nextIndex = 0;
+      try {
+        const raw = window.localStorage.getItem(LINE_ROTATION_KEY);
+        const current = raw ? Number(raw) : 0;
+        nextIndex = Number.isFinite(current) ? current : 0;
+        window.localStorage.setItem(LINE_ROTATION_KEY, String((nextIndex + 1) % pool.length));
+      } catch (error) {
+        nextIndex = 0;
+      }
+      return pool[nextIndex % pool.length];
+    };
+
+    if (lineCta && runtimeConfig.line_redirect_url) {
+      lineCta.href = getLinePool()[0] || runtimeConfig.line_redirect_url;
+      lineCta.dataset.trackingProfile = runtimeConfig.tracking_profile || "";
+      lineCta.dataset.channel = runtimeConfig.channel || "line";
+      lineCta.dataset.configVersion = runtimeConfig.version || "";
+    }
+
+    const stickyLineCta = document.getElementById("sticky-line-cta");
+    if (stickyLineCta && runtimeConfig.line_redirect_url) {
+      stickyLineCta.href = getLinePool()[0] || runtimeConfig.line_redirect_url;
+    }
+
+    window.CITEMET_RUNTIME = {
+      config: runtimeConfig,
+      getLinePollingConfig() {
+        return {
+          enabled: Boolean(runtimeConfig.line_polling_enabled),
+          interval: runtimeConfig.line_polling_interval || 30,
+          endpoint: runtimeConfig.line_polling_endpoint || "",
+          lead_id_key: runtimeConfig.lead_id_key || "lead_id",
+          click_id_key: runtimeConfig.click_id_key || "gclid",
+          session_key: runtimeConfig.session_key || "session_id"
+        };
+      },
+      trackLineClick(extra = {}) {
+        const eventName =
+          (runtimeConfig.event_map && runtimeConfig.event_map.cta_contact_click) ||
+          "cta_contact_click";
+
+        const payload = {
+          event: eventName,
+          channel: runtimeConfig.channel || "line",
+          tracking_profile: runtimeConfig.tracking_profile || "",
+          ads_conversion_id: runtimeConfig.ads_conversion_id || "",
+          ads_conversion_label: runtimeConfig.ads_conversion_label || "",
+          ...extra
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, payload);
+        }
+
+        return payload;
+      }
+    };
+
+    if (lineCta) {
+      lineCta.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        try {
+          const assignedUrl = await assignLineFromServer();
+          window.CITEMET_RUNTIME.trackLineClick({ line_target: assignedUrl, assign_mode: "server_round_robin" });
+          window.open(assignedUrl, "_blank", "noopener");
+        } catch (error) {
+          let nextUrl = pickNextLineUrl();
+          if (!nextUrl) nextUrl = event.target.closest("a").href || "https://line.me/R/ti/p/@yourlineid";
+          window.CITEMET_RUNTIME.trackLineClick({ line_target: nextUrl, assign_mode: "hardcoded_fallback" });
+          window.open(nextUrl, "_blank", "noopener");
+        }
+      });
+    }
+
+    if (stickyLineCta) {
+      stickyLineCta.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+          const assignedUrl = await assignLineFromServer();
+          window.CITEMET_RUNTIME.trackLineClick({ line_target: assignedUrl, assign_mode: "server_round_robin" });
+          window.open(assignedUrl, "_blank", "noopener");
+        } catch (error) {
+          let nextUrl = pickNextLineUrl();
+          if (!nextUrl) nextUrl = event.target.closest("a").href || "https://line.me/R/ti/p/@yourlineid";
+          window.CITEMET_RUNTIME.trackLineClick({ line_target: nextUrl, assign_mode: "hardcoded_fallback" });
+          window.open(nextUrl, "_blank", "noopener");
+        }
+      });
+    }
+
+    const bottomLineCta = document.getElementById("bottom-line-cta");
+    if (bottomLineCta) {
+      bottomLineCta.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+          const assignedUrl = await assignLineFromServer();
+          window.CITEMET_RUNTIME.trackLineClick({ line_target: assignedUrl, assign_mode: "server_round_robin" });
+          window.open(assignedUrl, "_blank", "noopener");
+        } catch (error) {
+          let nextUrl = pickNextLineUrl();
+          if (!nextUrl) nextUrl = event.target.closest("a").href || "https://line.me/R/ti/p/@yourlineid";
+          window.CITEMET_RUNTIME.trackLineClick({ line_target: nextUrl, assign_mode: "hardcoded_fallback" });
+          window.open(nextUrl, "_blank", "noopener");
+        }
+      });
+
+      if (runtimeConfig.line_redirect_url) {
+        bottomLineCta.href = getLinePool()[0] || runtimeConfig.line_redirect_url;
+      }
+    }
+
+    const stickyCta = document.getElementById("sticky-cta");
+    if (stickyCta && lineCta) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          stickyCta.classList.toggle("is-visible", !entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+      observer.observe(lineCta);
+    }
+
+    const openButtons = document.querySelectorAll("[data-modal-open]");
+    const closeButtons = document.querySelectorAll("[data-modal-close]");
+    const modals = document.querySelectorAll(".modal");
+
+    const closeModal = (modal) => {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    const openModal = (modal) => {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    openButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modal = document.getElementById(button.dataset.modalOpen);
+        if (modal) openModal(modal);
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modal = document.getElementById(button.dataset.modalClose);
+        if (modal) closeModal(modal);
+      });
+    });
+
+    modals.forEach((modal) => {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        modals.forEach((modal) => closeModal(modal));
+      }
+    });
+  </script>
+</body>
+</html>
