@@ -15,6 +15,26 @@ Do this exact order:
 
 If any required file is missing or cannot be parsed, stop and report the missing file.
 
+## System Boundary
+
+- `Notion` = intake, queue, review status, merged-state reporting
+- `GitHub` = single source of truth for durable execution state
+- `Local` = synchronized working mirror and runtime bridge
+
+If these disagree, merged GitHub state wins.
+
+## Fixed Delivery Flow
+
+Every durable change must follow this lifecycle:
+
+`Intel -> Promotion -> GitHub PR -> Runtime Sync -> Notion Merged`
+
+This means:
+- Notion can start the work
+- GitHub must hold the durable change
+- local runtime sync happens after GitHub merge
+- Notion is marked merged only after runtime sync is confirmed
+
 ## Copy-Paste Prompt For New AI Tools
 
 Use this exact prompt when onboarding any new AI tool:
@@ -47,6 +67,7 @@ D. Compliance Proof:
 - State you did not scan the whole repository
 - State you only loaded routed files
 - If missing files exist, stop and report instead of guessing
+- State which lifecycle stage the current task is in: Intel / Promotion / GitHub PR / Runtime Sync / Notion Merged
 
 Pass criteria:
 - Must select a concrete route from TASK_ROUTER.yaml
@@ -109,3 +130,9 @@ proves repository access and sync only. It does not prove protocol initializatio
 ## GitHub Handoff Rule
 
 If a skill is present in this repository and registered in `registry/skills.yaml`, other AI tools should be able to use it immediately after reading `AGENT_BOOTSTRAP.md` and `knowledge/googleads/TASK_ROUTER.yaml`.
+
+## System Truth Rule
+
+- Do not treat Notion notes as merged execution truth.
+- Do not treat local-only edits as final state.
+- Do not claim completion until GitHub and runtime are synchronized.
