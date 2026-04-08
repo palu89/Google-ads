@@ -15,7 +15,7 @@
 /
 ├── AGENT_BOOTSTRAP.md              # Agent entry protocol (single authority)
 ├── README.md                       # This file
-├── QUICK_START_FOR_AI.md           # Fast orientation for new AI tools
+├── AI启动模块.md                     # Fast orientation for new AI tools
 │
 ├── registry/                       # Central registries (read first)
 │   ├── repo.yaml
@@ -73,3 +73,17 @@
 **System Skill**: Create `skills/system/<name>/` with `SKILL.md`, `skill.yaml`, `CHANGELOG.md` -> update `registry/skills.yaml`, `skills/system/SYSTEM_SKILLS_INDEX.md`, and any relevant routes
 
 **Project**: Create `projects/<name>/` with `project.yaml`, `CURRENT_STATE.md`, `DECISIONS.md`, `CHANGELOG.md` -> update `registry/projects.yaml`
+
+## Runtime Guard (Google Ads Wrappers)
+
+For preload hygiene checks on `googleads-*` wrappers:
+
+```bash
+./scripts/install_googleads_runtime_guard.sh
+./scripts/check_googleads_requires_sync.sh
+```
+
+Reference:
+
+- `scripts/README_RUNTIME_GUARD.md`
+- `archive/audit_reports/RUNTIME_GUARD_AUDIT_2026-04-09.md`
