@@ -126,10 +126,17 @@ task_mappings:
     layer: internal
     priority: 0
 
-  compliance_verification:
+  financial_compliance:
+    patterns:
+      - "验证"
+      - "verification"
+      - "G2"
+      - "财务合规"
+    knowledge_files:
+      - field_manual_v3.0
       - finance_navigator
     skills:
-      - googleads-field-operations  # googleads-verify not yet created, orchestrator handles compliance
+      - googleads-field-operations
     layer: official
     priority: 1
 
