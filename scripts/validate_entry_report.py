@@ -86,8 +86,9 @@ def validate_entry_report(report_text: str) -> tuple[bool, list]:
     if "task_router.yaml" not in report_text.lower():
         failures.append("PROTOCOL VIOLATION: Task Router (TASK_ROUTER.yaml) not consulted")
     
-    # Check token budget is stated
-    if "/10" not in report_text and "/4" not in report_text and "/2" not in report_text:
+    # Check token budget is stated (allow for spaces by normalizing or using regex)
+    normalized_report = report_text.replace(" ", "")
+    if "/10" not in normalized_report and "/4" not in normalized_report and "/2" not in normalized_report:
         failures.append("MISSING: token budget status (e.g., '3 / 10 max')")
     
     # Check that files NOT opened are explicitly stated
