@@ -1,0 +1,27 @@
+id: googleads-field-operations
+entity_type: skill
+name: googleads-field-operations
+status: active
+summary: Google Ads 优化师总控台。Orchestrates Google Ads operations, routes to specialized agents, and provides field manual guidance.
+description: Google Ads 优化师总控台。Orchestrator for Google Ads operations.
+depends_on: []  # self-contained since 2026-04-08
+used_by:
+  - agent/googleads-palu
+  - agent/main
+owner: palu
+last_updated: 2026-02-08T02:26:00Z
+skill_path: skills/googleads-field-operations/SKILL.md
+changelog_path: skills/googleads-field-operations/CHANGELOG.md
+
+validation:
+  required_fields:
+    - id
+    - entity_type
+    - name
+    - status
+    - summary
+    - description
+    - depends_on
+    - used_by
+    - owner
+    - last_updated
