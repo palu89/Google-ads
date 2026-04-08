@@ -1,14 +1,30 @@
 version: 1.0.0
-generated_at: 2026-04-07T13:18:00Z
-total_files: 9
-valid_files: 9
-total_tokens: 17155
+generated_at: 2026-04-08T00:00:00Z
+total_files: 10
+valid_files: 10
+total_tokens: 17455
 freshness_summary:
-  fresh: 9
+  fresh: 10
   stale: 0
   warning: 0
   unknown: 0
 knowledge_files:
+  - id: client-defaults
+    path: knowledge/googleads/internal/client-defaults.md
+    layer: internal
+    task_types:
+      - default_rules
+      - campaign_strategy
+      - landing_page_audit
+      - audience_targeting
+      - conversion_strategy
+    priority: 0
+    status: active
+    freshness: fresh
+    token_estimate: 300
+    is_valid: true
+    validation_errors: []
+    note: "跨市场强制默认规则。优先级最高(0)，所有任务均应先加载本文件。"
   - id: field_manual_v3.0
     path: knowledge/googleads/official/field_manual_v3.0.md
     layer: official
