@@ -16,9 +16,8 @@
 
 ### Files Read So Far
 1. ✅ AGENT_BOOTSTRAP.md
-2. ✅ NEW_AI_INITIALIZATION.md
-3. ✅ registry/repo.yaml
-4. [other files opened during entry phase]
+2. ✅ registry/repo.yaml
+3. [other files opened during entry phase]
 
 ### Router Consulted
 [Which routing file did I read? e.g., registry/task-router.yaml + knowledge/googleads/TASK_ROUTER.yaml]

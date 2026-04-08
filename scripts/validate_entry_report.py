@@ -78,10 +78,6 @@ def validate_entry_report(report_text: str) -> tuple[bool, list]:
     if "AGENT_BOOTSTRAP.md" not in report_text:
         failures.append("PROTOCOL VIOLATION: AGENT_BOOTSTRAP.md not listed as read")
     
-    # Check that NEW_AI_INITIALIZATION.md was read
-    if "NEW_AI_INITIALIZATION.md" not in report_text:
-        failures.append("PROTOCOL VIOLATION: NEW_AI_INITIALIZATION.md not listed as read")
-    
     # Check that registry/repo.yaml was read
     if "registry/repo.yaml" not in report_text:
         failures.append("PROTOCOL VIOLATION: registry/repo.yaml not listed as read")
