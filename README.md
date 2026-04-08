@@ -3,16 +3,17 @@
 > AI agents: your instructions are auto-loaded via `.github/copilot-instructions.md` and `.cursorrules`.
 > If not auto-loaded, read `AGENT_BOOTSTRAP.md` first.
 
-## 2-Step Entry
+## Entry Protocol
 
-1. Read `registry/repo.yaml` + `knowledge/googleads/TASK_ROUTER.yaml`
-2. Route your task → load only matching files → execute
+1. Read `AGENT_BOOTSTRAP.md` first. It is the single authoritative entry protocol.
+2. Follow the files and routing order defined there.
+3. Do not scan the repository or preload knowledge outside routed scope.
 
 ## Structure
 
 ```
 /
-├── AGENT_BOOTSTRAP.md              # Agent entry protocol (2-step)
+├── AGENT_BOOTSTRAP.md              # Agent entry protocol (single authority)
 ├── README.md                       # This file
 ├── migration_map.md                # Architecture migration record
 │
@@ -37,10 +38,11 @@
 │   ├── googleads-keyword-expert/   # Keyword analysis
 │   └── googleads-scripts/          # Script generation
 │
-├── projects/                       # Active projects
+├── projects/                       # Registered projects
 │   ├── therads-platform-operations/
-│   ├── openclaw-dashboard/
-│   └── manas-mainline/
+│   ├── manas-mainline/
+│   ├── japan-google-ads/
+│   └── openclaw-dashboard/         # Local-only, not GitHub-actionable
 │
 ├── scripts/                        # Maintenance scripts
 ├── .github/                        # CI + AI agent instructions
@@ -66,4 +68,3 @@
 **Skill**: Create `skills/<name>/` with `SKILL.md`, `skill.yaml`, `CHANGELOG.md` → update `registry/skills.yaml`
 
 **Project**: Create `projects/<name>/` with `project.yaml`, `CURRENT_STATE.md`, `DECISIONS.md`, `CHANGELOG.md` → update `registry/projects.yaml`
-3. Update `registry/projects.yaml`

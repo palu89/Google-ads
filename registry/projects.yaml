@@ -6,12 +6,13 @@ projects:
   openclaw-dashboard:
     name: "OpenClaw Dashboard"
     id: "openclaw-dashboard"
-    status: "active"
+    status: "inactive"
     tier: "tier-1"
     path: "projects/openclaw-dashboard"
     description: "Web-based monitoring and management platform for OpenClaw system"
     github_tracked: false
-    note: "Local-only project. Not tracked in this repo (contains .env and sensitive runtime files). Exists at /Users/palu/Google-ads/projects/openclaw-dashboard on the local machine."
+    execution_scope: "local-machine-only"
+    note: "Local-only project. Not tracked in this repo and not actionable for GitHub-only AI agents. Exists at /Users/palu/Google-ads/projects/openclaw-dashboard on the local machine."
     created_at: 2024-01-01
     last_updated: 2026-04-08
     maintainer: "palu"
@@ -70,7 +71,7 @@ projects:
 # - active: Currently maintained and in use
 # - archived: Historical, no longer maintained
 # - experimental: Proof of concept or trial
-# - inactive: Paused but may resume
+# - inactive: Not actionable from this repository context
 
 # Tier System
 # - tier-1: Critical operational systems

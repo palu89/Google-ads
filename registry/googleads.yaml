@@ -34,6 +34,15 @@ knowledge_layers:
     freshness_requirement: moderate
 
 knowledge_files:
+  - id: client-defaults
+    path: knowledge/googleads/internal/client-defaults.md
+    layer: internal
+    task_types: [default_rules, campaign_strategy, landing_page_audit, audience_targeting, conversion_strategy]
+    priority: 0
+    status: active
+    estimated_tokens: 300
+    last_validated: 2026-04-08T00:00:00Z
+
   - id: field_manual_v3.0
     path: knowledge/googleads/official/field_manual_v3.0.md
     layer: official
