@@ -20,6 +20,31 @@ Load **only** the knowledge files and skills listed for that route.
 If no route matches, ask the user:
 > "Task type unclear. Specify: audit / explain / modify / update_state"
 
+## System Boundary
+
+- `GitHub` is the single execution source of truth.
+- `Notion` is the intake, queue, and merged-state reporting layer.
+- `Local` is a synchronized working mirror and runtime bridge.
+
+If these layers disagree, trust merged GitHub state first.
+
+## Change Lifecycle
+
+All durable changes follow this fixed flow:
+
+`Intel -> Promotion -> GitHub PR -> Runtime Sync -> Notion Merged`
+
+Interpretation:
+
+1. `Intel`: captured in Notion
+2. `Promotion`: selected for durable repository change
+3. `GitHub PR`: implemented and reviewed in GitHub-tracked files
+4. `Runtime Sync`: merged GitHub state is synchronized into local runtime
+5. `Notion Merged`: Notion is updated only after merge and runtime validation
+
+Never treat Notion or local-only edits as the final execution truth.
+If the current lifecycle stage cannot be proven from task state or repository state, output `Unknown` and list the missing evidence.
+
 ---
 
 ## Stop Rules

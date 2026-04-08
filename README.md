@@ -9,6 +9,25 @@
 2. Follow the files and routing order defined there.
 3. Do not scan the repository or preload knowledge outside routed scope.
 
+This README is only a repository summary.
+Canonical execution rules live in `AGENT_BOOTSTRAP.md` and `OPERATING_SOP.md`.
+
+## System Boundary
+
+- `Notion` is the front door for intake, queueing, and merged-state reporting.
+- `GitHub` is the single execution source of truth.
+- `Local` is a synchronized working mirror and runtime bridge.
+
+If these layers disagree, merged GitHub state wins.
+
+## Operating Flow
+
+This repository uses one fixed durable-change lifecycle:
+
+`Intel -> Promotion -> GitHub PR -> Runtime Sync -> Notion Merged`
+
+Reference: `OPERATING_SOP.md`
+
 ## Structure
 
 ```
@@ -16,6 +35,7 @@
 ├── AGENT_BOOTSTRAP.md              # Agent entry protocol (single authority)
 ├── README.md                       # This file
 ├── AI启动模块.md                     # Fast orientation for new AI tools
+├── OPERATING_SOP.md                # Fixed Notion -> GitHub -> runtime operating flow
 │
 ├── registry/                       # Central registries (read first)
 │   ├── repo.yaml
@@ -63,6 +83,7 @@
 3. Include an evidence map in substantive answers.
 4. Keep registry and skill paths synchronized.
 5. Archive is read-only and never primary truth.
+6. Durable operating changes must flow through GitHub before Notion is marked merged.
 
 ## How To Add
 

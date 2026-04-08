@@ -2,6 +2,14 @@
 
 Updated: 2026-04-09
 
+This file is a fast onboarding wrapper.
+
+Canonical execution rules live in:
+- `AGENT_BOOTSTRAP.md` for routing and loading discipline
+- `OPERATING_SOP.md` for lifecycle and system-boundary rules
+
+If any summary in this file ever conflicts with those two files, follow the canonical documents.
+
 ## Zero-Ambiguity Onboarding (Required)
 
 Do not start from README summaries or generic repo scans.
@@ -14,6 +22,12 @@ Do this exact order:
 5. Load only the listed knowledge files and skills
 
 If any required file is missing or cannot be parsed, stop and report the missing file.
+
+## Canonical Boundary
+
+For system boundary and lifecycle rules, read:
+- `AGENT_BOOTSTRAP.md`
+- `OPERATING_SOP.md`
 
 ## Copy-Paste Prompt For New AI Tools
 
@@ -47,12 +61,15 @@ D. Compliance Proof:
 - State you did not scan the whole repository
 - State you only loaded routed files
 - If missing files exist, stop and report instead of guessing
+- State which lifecycle stage the current task is in: Intel / Promotion / GitHub PR / Runtime Sync / Notion Merged
+- If the lifecycle stage cannot be proven from repository state or task state, output `Unknown` and list the missing evidence instead of guessing
 
 Pass criteria:
 - Must select a concrete route from TASK_ROUTER.yaml
 - Must name concrete skills and knowledge files
 - Must include Evidence Map with real file paths
 - Must not answer with only quick-start summary
+- Lifecycle stage must be evidence-backed; otherwise output `Unknown`
 ```
 
 ## Why Previous Onboarding Failed
@@ -70,6 +87,7 @@ proves repository access and sync only. It does not prove protocol initializatio
 - Loaded only route-listed knowledge and skills
 - Produced `Evidence Map` with real file paths
 - Explicitly confirmed no full-repo scan
+- Reported an evidence-backed lifecycle stage, or `Unknown` with missing evidence
 
 ## Project Skills
 
@@ -96,16 +114,24 @@ proves repository access and sync only. It does not prove protocol initializatio
 
 ## Fast Routes
 
-- Scripts / automation -> `googleads-scripts`
-- Keyword / negatives -> `googleads-keyword-expert`
-- Landing page / quality score -> `googleads-audit`
-- Financial verification / G2 / regulator -> `googleads-verify`
-- Suspension / rejection / appeal -> `googleads-appeal`
-- Appeal letter / comments box -> `googleads-appealtxt`
-- Skill install / update / governance -> `system/cocoloop`
-- Summaries of long material -> `system/summarize`
-- GA4 / measurement / reporting -> `system/google-analytics-api`
+- Scripts / automation -> route `script_generation` -> `googleads-scripts`
+- Keyword / negatives -> route `keyword_audit` -> `googleads-keyword-expert`
+- Landing page / quality score -> route `landing_page_audit` -> `googleads-audit`
+- Financial verification / G2 / regulator -> route `financial_compliance` -> `googleads-verify`
+- India financial verification / SEBI / G2RS -> route `india_financial_verification` -> `googleads-verify`
+- Suspension / rejection / appeal -> route `appeal_process` -> `googleads-appeal`
+- Appeal letter / comments box -> route `appeal_text_generation` -> `googleads-appealtxt`
+- Onboarding / protocol / repo governance audit -> route `system_governance` -> `system/skill-vetter`
+- Skill install / update / governance -> route `skill_management` -> `system/cocoloop`
+- Summaries of long material -> route `document_summarization` -> `system/summarize`
+- GA4 / measurement / reporting -> route `analytics_measurement` -> `system/google-analytics-api`
 
 ## GitHub Handoff Rule
 
 If a skill is present in this repository and registered in `registry/skills.yaml`, other AI tools should be able to use it immediately after reading `AGENT_BOOTSTRAP.md` and `knowledge/googleads/TASK_ROUTER.yaml`.
+
+## System Truth Rule
+
+- Do not treat Notion notes as merged execution truth.
+- Do not treat local-only edits as final state.
+- Do not claim completion until GitHub and runtime are synchronized.
