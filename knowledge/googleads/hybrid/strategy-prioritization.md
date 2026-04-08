@@ -1,15 +1,19 @@
 ---
 id: strategy-prioritization
+entity_type: knowledge
 domain: googleads
 layer: hybrid
 task_types: [strategy_engineering, performance_diagnosis, campaign_build]
-priority: tier_1
+priority: 1
 source: internal-framework
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /knowledge/googleads/hybrid/signal-control-matrix.md
   - /knowledge/googleads/hybrid/signal-priority-method.md
 status: active
+summary: Converts signal analysis into an execution order for what to fix first, later, or not at all.
 ---
 
 # Google Ads Strategy Prioritization

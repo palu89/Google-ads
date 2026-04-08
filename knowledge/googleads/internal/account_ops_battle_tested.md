@@ -6,7 +6,10 @@ layer: internal
 task_types: [account_nurturing, high_risk_operations, budget_pacing, roi_modeling]
 priority: 2
 status: active
+source: internal-ops
+source_checked_at: 2026-04-09T00:00:00Z
 content_updated_at: 2026-04-09T00:00:00Z
+depends_on: []
 summary: Battle-tested Google Ads account operation strategies, focusing on the trade-offs between mass-account (burn) and high-weight (growth) models.
 ---
 

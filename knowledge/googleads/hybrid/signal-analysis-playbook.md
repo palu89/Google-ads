@@ -1,15 +1,19 @@
 ---
 id: signal-analysis-playbook
+entity_type: knowledge
 domain: googleads
 layer: hybrid
 task_types: [signal_analysis, performance_diagnosis, rca]
-priority: tier_1
+priority: 1
 source: internal-framework
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /knowledge/googleads/hybrid/signal-control-matrix.md
   - /knowledge/googleads/hybrid/signal-priority-method.md
 status: active
+summary: Provides a signal-based troubleshooting sequence for diagnosing Google Ads performance issues.
 ---
 
 # Google Ads Signal Analysis Playbook

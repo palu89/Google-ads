@@ -1,17 +1,21 @@
 ---
 id: knowledge-retrieval-framework
+entity_type: knowledge
 domain: googleads
 layer: internal
 task_types: [routing, retrieval, governance, prompt_engineering, project_state]
-priority: tier_1
+priority: 1
 source: internal-governance
 last_verified: 2026-04-08
+source_checked_at: 2026-04-08T00:00:00Z
+content_updated_at: 2026-04-09T00:00:00Z
 depends_on:
   - /registry/repo.yaml
   - /registry/model-profiles.yaml
   - /knowledge/googleads/TASK_ROUTER.yaml
   - /knowledge/googleads/ACTIVE_INDEX.yaml
 status: active
+summary: Defines how Google Ads knowledge should be routed, loaded, and governed for accurate low-token retrieval.
 ---
 
 # Google Ads Knowledge Retrieval Framework
