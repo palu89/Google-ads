@@ -59,6 +59,11 @@ If no route matches, ask the user:
 4. Project state (`projects/*/CURRENT_STATE.md`)
 5. Archive (historical reference only)
 
+## Self-Evolution Rules (AI Learning)
+- **Identify New Intel**: If the user provides battle-tested experience not found in /knowledge or /skills, you MUST flag it.
+- **Propose Updates**: Proactively ask: "Should I incorporate this new knowledge into [Target File]?"
+- **Atomic Commits**: Every knowledge update should be committed with a `feat: evolve knowledge` prefix.
+
 ## Output Format
 
 Mechanism → Judgment → Action → Risks → Missing Data → Evidence Map
