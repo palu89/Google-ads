@@ -16,6 +16,7 @@ It blocks `requires.files` drift to:
 ## Files
 
 - `scripts/check_googleads_requires_sync.sh`
+- `scripts/check_googleads_runtime_mirror.sh`
 - `scripts/install_googleads_runtime_guard.sh`
 
 ## Install
@@ -32,12 +33,14 @@ This installs a local pre-commit hook that runs the guard before each commit.
 
 ```bash
 ./scripts/check_googleads_requires_sync.sh
+./scripts/check_googleads_runtime_mirror.sh
 ```
 
 Expected:
 
 ```text
 googleads requires.files gate: OK
+googleads runtime mirror gate: OK
 ```
 
 ## Scope Gate
@@ -55,3 +58,13 @@ Rejected preload paths include:
 - `.codex/...`
 - `skills/docs/reference/...`
 - legacy `googleads-modules.md` / `googleads-field-manual.md`
+
+## Runtime Mirror Check
+
+The runtime mirror check compares the GitHub source file against the OpenClaw runtime mirror at `/Users/palu/.openclaw/workspace-googleads-palu` by default.
+
+Example:
+
+```bash
+./scripts/check_googleads_runtime_mirror.sh knowledge/googleads/official/india_financial_verification_scope.md
+```
