@@ -48,6 +48,19 @@ task_mappings:
       - "policy"
       - "金融"
       - "finance"
+      - "封控"
+      - "抗揍"
+      - "黑产"
+      - "跑法"
+      - "堆户"
+      - "权重"
+    knowledge_files:
+      - field_manual_v3.0
+      - account_ops_battle_tested
+    skills:
+      - googleads-audit
+    layer: internal
+    priority: 1
       - "验证"
       - "verification"
       - "G2"
