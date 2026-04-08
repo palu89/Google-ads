@@ -8,17 +8,17 @@ import sys
 import re
 
 REQUIRED_FIELDS = [
-    "current_task",
-    "task_type",
+    "current task",
+    "task type",
     "domain",
-    "files_read_so_far",
-    "router_consulted",
-    "knowledge_files_selected",
-    "skills_selected",
-    "projects_selected",
-    "files_intentionally_not_opened",
-    "reason_for_decisions",
-    "token_budget_status",
+    "files read so far",
+    "router consulted",
+    "knowledge files selected",
+    "skills selected",
+    "projects selected",
+    "files intentionally not opened",
+    "reason for decisions",
+    "token budget status",
 ]
 
 TASK_TYPES = [
@@ -83,8 +83,8 @@ def validate_entry_report(report_text: str) -> tuple[bool, list]:
         failures.append("PROTOCOL VIOLATION: registry/repo.yaml not listed as read")
     
     # Check router was consulted
-    if "task-router.yaml" not in report_text.lower():
-        failures.append("PROTOCOL VIOLATION: router (task-router.yaml) not consulted")
+    if "task_router.yaml" not in report_text.lower():
+        failures.append("PROTOCOL VIOLATION: Task Router (TASK_ROUTER.yaml) not consulted")
     
     # Check token budget is stated
     if "/10" not in report_text and "/4" not in report_text and "/2" not in report_text:
