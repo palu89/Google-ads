@@ -1,0 +1,14 @@
+id: system/cocoloop
+entity_type: skill
+name: system/cocoloop
+status: active
+summary: System-level skill lifecycle manager for installation, updates, retirement, and layer governance.
+description: Install, update, uninstall, and govern skills across Codex, OpenClaw, and GitHub repositories.
+depends_on:
+  - system/skill-vetter
+used_by:
+  - agent/any
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/system/cocoloop/SKILL.md
+changelog_path: skills/system/cocoloop/CHANGELOG.md

@@ -1,0 +1,13 @@
+id: system/web-search
+entity_type: skill
+name: system/web-search
+status: active
+summary: Live web-search skill for current information, news, images, and research.
+description: Search the web for current information, news, and resources with a structured workflow.
+depends_on: []
+used_by:
+  - agent/any
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/system/web-search/SKILL.md
+changelog_path: skills/system/web-search/CHANGELOG.md

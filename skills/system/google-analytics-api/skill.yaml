@@ -1,0 +1,13 @@
+id: system/google-analytics-api
+entity_type: skill
+name: system/google-analytics-api
+status: active
+summary: System-level Google Analytics API skill for GA4 admin and reporting workflows.
+description: Query and configure Google Analytics properties, data streams, and reports through managed OAuth.
+depends_on: []
+used_by:
+  - agent/any
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/system/google-analytics-api/SKILL.md
+changelog_path: skills/system/google-analytics-api/CHANGELOG.md

@@ -2,7 +2,7 @@
 # This file defines the canonical state of the repository.
 
 version: 1.0.0
-last_updated: 2026-04-06T11:04:00Z
+last_updated: 2026-04-09T00:00:00Z
 repository:
   name: unified-knowledge-registry
   description: Unified GitHub repository for Google Ads knowledge, skills, projects, and registry

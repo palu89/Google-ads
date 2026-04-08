@@ -2,7 +2,7 @@
 # Maps Google Ads subdomains to knowledge files and skills.
 
 version: 1.0.0
-last_updated: 2026-04-06T11:20:00Z
+last_updated: 2026-04-09T00:00:00Z
 
 domain: googleads
 status: active
@@ -214,6 +214,27 @@ skill_mappings:
       - policies
       - appeal_process
     agent_mappings: see SKILL.md in skills/googleads-field-operations/
+
+  googleads-verify:
+    skill_id: googleads-verify
+    knowledge_files:
+      - field_manual_v3.0
+      - finance_navigator
+      - finance_compliance
+    agent_mappings: see SKILL.md in skills/googleads-verify/
+
+  googleads-appeal:
+    skill_id: googleads-appeal
+    knowledge_files:
+      - field_manual_v3.0
+      - appeal_process
+    agent_mappings: see SKILL.md in skills/googleads-appeal/
+
+  googleads-appealtxt:
+    skill_id: googleads-appealtxt
+    knowledge_files:
+      - appeal_process
+    agent_mappings: see SKILL.md in skills/googleads-appealtxt/
 
 task_router: knowledge/googleads/TASK_ROUTER.yaml
 active_index: knowledge/googleads/ACTIVE_INDEX.yaml

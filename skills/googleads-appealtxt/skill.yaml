@@ -1,0 +1,15 @@
+id: googleads-appealtxt
+entity_type: skill
+name: googleads-appealtxt
+status: active
+summary: Copy-ready Google Ads appeal text generator for comments boxes and reviewer-facing remediation letters.
+description: Copy-ready Google Ads appeal text generator for comments boxes, reviewer notes, and remediation letters.
+depends_on:
+  - knowledge/appeal_process
+used_by:
+  - agent/googleads-palu
+  - agent/main
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/googleads-appealtxt/SKILL.md
+changelog_path: skills/googleads-appealtxt/CHANGELOG.md

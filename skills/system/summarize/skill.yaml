@@ -1,0 +1,13 @@
+id: system/summarize
+entity_type: skill
+name: system/summarize
+status: active
+summary: System-level summarization skill for URLs, documents, exports, and media.
+description: Summarize URLs, PDFs, documents, exports, and media with type-first handling.
+depends_on: []
+used_by:
+  - agent/any
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/system/summarize/SKILL.md
+changelog_path: skills/system/summarize/CHANGELOG.md

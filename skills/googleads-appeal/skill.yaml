@@ -1,0 +1,16 @@
+id: googleads-appeal
+entity_type: skill
+name: googleads-appeal
+status: active
+summary: Google Ads appeal workflow for suspensions, rejections, remediation sequencing, and evidence packaging.
+description: Suspension, rejection, and compliance-remediation workflow for Google Ads appeals.
+depends_on:
+  - knowledge/field_manual_v3.0
+  - knowledge/appeal_process
+used_by:
+  - agent/googleads-palu
+  - agent/main
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/googleads-appeal/SKILL.md
+changelog_path: skills/googleads-appeal/CHANGELOG.md

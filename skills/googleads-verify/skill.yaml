@@ -1,0 +1,17 @@
+id: googleads-verify
+entity_type: skill
+name: googleads-verify
+status: active
+summary: Financial-services verification workflow for Google Ads licensing, G2 readiness, and evidence packaging.
+description: Financial-services verification and regulator-alignment workflow for Google Ads.
+depends_on:
+  - knowledge/field_manual_v3.0
+  - knowledge/finance_navigator
+  - knowledge/finance_compliance
+used_by:
+  - agent/googleads-palu
+  - agent/main
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/googleads-verify/SKILL.md
+changelog_path: skills/googleads-verify/CHANGELOG.md

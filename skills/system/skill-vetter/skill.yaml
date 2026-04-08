@@ -1,0 +1,13 @@
+id: system/skill-vetter
+entity_type: skill
+name: system/skill-vetter
+status: active
+summary: Security-first vetting workflow for external skills before installation.
+description: Vet external skills for red flags, permission scope, and installation risk.
+depends_on: []
+used_by:
+  - agent/any
+owner: palu
+last_updated: 2026-04-09T00:00:00Z
+skill_path: skills/system/skill-vetter/SKILL.md
+changelog_path: skills/system/skill-vetter/CHANGELOG.md

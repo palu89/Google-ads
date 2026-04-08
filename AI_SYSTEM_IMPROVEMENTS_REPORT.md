@@ -1,3 +1,7 @@
+> Historical note (2026-04-09)
+> This report is superseded by `AGENT_BOOTSTRAP.md`, `registry/repo.yaml`, `registry/skills.yaml`, and `knowledge/googleads/TASK_ROUTER.yaml`.
+> If this report conflicts with registry or routed files, treat the registry and router as authoritative.
+
 # AI 系统三大问题的解答与改进方案
 
 **报告日期**: 2026-04-08  

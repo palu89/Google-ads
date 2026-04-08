@@ -2,15 +2,15 @@
 # Tracks all skill definitions and their metadata.
 
 version: 1.0.0
-last_updated: 2026-04-06T11:10:00Z
+last_updated: 2026-04-09T00:00:00Z
 
 skills:
   - id: googleads-field-operations
     name: googleads-field-operations
-    description: Google Ads 优化师总控台。Orchestrator for Google Ads operations.
+    description: Google Ads orchestrator for broad operations, routing, and field-manual guidance.
     entity_type: skill
     status: active
-    summary: Orchestrates Google Ads operations, routes to specialized agents, and provides field manual guidance.
+    summary: Orchestrates Google Ads operations, routes to specialized skills, and provides field-manual guidance.
     depends_on:
       - knowledge/field_manual_v3.0
     used_by:
@@ -22,7 +22,6 @@ skills:
     skill_path: skills/googleads-field-operations/SKILL.md
     changelog_path: skills/googleads-field-operations/CHANGELOG.md
 
-  # Additional skills to be extracted from migration documents
   - id: googleads-scripts
     name: googleads-scripts
     description: Google Ads script generation and deployment.
@@ -33,7 +32,7 @@ skills:
       - knowledge/script_architect
     used_by: []
     owner: palu
-    last_updated: unknown
+    last_updated: 2026-04-09T00:00:00Z
     manifest_path: skills/googleads-scripts/skill.yaml
     skill_path: skills/googleads-scripts/SKILL.md
     changelog_path: skills/googleads-scripts/CHANGELOG.md
@@ -48,7 +47,7 @@ skills:
       - knowledge/keyword_expert
     used_by: []
     owner: palu
-    last_updated: unknown
+    last_updated: 2026-04-09T00:00:00Z
     manifest_path: skills/googleads-keyword-expert/skill.yaml
     skill_path: skills/googleads-keyword-expert/SKILL.md
     changelog_path: skills/googleads-keyword-expert/CHANGELOG.md
@@ -58,15 +57,69 @@ skills:
     description: Landing page audit and optimization.
     entity_type: skill
     status: active
-    summary: Audits landing pages for quality score and conversion optimization.
+    summary: Audits landing pages for quality score, policy risk, and conversion optimization.
     depends_on:
       - knowledge/lp_auditor
     used_by: []
     owner: palu
-    last_updated: unknown
+    last_updated: 2026-04-09T00:00:00Z
     manifest_path: skills/googleads-audit/skill.yaml
     skill_path: skills/googleads-audit/SKILL.md
     changelog_path: skills/googleads-audit/CHANGELOG.md
+
+  - id: googleads-verify
+    name: googleads-verify
+    description: Financial-services verification and regulator-alignment workflow for Google Ads.
+    entity_type: skill
+    status: active
+    summary: Handles G2 readiness, licensing evidence, regulator mapping, and verification packaging.
+    depends_on:
+      - knowledge/field_manual_v3.0
+      - knowledge/finance_navigator
+      - knowledge/finance_compliance
+    used_by:
+      - agent/googleads-palu
+      - agent/main
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/googleads-verify/skill.yaml
+    skill_path: skills/googleads-verify/SKILL.md
+    changelog_path: skills/googleads-verify/CHANGELOG.md
+
+  - id: googleads-appeal
+    name: googleads-appeal
+    description: Suspension, rejection, and compliance-remediation workflow for Google Ads appeals.
+    entity_type: skill
+    status: active
+    summary: Structures remediation order, evidence packaging, and appeal strategy for rejection and suspension cases.
+    depends_on:
+      - knowledge/field_manual_v3.0
+      - knowledge/appeal_process
+    used_by:
+      - agent/googleads-palu
+      - agent/main
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/googleads-appeal/skill.yaml
+    skill_path: skills/googleads-appeal/SKILL.md
+    changelog_path: skills/googleads-appeal/CHANGELOG.md
+
+  - id: googleads-appealtxt
+    name: googleads-appealtxt
+    description: Copy-ready Google Ads appeal text generator for comments boxes and reviewer-facing letters.
+    entity_type: skill
+    status: active
+    summary: Produces concise, reviewer-friendly Google Ads appeal text after remediation facts are confirmed.
+    depends_on:
+      - knowledge/appeal_process
+    used_by:
+      - agent/googleads-palu
+      - agent/main
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/googleads-appealtxt/skill.yaml
+    skill_path: skills/googleads-appealtxt/SKILL.md
+    changelog_path: skills/googleads-appealtxt/CHANGELOG.md
 
   - id: google-trends
     name: google-trends
@@ -77,7 +130,7 @@ skills:
     depends_on: []
     used_by: []
     owner: palu
-    last_updated: 2026-04-09
+    last_updated: 2026-04-09T00:00:00Z
     manifest_path: skills/google-trends/skill.yaml
     skill_path: skills/google-trends/SKILL.md
     changelog_path: skills/google-trends/CHANGELOG.md
@@ -87,31 +140,90 @@ skills:
     description: Proactive self-reflection and learning.
     entity_type: skill
     status: active
-    summary: Enables the repository to evolve its own knowledge based on feedback.
+    summary: Enables the repository to evolve its knowledge and operating rules based on feedback.
     depends_on: []
     used_by: []
     owner: palu
-    last_updated: 2026-04-09
+    last_updated: 2026-04-09T00:00:00Z
     manifest_path: skills/self-improving-agent/skill.yaml
     skill_path: skills/self-improving-agent/SKILL.md
     changelog_path: skills/self-improving-agent/CHANGELOG.md
 
-  - id: googleads-verify
-    name: googleads-verify
-    description: Financial services verification navigation.
+  - id: system/skill-vetter
+    name: system/skill-vetter
+    description: Security-first skill vetting for AI agents before installation.
     entity_type: skill
-    status: planned
-    note: "Directory skills/googleads-verify/ does not exist yet"
-    summary: Guides through financial services verification and compliance requirements.
-    depends_on:
-      - knowledge/finance_navigator
-      - knowledge/finance_compliance
-    used_by: []
+    status: active
+    summary: Reviews source trust, permission scope, and red flags before any external skill is installed.
+    depends_on: []
+    used_by:
+      - agent/any
     owner: palu
-    last_updated: unknown
-    manifest_path: skills/googleads-verify/skill.yaml
-    skill_path: skills/googleads-verify/SKILL.md
-    changelog_path: skills/googleads-verify/CHANGELOG.md
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/system/skill-vetter/skill.yaml
+    skill_path: skills/system/skill-vetter/SKILL.md
+    changelog_path: skills/system/skill-vetter/CHANGELOG.md
+
+  - id: system/web-search
+    name: system/web-search
+    description: Live web-search skill for current information, news, and research.
+    entity_type: skill
+    status: active
+    summary: Searches the web for current content and structured research inputs.
+    depends_on: []
+    used_by:
+      - agent/any
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/system/web-search/skill.yaml
+    skill_path: skills/system/web-search/SKILL.md
+    changelog_path: skills/system/web-search/CHANGELOG.md
+
+  - id: system/cocoloop
+    name: system/cocoloop
+    description: Skill lifecycle manager for installing, updating, and governing skills safely.
+    entity_type: skill
+    status: active
+    summary: Manages skill installation, updates, retirement, and layer governance across Codex, OpenClaw, and repositories.
+    depends_on:
+      - system/skill-vetter
+    used_by:
+      - agent/any
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/system/cocoloop/skill.yaml
+    skill_path: skills/system/cocoloop/SKILL.md
+    changelog_path: skills/system/cocoloop/CHANGELOG.md
+
+  - id: system/summarize
+    name: system/summarize
+    description: Summarize URLs, PDFs, documents, exports, and media with type-first handling.
+    entity_type: skill
+    status: active
+    summary: Compresses large inputs into decision-oriented summaries before deeper analysis.
+    depends_on: []
+    used_by:
+      - agent/any
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/system/summarize/skill.yaml
+    skill_path: skills/system/summarize/SKILL.md
+    changelog_path: skills/system/summarize/CHANGELOG.md
+
+  - id: system/google-analytics-api
+    name: system/google-analytics-api
+    description: Google Analytics admin and reporting skill for GA4 workflows.
+    entity_type: skill
+    status: active
+    summary: Supports GA4 account inspection, property management, data-stream checks, and reporting workflows.
+    depends_on: []
+    used_by:
+      - agent/any
+    owner: palu
+    last_updated: 2026-04-09T00:00:00Z
+    manifest_path: skills/system/google-analytics-api/skill.yaml
+    skill_path: skills/system/google-analytics-api/SKILL.md
+    changelog_path: skills/system/google-analytics-api/CHANGELOG.md
 
 validation:
   required_fields:
@@ -125,13 +237,11 @@ validation:
     - used_by
     - owner
     - last_updated
-  status_values: [active, deprecated, experimental, unknown]
+  status_values: [active, deprecated, experimental, unknown, planned]
   freshness_threshold_days: 90
 
 notes: |
   Skills are executable capabilities referenced by agents.
-  Each skill must have a corresponding directory in /skills/<skill-name>/
-  with SKILL.md, skill.yaml, and CHANGELOG.md.
-  
-  Skills may depend on knowledge files or other skills.
-  The 'used_by' field tracks which agents reference this skill.
+  Project skills live under `skills/<skill-name>/`.
+  System skills live under `skills/system/<skill-name>/`.
+  Every indexed skill should have `SKILL.md`, `skill.yaml`, and `CHANGELOG.md`.
