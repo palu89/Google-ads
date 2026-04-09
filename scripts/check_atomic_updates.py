@@ -9,6 +9,7 @@ stateful project changes without CURRENT_STATE update, and router changes withou
 import os
 import sys
 import re
+import subprocess
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -44,23 +45,42 @@ def check_knowledge_index_freshness():
         except ValueError:
             return False, "Could not parse timestamp in ACTIVE_INDEX.yaml"
         
-        # Find most recent knowledge file modification
-        latest_mtime = 0
+        # Use Git commit timestamps instead of filesystem mtimes so CI checkouts
+        # do not falsely mark every knowledge file as newer than the index.
         latest_file = None
-        
+        latest_time = None
+
         for root, dirs, files in os.walk(KNOWLEDGE_DIR):
             for file in files:
-                if file.endswith('.md'):
-                    filepath = Path(root) / file
-                    mtime = filepath.stat().st_mtime
-                    if mtime > latest_mtime:
-                        latest_mtime = mtime
-                        latest_file = filepath
-        
-        if latest_file:
-            file_time = datetime.fromtimestamp(latest_mtime, tz=timezone.utc)
-            if file_time > index_time:
-                return False, f"Knowledge file {latest_file.name} modified after index generation"
+                if not file.endswith('.md'):
+                    continue
+
+                filepath = Path(root) / file
+                relpath = str(filepath.relative_to(REPO_ROOT))
+
+                result = subprocess.run(
+                    ["git", "log", "-1", "--format=%cI", "--", relpath],
+                    cwd=REPO_ROOT,
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+
+                timestamp = result.stdout.strip()
+                if not timestamp:
+                    continue
+
+                try:
+                    file_time = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+                except ValueError:
+                    continue
+
+                if latest_time is None or file_time > latest_time:
+                    latest_time = file_time
+                    latest_file = filepath
+
+        if latest_file and latest_time and latest_time > index_time:
+            return False, f"Knowledge file {latest_file.name} modified after index generation"
         
         return True, "Knowledge index is fresh"
     except Exception as e:
