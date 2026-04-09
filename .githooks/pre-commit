@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$ROOT_DIR" ]]; then
+  echo "FAIL: pre-commit hook requires a Git repository"
+  exit 1
+fi
+
+cd "$ROOT_DIR"
+
+if [[ -x "./scripts/check_googleads_execution_boundary.sh" ]]; then
+  echo "🧭 检查 Google Ads 仓库边界..."
+  ./scripts/check_googleads_execution_boundary.sh pre-commit
+fi
+
+if [[ -x "./scripts/check_googleads_requires_sync.sh" ]]; then
+  echo "🧭 检查 Google Ads requires.files 门禁..."
+  ./scripts/check_googleads_requires_sync.sh
+fi
