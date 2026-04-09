@@ -1,0 +1,27 @@
+name: AI Enforcement
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  ai-enforcement:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure hook files are executable
+        run: chmod +x .githooks/pre-commit .githooks/pre-push scripts/check_googleads_execution_boundary.sh scripts/check_googleads_requires_sync.sh scripts/install_googleads_runtime_guard.sh
+
+      - name: Validate repository execution boundary
+        run: ./scripts/check_googleads_execution_boundary.sh ci
+
+      - name: Validate runtime preload gate
+        run: ./scripts/check_googleads_requires_sync.sh
+
+      - name: Validate atomic update discipline
+        run: python3 ./scripts/check_atomic_updates.py

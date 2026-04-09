@@ -12,6 +12,9 @@ fi
 cd "$REPO_ROOT"
 
 CURRENT_BRANCH="$(git branch --show-current)"
+if [[ -z "$CURRENT_BRANCH" ]] && [[ "$MODE" == "ci" ]]; then
+  CURRENT_BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME:-}}"
+fi
 if [[ -z "$CURRENT_BRANCH" ]]; then
   echo "FAIL: detached HEAD is not allowed for Google Ads execution work"
   exit 1
@@ -19,6 +22,11 @@ fi
 
 if [[ ! -f "$REPO_ROOT/AGENT_BOOTSTRAP.md" ]] || [[ ! -f "$REPO_ROOT/registry/repo.yaml" ]]; then
   echo "FAIL: repository root does not contain required Google Ads bootstrap files"
+  exit 1
+fi
+
+if [[ ! -f "$REPO_ROOT/.githooks/pre-commit" ]] || [[ ! -f "$REPO_ROOT/.githooks/pre-push" ]]; then
+  echo "FAIL: versioned hooks are missing from .githooks"
   exit 1
 fi
 
