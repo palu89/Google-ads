@@ -2,37 +2,59 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-HOOK_FILE="$ROOT_DIR/.git/hooks/pre-commit"
+PRE_COMMIT_HOOK="$ROOT_DIR/.git/hooks/pre-commit"
+PRE_PUSH_HOOK="$ROOT_DIR/.git/hooks/pre-push"
 MARK_BEGIN="# >>> googleads-runtime-guard >>>"
 MARK_END="# <<< googleads-runtime-guard <<<"
 
-mkdir -p "$(dirname "$HOOK_FILE")"
+mkdir -p "$(dirname "$PRE_COMMIT_HOOK")"
 
-if [[ -f "$HOOK_FILE" ]]; then
-  existing="$(cat "$HOOK_FILE")"
-else
-  existing='#!/bin/bash
+install_block() {
+  local hook_file="$1"
+  local block="$2"
+  local existing
+  local cleaned
+  local tmp_file
+
+  if [[ -f "$hook_file" ]]; then
+    existing="$(cat "$hook_file")"
+  else
+    existing='#!/bin/bash
 set -e
 '
-fi
+  fi
 
-block="$MARK_BEGIN
+  cleaned="$(printf '%s\n' "$existing" | awk -v begin="$MARK_BEGIN" -v end="$MARK_END" '
+    $0 == begin { skip=1; next }
+    $0 == end { skip=0; next }
+    !skip { print }
+  ')"
+
+  tmp_file="$(mktemp)"
+  printf '%s\n\n%s\n' "$cleaned" "$block" > "$tmp_file"
+  mv "$tmp_file" "$hook_file"
+  chmod +x "$hook_file"
+}
+
+pre_commit_block="$MARK_BEGIN
+if [ -x \"./scripts/check_googleads_execution_boundary.sh\" ]; then
+    echo \"🧭 检查 Google Ads 仓库边界...\"
+    ./scripts/check_googleads_execution_boundary.sh pre-commit
+fi
 if [ -x \"./scripts/check_googleads_requires_sync.sh\" ]; then
     echo \"🧭 检查 Google Ads requires.files 门禁...\"
     ./scripts/check_googleads_requires_sync.sh
 fi
 $MARK_END"
 
-if [[ "$existing" == *"$MARK_BEGIN"* ]] && [[ "$existing" == *"$MARK_END"* ]]; then
-  updated="$(printf '%s' "$existing" | perl -0pe "s/\Q$MARK_BEGIN\E.*?\Q$MARK_END\E/$block/s")"
-else
-  updated="$existing
-
-$block
-"
+pre_push_block="$MARK_BEGIN
+if [ -x \"./scripts/check_googleads_execution_boundary.sh\" ]; then
+    echo \"🧭 检查 Google Ads push 前边界...\"
+    ./scripts/check_googleads_execution_boundary.sh pre-push
 fi
+$MARK_END"
 
-printf '%s\n' "$updated" > "$HOOK_FILE"
-chmod +x "$HOOK_FILE"
+install_block "$PRE_COMMIT_HOOK" "$pre_commit_block"
+install_block "$PRE_PUSH_HOOK" "$pre_push_block"
 
-echo "Installed Google Ads runtime guard into .git/hooks/pre-commit"
+echo "Installed Google Ads runtime guard into .git/hooks/pre-commit and .git/hooks/pre-push"

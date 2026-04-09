@@ -1,6 +1,6 @@
 # AI启动模块
 
-Updated: 2026-04-09
+Updated: 2026-04-10
 
 ## Zero-Ambiguity Onboarding (Required)
 
@@ -12,6 +12,12 @@ Do this exact order:
 3. Read `knowledge/googleads/TASK_ROUTER.yaml`
 4. Match the task to one route
 5. Load only the listed knowledge files and skills
+
+Knowledge-file resolution rule (mandatory):
+
+6. Resolve each `knowledge_files` ID using `registry/googleads.yaml`
+7. Load by the resolved `path` (official/hybrid/internal), not by guessed folder
+8. Never assume all route knowledge files live under `knowledge/googleads/official/`
 
 If any required file is missing or cannot be parsed, stop and report the missing file.
 
@@ -37,6 +43,7 @@ B. Routing Proof:
 - Route name selected
 - Pattern hits
 - Exact knowledge_files to load
+- Exact resolved file paths from `registry/googleads.yaml`
 - Exact skills to load
 
 C. Execution Proof:
@@ -51,6 +58,7 @@ D. Compliance Proof:
 Pass criteria:
 - Must select a concrete route from TASK_ROUTER.yaml
 - Must name concrete skills and knowledge files
+- Must resolve each `knowledge_files` ID to real paths via `registry/googleads.yaml` (no folder guessing)
 - Must include Evidence Map with real file paths
 - Must not answer with only quick-start summary
 ```
@@ -68,6 +76,7 @@ proves repository access and sync only. It does not prove protocol initializatio
 - Read all 3 required files in sequence
 - Selected one concrete route in `knowledge/googleads/TASK_ROUTER.yaml`
 - Loaded only route-listed knowledge and skills
+- Resolved each route `knowledge_files` ID via `registry/googleads.yaml` to concrete paths
 - Produced `Evidence Map` with real file paths
 - Explicitly confirmed no full-repo scan
 
