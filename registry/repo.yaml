@@ -54,7 +54,11 @@ structure:
 
 governance:
   bootstrap_document: AGENT_BOOTSTRAP.md
+  operating_sop_document: OPERATING_SOP.md
   validation_workflow: .github/workflows/validate.yml
+  collaboration_frontend: Notion
+  execution_source_of_truth: GitHub
+  local_role: synchronized_working_mirror_and_runtime_bridge
   index_regeneration_frequency: 7d
   stale_threshold_days: 30
   
